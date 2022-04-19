@@ -1,0 +1,122 @@
+// /////////    COLORS    ///////////
+// //////////////////////////////////////
+
+$lib-yellow: #ffd500;
+$lib-yellow-menu-left: #f7c100;
+$lib-white: #ffffff;
+$lib-black: #333333;
+$lib-red: #ff2c00;
+$lib-green: #138300;
+$lib-green-hover: #19aa00;
+$lib-gray: #707070;
+$lib-gray-light-400: #d8d7d7;
+$lib-gray-light: #f2f2f2;
+$lib-gray-background-sale: #e5e5e5;
+$lib-red-pink: #ff4d4d;
+$lib-blue-link: #007bff;
+$lib-blue-hover-link: #0056b3;
+$lib-gray-line-stepper: #b2b2b2;
+$lib-blue-name: #0054fc;
+
+$lib-green-light: #1ba103;
+$lib-red-pink-light: #ff7070;
+$lib-red-light: #e64a191a;
+
+$lib-info-color: #3078f1;
+$lib-success-color: #138300;
+$lib-warning-color: #dab600;
+$lib-danger-color: #ff2c00;
+$lib-info-user-color: #0054fc;
+$lib-color-title-black: #262626;
+$lib-color-hover-table: #f9f9f9;
+
+$lib-input-color-green: $lib-success-color;
+$lib-input-color-gray: $lib-gray-light-400;
+
+$lib-silver-coin-color: #808080;
+$lib-gold-coin-color: #f7c100;
+
+$lib-color-hover-table: #f9f9f9;
+// /////////    Z-INDEX    ///////////
+// //////////////////////////////////////
+
+$lib-zIndex-common-popup: 1050;
+$lib-zIndex-overlay: 1040;
+$lib-zIndex-input-search: 10;
+$lib-zIndex-select: 5;
+$lib-zIndex-overlay-result-input: 1;
+
+// /////////    WIDTH_SIZE   ///////////
+// //////////////////////////////////////
+
+$lib-L: 1170px;
+$lib-XL: 1366px;
+$lib-XXL: 1536px;
+
+// /////////    FONT_SIZE   ///////////
+// //////////////////////////////////////
+
+$lib-fontSize-small: 12px;
+$lib-fontSize-normal: 14px;
+$lib-fontSize-big: 20px;
+$lib-fontSize-big-xl: 24px;
+$lib-fontSize-normal-xl: 16px;
+
+// /////////    FONT_FAMILY   ///////////
+// //////////////////////////////////////
+
+$lib-fontFamily: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+
+// /////////    FONT_WEIGHT   ///////////
+// //////////////////////////////////////
+
+$lib-fw-light: 300;
+$lib-fw-normal: 400;
+$lib-fw-medium: 500;
+$lib-fw-bold: 700;
+
+// /////////    BORDER_RADIUS   ///////////
+// //////////////////////////////////////
+
+$lib-border-radius-button: 3px;
+
+// /////////    BORDER_WIDTH   ///////////
+// //////////////////////////////////////
+
+$lib-border-input-width: 0.5px;
+
+// /////////    INPUT_STYLE   ///////////
+// //////////////////////////////////////
+
+$lib-input-height: 32px;
+$lib-input-search-select: 37px;
+
+// /////////    BUTTON_STYLE   ///////////
+// //////////////////////////////////////
+
+$lib-button-height: 40px;
+
+// /////////    BOX_STYLE   /////////////
+// //////////////////////////////////////
+$lib-padding-box: 20px;
+$lib-background-color-box: $lib-white;
+$lib-border-radius-box: 3px;
+$lib-border-title-color: $lib-gray-light-400;
+$lib-border-title-height: 1px;
+
+// /////////    TEXT_LINK_STYLE   ////////
+// //////////////////////////////////////
+$lib-fs-text-link: $lib-fontSize-normal;
+$lib-fw-text-link: $lib-fw-normal;
+$lib-color-text-link: $lib-blue-link;
+$lib-color-hover-text-link: $lib-blue-hover-link;
+
+// /////////    TEXT_LABEL_STYLE   ////////
+// //////////////////////////////////////
+$lib-fs-text-label: $lib-fontSize-normal;
+$lib-fw-text-label: $lib-fw-normal;
+$lib-color-text-label: $lib-black;
+$lib-color-info-text-label: $lib-info-color;
+$lib-color-success-text-label: $lib-success-color;
+$lib-color-warning-text-label: $lib-warning-color;
+$lib-color-danger-text-label: $lib-danger-color;
