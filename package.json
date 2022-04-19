@@ -1,6 +1,6 @@
 {
-  "name": "@dinhtrumdieu/findx-react-component-library",
-  "version": "0.0.3",
+  "name": "@findxdn/erp-theme",
+  "version": "0.0.1",
   "description": "A simple template for a custom React component library",
   "scripts": {
     "rollup": "rollup -c",
@@ -10,7 +10,7 @@
   },
   "author": "findx",
   "repository": {
-    "url": "git://github.com/dinhtrumdieu/findx-react-component-library.git"
+    "url": "git://github.com/findxdn/erp-theme.git"
   },
   "license": "ISC",
   "devDependencies": {
