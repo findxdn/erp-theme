@@ -1,6 +1,6 @@
 {
   "name": "@findxdn/erp-theme",
-  "version": "0.0.1",
+  "version": "0.0.10",
   "description": "A simple template for a custom React component library",
   "scripts": {
     "rollup": "rollup -c",
@@ -13,11 +13,15 @@
     "url": "git://github.com/findxdn/erp-theme.git"
   },
   "license": "ISC",
+  "peerDependencies": {
+    "react": ">=17.0.2"
+  },
   "devDependencies": {
     "@babel/core": "^7.16.0",
     "@babel/preset-env": "^7.16.4",
     "@babel/preset-react": "^7.16.0",
     "@babel/preset-typescript": "^7.16.0",
+    "@mui/material": "^5.6.2",
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/plugin-node-resolve": "^13.0.6",
     "@rollup/plugin-typescript": "^8.3.0",
@@ -29,6 +33,7 @@
     "@storybook/testing-library": "0.0.9",
     "@testing-library/react": "^12.1.2",
     "@types/jest": "^27.0.2",
+    "@types/lodash": "^4.14.182",
     "@types/react": "^17.0.34",
     "babel-jest": "^27.3.1",
     "babel-loader": "^8.2.3",
@@ -36,7 +41,7 @@
     "html-webpack-plugin": "^5.5.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.3.1",
-    "react": "^17.0.2",
+    "lodash": "^4.17.21",
     "rollup": "^2.60.0",
     "rollup-plugin-dts": "^4.0.1",
     "rollup-plugin-postcss": "^4.0.1",
@@ -50,8 +55,5 @@
   "files": [
     "dist"
   ],
-  "types": "dist/index.d.ts",
-  "dependencies": {
-    "react-dom": "^18.0.0"
-  }
+  "types": "dist/index.d.ts"
 }
