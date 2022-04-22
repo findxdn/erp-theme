@@ -1,5 +1,5 @@
 {
-  "name": "@findxdn/erp-themest1",
+  "name": "@findxdn/erp-theme",
   "version": "0.0.14",
   "description": "A simple template for a custom React component library",
   "scripts": {
@@ -35,6 +35,7 @@
     "@types/jest": "^27.0.2",
     "@types/lodash": "^4.14.182",
     "@types/react": "^17.0.34",
+    "@types/react-router-dom": "^5.3.3",
     "babel-jest": "^27.3.1",
     "babel-loader": "^8.2.3",
     "css-loader": "^6.5.1",
@@ -63,7 +64,7 @@
     "@mui/lab": "^5.0.0-alpha.78",
     "chart.js": "^3.7.1",
     "react-chartjs-2": "^4.1.0",
-    "react-router": "^6.3.0",
-    "react-router-dom": "^6.3.0"
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0"
   }
 }

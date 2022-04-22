@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, BrowserRouter } from "react-router-dom";
 
 export interface TextLinkProps {
   [x: string]: any;
@@ -15,14 +15,16 @@ function TextLink(props: TextLinkProps) {
   const { to, title, className, onChange, children, ...rest } = props;
   onChange({ link: to, title: children });
   return (
-    <Link
-      to="/xxx/vc"
-      {...rest}
-      className={`findx-text-link ${className}`}
-      title={title}
-    >
-      <div>{children}</div>
-    </Link>
+    <BrowserRouter>
+      <Link
+        to={to}
+        {...rest}
+        className={`findx-text-link ${className}`}
+        title={title}
+      >
+        <div>{children}</div>
+      </Link>
+    </BrowserRouter>
   );
 }
 
