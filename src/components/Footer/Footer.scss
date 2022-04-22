@@ -1,0 +1,48 @@
+.footer {
+    height: 50px;
+    position: fixed;
+    bottom: 0px;
+    background-color: $white;
+    width: 100%;
+    padding-inline: 30px;
+
+    .nav-bar-footer {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: auto;
+        height: 100%;
+        cursor: pointer;
+        .item-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            width: auto;
+            height: 100%;
+            margin-right: 30px;
+            border-top: 1px solid $white;
+            .icon {}
+
+            .title {
+                font-size: $fontSize-normal;
+                font-weight: $fw-normal;
+                line-height: 19px;
+                letter-spacing: 0em;
+                padding: 0;
+                margin: 0;
+                text-align: left;
+                margin-left: 5px;
+            }
+        }
+        .item-bar.active{
+            border-top: 1px solid $red;
+            p{
+                color: $red;
+            }
+            div svg{
+                color: $red;
+            }
+        }
+    }
+}

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import _ from "lodash";
@@ -75,10 +74,3 @@ export default function DateTimeTextInput(props: DateTimeTextInputProps) {
     </Box>
   );
 }
-DateTimeTextInput.prototype = {
-  name: PropTypes.string,
-  placeholder: PropTypes.string,
-  options: PropTypes.array,
-  error: PropTypes.bool,
-  isPassword: PropTypes.bool,
-};

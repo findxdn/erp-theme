@@ -1,0 +1,23 @@
+.findx-box {
+  background-color: $background-color-box;
+  border-radius: $border-radius-box;
+
+  .box-title {
+    padding: $padding-box;
+    padding-bottom: 0px;
+  }
+
+  .box-content {
+    padding: $padding-box;
+    .manage-order-group {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+    }
+  }
+  .border-title {
+    padding-bottom: $padding-box;
+    border-bottom: $border-title-height solid $border-title-color;
+  }
+}

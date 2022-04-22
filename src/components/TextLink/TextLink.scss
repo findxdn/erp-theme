@@ -1,0 +1,8 @@
+.findx-text-link {
+  font-size: $fs-text-link;
+  font-weight: $fw-text-link;
+  color: $color-text-link;
+  &:hover {
+    color: $color-hover-text-link;
+  }
+}

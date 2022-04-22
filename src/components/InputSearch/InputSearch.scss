@@ -1,0 +1,17 @@
+.input-search-social {
+  height: 32px;
+  min-width: 262px;
+  border: 0.5px solid #707070;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 10px;
+  background-color: #fbfbfc;
+  border-radius: 3px;
+  .input-social {
+    border: none;
+    outline: none;
+    background-color: #fbfbfc;
+    width: 100%;
+  }
+}

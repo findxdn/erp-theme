@@ -1,6 +1,6 @@
-import React from 'react'
+import React from "react";
 
-export default function IconCheck(props) {
+export default function RadioIconCheck() {
   return (
     <svg
       width="21"
@@ -12,5 +12,5 @@ export default function IconCheck(props) {
       <circle cx="10.5" cy="10.5" r="10.5" fill="#FFD500" />
       <path d="M4 10.5L8.875 15L17 6" stroke="black" />
     </svg>
-  )
+  );
 }
