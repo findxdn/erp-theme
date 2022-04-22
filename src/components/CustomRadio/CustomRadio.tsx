@@ -1,6 +1,9 @@
 import React from "react";
 import Radio from "@mui/material/Radio";
-import { RadioIcon, IconCheck } from "library/components/assets/icons/index";
+import {
+  RadioIcon,
+  RadioIconCheck as IconCheck,
+} from "../../assets/icons/index";
 
 const style = {
   width: "100%",

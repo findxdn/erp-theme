@@ -5,7 +5,7 @@ export { default as CustomDateTimePicker } from "./CustomDateTimePicker";
 export { default as DateTimeTextInput } from  "./DateTimeTextInput";
 export { default as TextInput } from "./TextInput"
 export { default as TextNote } from "./TextNote"
-export { default as CustomSelect } from "./CustomSelect"
+export { default as SelectInput } from "./SelectInput"
 export { default as MultiSelect } from "./MultiSelect"
 export { default as Switch } from "./Switch"
 export { default as CustomCheckbox } from './CustomCheckbox'
@@ -17,3 +17,4 @@ export { default as TextLabel } from "./TextLabel"
 export { default as TextLink } from "./TextLink"
 export { default as Box } from './Box'
 export { default as Footer } from './Footer'
+export { default as Image } from './Image'

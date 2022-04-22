@@ -8,7 +8,7 @@ import ExpandMoreSharpIcon from "@mui/icons-material/ExpandMoreSharp";
 import _ from "lodash";
 import MessageError from "../../utils/MessageError";
 
-export interface CustomSelectProps {
+export interface SelectInputProps {
   name: string;
   placeholder?: string;
   value?: any;
@@ -31,7 +31,10 @@ const grey = {
   400: "#d8d7d7",
 };
 const style = {
-  fontSize: 15,
+  width: "100%",
+  marginTop: "-10px",
+  fontSize: 14,
+  paddingRight: "10px",
   color: "#333333",
   zIndex: "1",
   marginBottom: "8px",
@@ -43,7 +46,7 @@ const style = {
     borderColor: grey[400],
   },
   "&:hover .MuiOutlinedInput-notchedOutline": {
-    borderColor: "black",
+    borderColor: green[500],
   },
   "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
     border: `2px solid ${green[500]}`,
@@ -69,7 +72,7 @@ function getStyles(
   };
 }
 
-function CustomSelect(props: CustomSelectProps) {
+function SelectInput(props: SelectInputProps) {
   const { options, placeholder, errors, name, register, onChange } = props;
   let showError = false;
   if (!_.isEmpty(errors)) {
@@ -127,4 +130,4 @@ function CustomSelect(props: CustomSelectProps) {
   );
 }
 
-export default CustomSelect;
+export default SelectInput;

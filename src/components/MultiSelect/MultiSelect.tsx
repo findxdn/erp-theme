@@ -35,9 +35,11 @@ const grey = {
   400: "#d8d7d7",
 };
 const style = {
-  //   width: '100%',
-  fontSize: 15,
-  color: "black",
+  width: "100%",
+  marginTop: "-10px",
+  fontSize: 14,
+  paddingRight: "10px",
+  color: "#333333",
   zIndex: "1",
   marginBottom: "8px",
   ".MuiSelect-select": {
@@ -48,7 +50,7 @@ const style = {
     borderColor: grey[400],
   },
   "&:hover .MuiOutlinedInput-notchedOutline": {
-    borderColor: "black",
+    borderColor: green[500],
   },
   "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
     border: `2px solid ${green[500]}`,
