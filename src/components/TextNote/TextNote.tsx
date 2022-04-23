@@ -16,6 +16,7 @@ export interface TextNoteProps {
   isPassword?: string;
   minHeight?: any;
   maxHeight?: any;
+  className?: string;
 }
 
 const StyleTextArea = styled(({ ...rest }) => <textarea {...rest} />)(
@@ -23,14 +24,14 @@ const StyleTextArea = styled(({ ...rest }) => <textarea {...rest} />)(
     width: "100%",
     maxHeight: `${maxHeight}px`,
     minHeight: `${minHeight}px`,
-    border: `1px solid ${isError ? "red" : "#afafaf"}`,
+    border: `1px solid ${isError ? "red" : "#d8d7d7"}`,
     padding: "10px",
     borderRadius: "3px",
     "&:hover": {
-      border: "1px solid black",
+      borderColor: "#138300",
     },
     "&:focus": {
-      outline: "1px solid green",
+      borderColor: "#138300",
     },
   })
 );
@@ -44,13 +45,14 @@ export default function TextNote(props: TextNoteProps) {
     onBlur,
     minHeight = 40,
     maxHeight = 150,
+    className,
   } = props;
   let showError = false;
   if (!_.isEmpty(errors)) {
     showError = !_.isEmpty(errors[name]);
   }
   return (
-    <Box component="form" noValidate autoComplete="off">
+    <Box component="form" noValidate autoComplete="off" className={className}>
       <StyleTextArea
         isError={showError}
         fullWidth

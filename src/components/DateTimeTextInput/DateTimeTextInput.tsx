@@ -15,7 +15,33 @@ export interface DateTimeTextInputProps {
   type?: any;
   defaultValue?: string;
   isPassword?: string;
+  className?: string;
 }
+
+const style = {
+  width: "100%",
+  fontSize: 14,
+  color: "#333333",
+  zIndex: "1",
+  "& .MuiOutlinedInput-root": {
+    borderRadius: "5px",
+    height: "32px",
+    width: "100%",
+    fontSize: 14,
+    color: "#333333",
+    zIndex: "1",
+    "& .MuiOutlinedInput-notchedOutline": {
+      borderColor: "#d8d7d7",
+    },
+    "&:hover .MuiOutlinedInput-notchedOutline": {
+      borderColor: "#138300",
+    },
+    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+      border: "1px solid #138300",
+    },
+  },
+};
+
 export default function DateTimeTextInput(props: DateTimeTextInputProps) {
   const {
     name,
@@ -27,6 +53,7 @@ export default function DateTimeTextInput(props: DateTimeTextInputProps) {
     type,
     defaultValue,
     isPassword,
+    className,
   } = props;
 
   let showError = false;
@@ -43,13 +70,12 @@ export default function DateTimeTextInput(props: DateTimeTextInputProps) {
       noValidate
       autoComplete="off"
       sx={{ position: "relative" }}
+      className={className}
     >
       <TextField
-        margin="normal"
-        color="success"
-        size="small"
         required
         name={name}
+        sx={style}
         onBlur={onBlur}
         onChange={onChange}
         value={value}

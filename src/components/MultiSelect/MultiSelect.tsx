@@ -20,6 +20,7 @@ export interface MultiSelectProps {
   register?: any;
   errors?: any;
   options?: any;
+  className?: any;
 }
 const MenuProps = {
   PaperProps: {
@@ -28,12 +29,7 @@ const MenuProps = {
     },
   },
 };
-const green = {
-  500: "#138300",
-};
-const grey = {
-  400: "#d8d7d7",
-};
+
 const style = {
   width: "100%",
   marginTop: "-10px",
@@ -47,19 +43,19 @@ const style = {
     borderRadius: "5px",
   },
   "& .MuiOutlinedInput-notchedOutline": {
-    borderColor: grey[400],
+    borderColor: "#d8d7d7",
   },
   "&:hover .MuiOutlinedInput-notchedOutline": {
-    borderColor: green[500],
+    borderColor: "#138300",
   },
   "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-    border: `2px solid ${green[500]}`,
+    border: `2px solid #138300`,
   },
   "&:hover:not(.Mui-disabled):before": {
-    borderBottom: `1px solid ${green[500]}`,
+    borderBottom: `1px solid #138300`,
   },
   "&:after": {
-    borderBottom: `1px solid ${green[500]}`,
+    borderBottom: `1px solid #138300`,
   },
 };
 
@@ -77,7 +73,7 @@ function getStyles(
 }
 
 function MultiSelect(props: MultiSelectProps) {
-  const { options, errors, name, register, onChange } = props;
+  const { options, errors, name, register, onChange, className } = props;
   let showError = false;
   if (!_.isEmpty(errors)) {
     showError = !_.isEmpty(errors[name]);
@@ -109,6 +105,7 @@ function MultiSelect(props: MultiSelectProps) {
           value={personName}
           onChange={handleChange}
           multiple
+          className={className}
           input={<OutlinedInput />}
           renderValue={(selected) => (
             <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>

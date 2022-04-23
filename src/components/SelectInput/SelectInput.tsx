@@ -16,6 +16,7 @@ export interface SelectInputProps {
   register?: any;
   errors?: any;
   options?: any;
+  className?: any;
 }
 const MenuProps = {
   PaperProps: {
@@ -24,12 +25,7 @@ const MenuProps = {
     },
   },
 };
-const green = {
-  500: "#138300",
-};
-const grey = {
-  400: "#d8d7d7",
-};
+
 const style = {
   width: "100%",
   marginTop: "-10px",
@@ -43,37 +39,25 @@ const style = {
     borderRadius: "5px",
   },
   "& .MuiOutlinedInput-notchedOutline": {
-    borderColor: grey[400],
+    borderColor: "#d8d7d7",
   },
   "&:hover .MuiOutlinedInput-notchedOutline": {
-    borderColor: green[500],
+    borderColor: "#138300",
   },
   "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-    border: `2px solid ${green[500]}`,
+    border: `2px solid #138300`,
   },
   "&:hover:not(.Mui-disabled):before": {
-    borderBottom: `1px solid ${green[500]}`,
+    borderBottom: `1px solid #138300`,
   },
   "&:after": {
-    borderBottom: `1px solid ${green[500]}`,
+    borderBottom: `1px solid #138300`,
   },
 };
 
-function getStyles(
-  option: { value: React.Key | null | undefined; label: {} | null | undefined },
-  personName: string | any[],
-  theme: Theme
-) {
-  return {
-    fontWeight:
-      personName.indexOf(option) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
-  };
-}
-
 function SelectInput(props: SelectInputProps) {
-  const { options, placeholder, errors, name, register, onChange } = props;
+  const { options, placeholder, errors, name, register, onChange, className } =
+    props;
   let showError = false;
   if (!_.isEmpty(errors)) {
     showError = !_.isEmpty(errors[name]);
@@ -88,6 +72,7 @@ function SelectInput(props: SelectInputProps) {
     setPersonName(typeof value === "string" ? value.split(",") : value);
     onChange(value);
   };
+
   return (
     <div>
       <FormControl error={showError} fullWidth>
@@ -101,20 +86,11 @@ function SelectInput(props: SelectInputProps) {
           value={personName}
           onChange={handleChange}
           input={<OutlinedInput />}
-          renderValue={(selected) => {
-            if (selected.length === 0) {
-              return <p className="placeholder-select">{placeholder}</p>;
-            }
-            return selected.join(", ");
-          }}
           MenuProps={MenuProps}
+          className={className}
         >
           {options.map((option: { value: any; label: any }) => (
-            <MenuItem
-              key={option.value}
-              value={option.label}
-              style={getStyles(option, personName, theme)}
-            >
+            <MenuItem key={option.value} value={option.label}>
               {option.label}
             </MenuItem>
           ))}

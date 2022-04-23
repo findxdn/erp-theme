@@ -13,10 +13,35 @@ export interface CustomDateTimePickerProps {
   errors?: any;
   onChange?: any;
   values?: string;
+  className?: string;
+  styled?: any;
 }
 
+const style = {
+  width: "100%",
+  fontSize: 14,
+  color: "#333333",
+  zIndex: "1",
+  marginTop: "0px",
+  "& .MuiOutlinedInput-root": {
+    borderRadius: "5px",
+    height: "32px",
+    width: "100%",
+    borderColor: "#138300",
+    "& .MuiOutlinedInput-notchedOutline": {
+      borderColor: "#d8d7d7",
+    },
+    "&:hover .MuiOutlinedInput-notchedOutline": {
+      borderColor: "#138300",
+    },
+    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+      border: "1px solid #138300",
+    },
+  },
+};
+
 const CustomDateTimePicker = (props: CustomDateTimePickerProps) => {
-  const { register, errors, name, onChange, values } = props;
+  const { register, errors, name, onChange, values, className, styled } = props;
   const [value, setValue] = React.useState(values);
   let showError = false;
   if (!_.isEmpty(errors)) {
@@ -48,14 +73,15 @@ const CustomDateTimePicker = (props: CustomDateTimePickerProps) => {
         }}
         renderInput={(params: JSX.IntrinsicAttributes & TextFieldProps) => (
           <TextField
+            sx={styled ? styled : style}
             {...params}
             {...register}
             error={showError}
             fullWidth
-            color="success"
             margin="normal"
             size="small"
             name={name}
+            className={className}
             onChange={onChange(value)}
           />
         )}

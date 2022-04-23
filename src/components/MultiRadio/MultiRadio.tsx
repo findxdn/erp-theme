@@ -13,24 +13,28 @@ export interface MultiRadioProps {
   row?: any;
   onChange?: any;
   errors?: any;
+  className?: string;
 }
 
 export default function MultiRadio(props: MultiRadioProps) {
-  const { name, control, options, row, errors, onChange } = props;
-  const [value, setValue] = useState();
-  const handleChange = (event: {
-    target: { value: React.SetStateAction<undefined> };
-  }) => {
-    setValue(event.target.value);
-    onChange(event.target.value);
-  };
+  const { name, control, options, row, errors, onChange, className } = props;
+  const [value, setValue] = React.useState<string | null>(options[0]);
   let showError = false;
   if (!_.isEmpty(errors)) {
     showError = !_.isEmpty(errors[name]);
   }
   return (
     <FormControl error={showError} fullWidth>
-      <RadioGroup name={name} row={row} value={value} onChange={handleChange}>
+      <RadioGroup
+        name={name}
+        row={row}
+        value={value}
+        onChange={(event: any, newValue: string | null) => {
+          onChange(newValue);
+          setValue(newValue);
+        }}
+        className={className}
+      >
         {options.map(
           (options: {
             value: any;
