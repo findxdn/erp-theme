@@ -25,6 +25,47 @@
 
 [2. Fix lỗi thường gặp](#fixbug)
 
+[IV. Component & API](#IV)
+
+[1. Button](#Button)  
+
+[2. InputSearch](#InputSearch)  
+
+[3. CustomDatePicker](#CustomDatePicker)  
+
+[4. CustomDateTimePicker](#CustomDateTimePicker)  
+
+[5. DateTimeTextInput](#DateTimeTextInput)  
+
+[6. TextInput](#TextInput)  
+
+[7. TextNote](#TextNote)  
+
+[8. SelectInput](#SelectInput)  
+
+[9. MultiSelect](#MultiSelect)  
+
+[10. Switch](#Switch)  
+
+[11. CustomCheckbox](#CustomCheckbox)  
+
+[12. CustomAutocomplete](#CustomAutocomplete)  
+
+[13. MultiRadio](#MultiRadio)  
+
+[14. BarChart](#BarChart)  
+
+[15. TextLabel](#TextLabel)  
+
+[16. TextLink](#TextLink)  
+
+[17. Box](#Box)  
+
+[18. InputSearchProps](#InputSearchProps)  
+
+
+
+
 <a name = "I"></a>
 # I. Các bước tạo mới component ( Dự án Findx)
 <a name="createcomponent"></a>
@@ -61,7 +102,7 @@
 
 ![VÍ DỤ](https://fv9-1.failiem.lv/thumb_show.php?i=vf7pv39fy&view)  
 *	Import thư viện: import { ... } from "name"
-* <a name="III"></a>f
+* <a name="III"></a>
 [III. Cách sử dụng thư viện "findxdn/erp/theme"](#III)
 <a name="use"></a>
 ## 1.*Cách sử dụng*
@@ -80,6 +121,54 @@ registry=https://registry.npmjs.org/
 * Ex: npm i --legacy-peer-deps
 
 ![image](https://fv9-3.failiem.lv/thumb_show.php?i=q6rvvtjaa&view)  
+* <a name="IV"></a>
+[IV. Component và cách sử dụng"](#IV)
+
+<a name="Button"></a>
+## 1.*Button*
+
+|       Name    |      Type     | Default     | Description |
+| :------------:|:-------------:|:-----------:|:-----------:|          
+|     onClick   |     func      |   null      | function handle onclick |
+|     children  |     string    |   ""        | Name button |
+|     className |     string    |   ""        | ClassName button |
+|     sx        |     any       |   ""        | Style css button |
+|     icon      |     any       |   ""        | Icon button |
+|     type      |     any       |   button    | Type button: sudmid / reset / button |
+
+<a name="InputSearch"></a>
+## 2.*InputSearch*
+
+|       Name    |      Type     | Default     | Description |
+| :------------:|:-------------:|:-----------:|:-----------:|          
+|     name      |     string    |   ""        | Name inputSearch  |
+|    inputCustom|     any       |   null      | Custom css input |
+
+
+<a name="CustomDatePicker"></a>
+## 3.*CustomDatePicker*
+
+|       Name    |      Type     | Default     | Description |
+| :------------:|:-------------:|:-----------:|:-----------:|          
+|     name      |     string    |   ""        | Name CustomDatePicker  |
+|     register  |     any       |   null      |  |
+|     className |     string    |   ""        | ClassName CustomDatePicker |
+|     onChange  |     any       |   null      | Handle onchange data |
+|     errors    |     any       |   null      |
+|     styled    |     any       |   null      | Custom css Customdatepiker |
+
+<a name="CustomDateTimePicker"></a>
+## 4.*CustomDateTimePicker*
+
+|       Name    |      Type     | Default     | Description |
+| :------------:|:-------------:|:-----------:|:-----------:|          
+|     name      |     string    |   ""        | Name CustomDateTimePicker  |
+|     value     |     any       |   null      | Value default datetimepiker  |
+|     register  |     any       |   null      |  |
+|     className |     string    |   ""        | ClassName CustomDateTimePicker |
+|     onChange  |     any       |   null      | Handle onchange data |
+|     errors    |     any       |   null      |
+|     styled    |     any       |   null      | Custom css Customdatepiker |
 
 
 
