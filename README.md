@@ -79,7 +79,7 @@ registry=https://registry.npmjs.org/
 * Nếu có lỗi như hình, thêm --legacy-peer-deps vào sau mỗi lệnh
 * Ex: npm i --legacy-peer-deps
 
-![VÍ DỤ](![image](https://fv9-3.failiem.lv/thumb_show.php?i=q6rvvtjaa&view)  
+![image](https://fv9-3.failiem.lv/thumb_show.php?i=q6rvvtjaa&view)  
 
 
 
