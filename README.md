@@ -35,37 +35,6 @@
 
 [4. CustomDateTimePicker](#CustomDateTimePicker)  
 
-[5. DateTimeTextInput](#DateTimeTextInput)  
-
-[6. TextInput](#TextInput)  
-
-[7. TextNote](#TextNote)  
-
-[8. SelectInput](#SelectInput)  
-
-[9. MultiSelect](#MultiSelect)  
-
-[10. Switch](#Switch)  
-
-[11. CustomCheckbox](#CustomCheckbox)  
-
-[12. CustomAutocomplete](#CustomAutocomplete)  
-
-[13. MultiRadio](#MultiRadio)  
-
-[14. BarChart](#BarChart)  
-
-[15. TextLabel](#TextLabel)  
-
-[16. TextLink](#TextLink)  
-
-[17. Box](#Box)  
-
-[18. InputSearchProps](#InputSearchProps)  
-
-
-
-
 <a name = "I"></a>
 # I. Các bước tạo mới component ( Dự án Findx)
 <a name="createcomponent"></a>
@@ -88,7 +57,7 @@
 *	npm publish
 
 <a name = "II"></a>
-# [II. NPM Link](#II)
+# II. NPM Link
 <a name="timhieu"></a>
 ## 1.*Tìm Hiểu NPM Link*
 * - Tác dụng:
@@ -102,8 +71,9 @@
 
 ![VÍ DỤ](https://fv9-1.failiem.lv/thumb_show.php?i=vf7pv39fy&view)  
 *	Import thư viện: import { ... } from "name"
+
 * <a name="III"></a>
-[III. Cách sử dụng thư viện "findxdn/erp/theme"](#III)
+# III. Cách sử dụng thư viện "findxdn/erp/theme"
 <a name="use"></a>
 ## 1.*Cách sử dụng*
 * Tạo file .npmrc trong project với data <br>
@@ -120,9 +90,10 @@ registry=https://registry.npmjs.org/
 * Nếu có lỗi như hình, thêm --legacy-peer-deps vào sau mỗi lệnh
 * Ex: npm i --legacy-peer-deps
 
-![image](https://fv9-3.failiem.lv/thumb_show.php?i=q6rvvtjaa&view)  
+![image](https://fv9-3.failiem.lv/thumb_show.php?i=q6rvvtjaa&view)
+
 * <a name="IV"></a>
-[IV. Component và cách sử dụng"](#IV)
+# IV. Component và cách sử dụng"
 
 <a name="Button"></a>
 ## 1.*Button*
