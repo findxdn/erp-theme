@@ -78,8 +78,6 @@ const CustomDateTimePicker = (props: CustomDateTimePickerProps) => {
             {...register}
             error={showError}
             fullWidth
-            margin="normal"
-            size="small"
             name={name}
             className={className}
             onChange={onChange(value)}

@@ -26,7 +26,7 @@ const style = {
   fontSize: 14,
   color: "#333333",
   zIndex: "1",
-  "& .MuiInputBase-root": {
+  "& .MuiInputBase-input": {
     padding: "4px 10px",
     "$ .MuiOutlinedInput-input": {
       padding: "4px 10px",

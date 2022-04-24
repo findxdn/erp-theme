@@ -32,12 +32,10 @@ const MenuProps = {
 
 const style = {
   width: "100%",
-  marginTop: "-10px",
   fontSize: 14,
   paddingRight: "10px",
   color: "#333333",
   zIndex: "1",
-  marginBottom: "8px",
   ".MuiSelect-select": {
     padding: "6px 10px",
     borderRadius: "5px",

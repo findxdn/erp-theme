@@ -2,10 +2,9 @@ import React from "react";
 import "./Button.scss";
 
 export interface ButtonProps {
-  label: string;
   onClick?: any;
-  children?: any;
-  className?: any;
+  children?: string | any;
+  className?: string;
   disabled?: any;
   sx?: any;
   icon?: any;

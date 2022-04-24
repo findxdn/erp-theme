@@ -9,10 +9,8 @@ import MessageError from "../../utils/MessageError";
 
 export interface CustomDatePickerProps {
   name: string;
-  options?: any;
   register?: any;
   errors?: any;
-  disabled?: boolean;
   onChange?: any;
   styled?: any;
   className?: string;
@@ -23,7 +21,7 @@ const style = {
   fontSize: 14,
   color: "#333333",
   zIndex: "1",
-  marginTop: "0px",
+  margin: "0px",
   "& .MuiOutlinedInput-root": {
     borderRadius: "5px",
     height: "32px",
