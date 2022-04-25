@@ -61,7 +61,7 @@ function SelectInput(props: SelectInputProps) {
     showError = !_.isEmpty(errors[name]);
   }
   const theme = useTheme();
-  const [personName, setPersonName] = React.useState();
+  const [personName, setPersonName] = React.useState([]);
 
   const handleChange = (event: { target: { value: any } }) => {
     const {
