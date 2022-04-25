@@ -22,7 +22,7 @@ function MessageError(props: MessageErrorProps) {
     }
   };
 
-  return <p style={{ color: "red" }}>{getMessage()}</p>;
+  return <p style={{ color: "red", marginTop: "5px" }}>{getMessage()}</p>;
 }
 
 export default MessageError;

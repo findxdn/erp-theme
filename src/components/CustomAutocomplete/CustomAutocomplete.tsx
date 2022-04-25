@@ -15,30 +15,33 @@ export interface CustomAutocompleteProps {
   options?: any;
   register?: any;
   errors?: any;
-  style?: any;
+  styles?: any;
 }
 
 const style = {
   width: "100%",
   fontSize: 14,
+  paddingRight: "10px",
   color: "#333333",
   zIndex: "1",
-  "& .MuiOutlinedInput-root": {
+  ".MuiSelect-select": {
+    padding: "6px 10px",
     borderRadius: "5px",
-    height: "32px",
-    width: "100%",
-    fontSize: 14,
-    color: "#333333",
-    zIndex: "1",
-    "& .MuiOutlinedInput-notchedOutline": {
-      borderColor: "#d8d7d7",
-    },
-    "&:hover .MuiOutlinedInput-notchedOutline": {
-      borderColor: "#138300",
-    },
-    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-      border: "1px solid #138300",
-    },
+  },
+  "& .MuiOutlinedInput-notchedOutline": {
+    borderColor: "#d8d7d7",
+  },
+  "&:hover .MuiOutlinedInput-notchedOutline": {
+    borderColor: "#000",
+  },
+  "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+    border: `2px solid #`,
+  },
+  "&:hover:not(.Mui-disabled):before": {
+    borderBottom: `1px solid #b3292a`,
+  },
+  "&:after": {
+    borderBottom: `1px solid #b3292a`,
   },
 };
 
@@ -50,7 +53,7 @@ function CustomAutocomplete(props: CustomAutocompleteProps) {
     register,
     errors,
     onChange,
-    style,
+    styles,
     className,
   } = props;
   let showError = false;
@@ -67,8 +70,8 @@ function CustomAutocomplete(props: CustomAutocompleteProps) {
           onChange(newValue);
           setValue(newValue);
         }}
-        className={className}
         sx={style}
+        className={className}
         options={options}
         popupIcon={<ExpandMoreSharpIcon />}
         renderInput={(params) => (
@@ -78,7 +81,6 @@ function CustomAutocomplete(props: CustomAutocompleteProps) {
             fullWidth
             placeholder={placeholder}
             error={showError}
-            sx={style}
           />
         )}
       />
