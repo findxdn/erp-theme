@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 function IcUp() {
   return (
@@ -17,7 +17,7 @@ function IcUp() {
         strokeLinejoin="round"
       />
     </svg>
-  )
+  );
 }
 
-export default IcUp
+export default IcUp;

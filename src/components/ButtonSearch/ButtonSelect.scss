@@ -1,0 +1,28 @@
+.button-select {
+  width: 112px;
+  height: 34px;
+  border-radius: $lib-border-radius-button;
+
+  .btn-search {
+    border: none;
+    height: 100%;
+    outline: none;
+    width: 78px;
+    background-color: $lib-green;
+    color: $lib-white;
+    border-radius: $lib-border-radius-button 0px 0px $lib-border-radius-button;
+
+    &:hover {
+      background-color: $lib-green-hover;
+    }
+  }
+
+  .btn-select {
+    border: none;
+    outline: none;
+    height: 100%;
+    width: 34px;
+    background-color: $lib-green-light;
+    border-radius: 0px $lib-border-radius-button $lib-border-radius-button 0px;
+  }
+}
