@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import _ from "lodash";
 import MessageError from "../../utils/MessageError";
-import { IcEyeClose } from "../assets/icons/index";
+import { IcEyeClose } from "../../assets/icons/index";
 
 export interface DateTimeTextInputProps {
   name: string;

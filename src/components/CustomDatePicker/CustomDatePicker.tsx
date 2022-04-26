@@ -4,7 +4,7 @@ import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DatePicker from "@mui/lab/DatePicker";
 import _ from "lodash";
-import { IcDateTime } from "../assets/icons";
+import { IcDateTime } from "../../assets/icons/index";
 import MessageError from "../../utils/MessageError";
 
 export interface CustomDatePickerProps {
