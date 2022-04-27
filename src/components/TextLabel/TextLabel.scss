@@ -1,23 +1,23 @@
 .findx-text-label {
-  font-size: $fs-text-label;
-  font-weight: $fw-text-label;
-  color: $color-text-label;
+  font-size: 14;
+  font-weight: 400;
+  color: #333333;
   display: flex;
 
   &-info {
-    color: $info-color;
+    color: #3078f1;
   }
 
   &-success {
-    color: $success-color;
+    color: #138300;
   }
 
   &-warning {
-    color: $warning-color;
+    color: #dab600;
   }
 
   &-danger {
-    color: $danger-color;
+    color: #ff2c00;
   }
   p {
     color: red;

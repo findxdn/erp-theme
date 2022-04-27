@@ -6,6 +6,7 @@ import { IcEyeClose } from "../../assets/icons/index";
 import MessageError from "../../utils/MessageError";
 import { Theme, useTheme } from "@mui/material/styles";
 import { alpha, styled } from "@mui/material/styles";
+import "./TextInput.scss";
 
 export interface TextInputProps {
   name: string;

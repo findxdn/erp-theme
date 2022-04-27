@@ -1,5 +1,6 @@
 import React from "react";
 import { IconRowDown, IcUp } from "../../assets/icons/index";
+import "./ButtonSearch.scss";
 
 export interface ButtonSearchProps {
   onClick?: any;

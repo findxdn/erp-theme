@@ -1,14 +1,14 @@
 .findx-box {
-  background-color: $background-color-box;
-  border-radius: $border-radius-box;
+  background-color: #ffffff;
+  border-radius: 3px;
 
   .box-title {
-    padding: $padding-box;
+    padding: 20px;
     padding-bottom: 0px;
   }
 
   .box-content {
-    padding: $padding-box;
+    padding: 20px;
     .manage-order-group {
       display: flex;
       justify-content: space-between;
@@ -17,7 +17,7 @@
     }
   }
   .border-title {
-    padding-bottom: $padding-box;
-    border-bottom: $border-title-height solid $border-title-color;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #d8d7d7;
   }
 }

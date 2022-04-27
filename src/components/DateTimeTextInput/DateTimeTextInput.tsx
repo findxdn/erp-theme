@@ -4,6 +4,7 @@ import TextField from "@mui/material/TextField";
 import _ from "lodash";
 import MessageError from "../../utils/MessageError";
 import { IcEyeClose } from "../../assets/icons/index";
+import "./DateTimeTextInput.scss";
 
 export interface DateTimeTextInputProps {
   name: string;

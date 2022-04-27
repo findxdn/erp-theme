@@ -9,9 +9,9 @@ const green = {
 };
 
 const grey = {
-  400: "#BFC7CF",
+  400: "#707070",
   500: "#AAB4BE",
-  600: "#6F7E8C",
+  600: "#707070",
 };
 
 const Root = styled("span")(
@@ -21,7 +21,6 @@ const Root = styled("span")(
   display: inline-block;
   width: 40px;
   height: 20px;
-  margin: 10px;
   cursor: pointer;
 
   &.${switchUnstyledClasses.disabled} {
