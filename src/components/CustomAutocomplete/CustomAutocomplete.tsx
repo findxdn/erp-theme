@@ -16,6 +16,7 @@ export interface CustomAutocompleteProps {
   register?: any;
   errors?: any;
   styles?: any;
+  defaultValue?: any;
 }
 
 const style = {
@@ -53,6 +54,7 @@ function CustomAutocomplete(props: CustomAutocompleteProps) {
     register,
     errors,
     onChange,
+    defaultValue,
     styles,
     className,
   } = props;
@@ -60,7 +62,7 @@ function CustomAutocomplete(props: CustomAutocompleteProps) {
   if (!_.isEmpty(errors)) {
     showError = !_.isEmpty(errors[name]);
   }
-  const [value, setValue] = React.useState<string | null>(options[0]);
+  const [value, setValue] = React.useState<string | null>();
 
   return (
     <>
@@ -70,13 +72,13 @@ function CustomAutocomplete(props: CustomAutocompleteProps) {
           onChange(newValue);
           setValue(newValue);
         }}
+        defaultValue={defaultValue}
         sx={style}
         className={className}
         options={options}
         popupIcon={<ExpandMoreSharpIcon />}
         renderInput={(params) => (
           <TextField
-            {...register}
             {...params}
             fullWidth
             placeholder={placeholder}
