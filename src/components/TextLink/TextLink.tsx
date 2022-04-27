@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from "react";
 import { Link, BrowserRouter } from "react-router-dom";
+import "./TextLink.scss";
 
 export interface TextLinkProps {
   [x: string]: any;

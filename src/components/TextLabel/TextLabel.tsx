@@ -1,6 +1,7 @@
 /* eslint-disable react/forbid-prop-types */
 /* eslint-disable react/jsx-props-no-spreading */
 import React from "react";
+import "./TextLabel.scss";
 
 export interface TextLabelProps {
   className: string;

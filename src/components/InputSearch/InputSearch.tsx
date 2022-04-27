@@ -1,5 +1,6 @@
 import React from "react";
 import { IcSearch } from "../../assets/icons/index";
+import "./InputSearch.scss";
 
 export interface InputSearchProps {
   name?: string;

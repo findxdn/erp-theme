@@ -1,5 +1,6 @@
 /* eslint-disable react/forbid-prop-types */
 import React from "react";
+import "./Box.scss";
 
 export interface BoxProps {
   className: string;
