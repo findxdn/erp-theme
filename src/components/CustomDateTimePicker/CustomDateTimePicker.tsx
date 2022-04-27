@@ -15,6 +15,7 @@ export interface CustomDateTimePickerProps {
   values?: string;
   className?: string;
   styled?: any;
+  _props?: any;
 }
 
 const style = {
@@ -65,6 +66,7 @@ const CustomDateTimePicker = (props: CustomDateTimePickerProps) => {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns} required>
       <DateTimePicker
+        {...props._props}
         // @ts-expect-error
         onChange={handleOnchange}
         value={value}

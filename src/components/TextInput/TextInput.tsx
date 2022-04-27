@@ -19,6 +19,7 @@ export interface TextInputProps {
   type?: any;
   isPassword?: any;
   className?: string;
+  _props?: any;
 }
 
 const style = {
@@ -84,6 +85,7 @@ const TextInput = (props: TextInputProps) => {
       className={className}
     >
       <TextField
+        {...props._props}
         sx={style}
         required
         name={name}
