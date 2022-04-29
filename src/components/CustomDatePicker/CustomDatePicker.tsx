@@ -48,10 +48,12 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
     getDate: () => any;
     getFullYear: () => any;
   }) => {
-    const day = `${
-      newValue.getMonth() + 1
-    }/${newValue.getDate()}/${newValue.getFullYear()}`;
-    setValue(day);
+    if (newValue != null) {
+      const day = `${
+        newValue.getMonth() + 1
+      }/${newValue.getDate()}/${newValue.getFullYear()}`;
+      setValue(day);
+    }
   };
   let showError = false;
   if (!_.isEmpty(errors)) {

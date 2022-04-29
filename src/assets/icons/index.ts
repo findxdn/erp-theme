@@ -6,6 +6,7 @@ import IconRowDown from "./icon-row-down";
 import IcUp from "./ic-up";
 import IcDateTime from "./ic-datetime";
 import IcSearch from "./ic-search";
+import IcRowDownWhite from "./ic-rowDownWhite";
 
 export {
   IcEyeClose,
@@ -16,4 +17,5 @@ export {
   IcUp,
   IcDateTime,
   IcSearch,
+  IcRowDownWhite,
 };

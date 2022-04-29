@@ -19,3 +19,5 @@ export { default as Box } from './Box'
 export { default as Footer } from './Footer'
 export { default as Image } from './Image'
 export { default as ButtonSearch } from './ButtonSearch'
+export { default as MenuSocial } from './MenuSocial'
+

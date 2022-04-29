@@ -1,5 +1,5 @@
 import React from "react";
-import { IconRowDown, IcUp } from "../../assets/icons/index";
+import { IcRowDownWhite, IcUp } from "../../assets/icons/index";
 import "./ButtonSearch.scss";
 
 export interface ButtonSearchProps {
@@ -44,7 +44,7 @@ function ButtonSearch(props: ButtonSearchProps) {
         onClick={onClickBtnSelect}
         className={`btn-select ${!!className ? className : ""}`}
       >
-        {isDown ? <IconRowDown /> : <IcUp />}
+        {isDown ? <IcRowDownWhite /> : <IcUp />}
       </button>
     </div>
   );
