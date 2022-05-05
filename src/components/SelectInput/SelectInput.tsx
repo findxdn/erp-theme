@@ -62,12 +62,15 @@ function SelectInput(props: SelectInputProps) {
   }
   const theme = useTheme();
   const [personName, setPersonName] = React.useState([]);
+  const [keyValue, setKeyValue] = React.useState([]);
 
   const handleChange = (event: { target: { value: any } }) => {
     const {
       target: { value },
     } = event;
-    setPersonName(typeof value === "string" ? value.split(",") : value);
+    setPersonName(
+      typeof value.label === "string" ? value.label.split(",") : value.label
+    );
     onChange(value);
   };
 
@@ -91,11 +94,12 @@ function SelectInput(props: SelectInputProps) {
             if (selected.length === 0) {
               return <p className="placeholder-select">{placeholder}</p>;
             }
-            return selected; //.join(", ");
+            console.log(selected);
+            return selected;
           }}
         >
           {options.map((option: { value: any; label: any }) => (
-            <MenuItem key={option.value} value={option.label}>
+            <MenuItem key={option.value} value={option}>
               {option.label}
             </MenuItem>
           ))}

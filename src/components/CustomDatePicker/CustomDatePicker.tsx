@@ -14,6 +14,7 @@ export interface CustomDatePickerProps {
   onChange?: any;
   styled?: any;
   className?: string;
+  inputFormat?: any;
   _props?: any;
 }
 
@@ -41,7 +42,8 @@ const style = {
 };
 
 const CustomDatePicker = (props: CustomDatePickerProps) => {
-  const { register, errors, name, onChange, styled, className } = props;
+  const { register, errors, name, onChange, styled, inputFormat, className } =
+    props;
   const [value, setValue] = React.useState("");
   const handleOnchange = (newValue: {
     getMonth: () => number;
@@ -70,7 +72,7 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
         components={{
           OpenPickerIcon: IcDateTime,
         }}
-        inputFormat="dd/MM/yyyy"
+        inputFormat={inputFormat}
         renderInput={(params) => (
           <TextField
             {...params}
