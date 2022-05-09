@@ -79,12 +79,7 @@ const TextInput = (props: TextInputProps) => {
   };
 
   return (
-    <Box
-      sx={{ width: "100%", padding: "0px" }}
-      component="form"
-      autoComplete="off"
-      className={className}
-    >
+    <Box className={className} sx={{ width: "100%", padding: "0px" }}>
       <TextField
         {...props._props}
         sx={style}

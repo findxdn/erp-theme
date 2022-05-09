@@ -67,12 +67,11 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
         {...props._props}
         className={className}
         value={value}
-        // @ts-expect-error
         onChange={handleOnchange}
         components={{
           OpenPickerIcon: IcDateTime,
         }}
-        inputFormat={inputFormat}
+        inputFormat={inputFormat != null ? inputFormat : "dd/MM/yyyy"}
         renderInput={(params) => (
           <TextField
             {...params}

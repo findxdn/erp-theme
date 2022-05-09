@@ -80,14 +80,14 @@ function CustomAutocomplete(props: CustomAutocompleteProps) {
         popupIcon={<ExpandMoreSharpIcon />}
         renderInput={(params) => {
           console.log(">>>>> params", params);
-          return(
+          return (
             <TextField
-            {...params}
-            fullWidth
-            placeholder={placeholder}
-            error={showError}
-          />
-          )
+              {...params}
+              fullWidth
+              placeholder={placeholder}
+              error={showError}
+            />
+          );
         }}
       />
       {showError && (

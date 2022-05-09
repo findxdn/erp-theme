@@ -20,4 +20,4 @@ export { default as Footer } from './Footer'
 export { default as Image } from './Image'
 export { default as ButtonSearch } from './ButtonSearch'
 export { default as MenuSocial } from './MenuSocial'
-
+export { default as SelectGroup } from './SelectGroup'

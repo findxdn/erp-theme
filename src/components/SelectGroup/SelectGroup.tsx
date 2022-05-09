@@ -1,22 +1,24 @@
 import * as React from "react";
-import { Theme, useTheme } from "@mui/material/styles";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import ExpandMoreSharpIcon from "@mui/icons-material/ExpandMoreSharp";
 import _ from "lodash";
+import "./SelectGroup.scss";
 import MessageError from "../../utils/MessageError";
 
-export interface SelectInputProps {
+export interface SelectGroupProps {
   name: string;
   placeholder?: string;
   value?: any;
   onChange?: any;
+  register?: any;
   errors?: any;
   options?: any;
   className?: any;
 }
+
 const MenuProps = {
   PaperProps: {
     style: {
@@ -31,7 +33,7 @@ const style = {
   paddingRight: "10px",
   color: "#333333",
   zIndex: "1",
-  ".MuiSelect-select": {
+  ".MuiNativeSelect-select": {
     padding: "6px 10px",
     borderRadius: "5px",
   },
@@ -42,71 +44,88 @@ const style = {
     borderColor: "#138300",
   },
   "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-    border: `2px solid #138300`,
+    border: "1px solid #138300",
   },
   "&:hover:not(.Mui-disabled):before": {
-    borderBottom: `1px solid #138300`,
+    borderBottom: "1px solid #138300",
   },
   "&:after": {
-    borderBottom: `1px solid #138300`,
+    borderBottom: "1px solid #138300",
   },
 };
 
-function GetDataOption(option: any, values: any) {
-  let dataOption = {};
-  option.forEach(optionFunction);
-  function optionFunction(item: { value: any; label: any }) {
-    if (String(item.label) === String(values)) {
-      dataOption = item;
-    }
-  }
-  return dataOption;
-}
-
-function SelectInput(props: SelectInputProps) {
-  const { options, placeholder, errors, name, onChange, className } = props;
+function SelectGroup(props: SelectGroupProps) {
+  const {
+    options,
+    placeholder,
+    errors,
+    name,
+    value,
+    register,
+    onChange,
+    className,
+  } = props;
   let showError = false;
   if (!_.isEmpty(errors)) {
     showError = !_.isEmpty(errors[name]);
   }
-  const theme = useTheme();
-  const [personName, setPersonName] = React.useState("");
-
+  const [personName, setPersonName] = React.useState([]);
   const handleChange = (event: { target: { value: any } }) => {
-    const {
-      target: { value },
-    } = event;
     setPersonName(value);
-    onChange(GetDataOption(options, value));
+    onChange(event.target.value);
   };
 
   return (
     <div>
       <FormControl error={showError} fullWidth>
         <Select
+          native
           name={name}
           sx={style}
           IconComponent={ExpandMoreSharpIcon}
           fullWidth
           displayEmpty
-          value={personName}
+          value={value != null ? value : personName}
           onChange={handleChange}
           input={<OutlinedInput />}
           MenuProps={MenuProps}
           className={className}
+          label={placeholder}
+          defaultValue=""
           placeholder={placeholder}
-          renderValue={(values) => {
-            if (values === "") {
+          renderValue={(selected) => {
+            if (selected.length === 0) {
               return <p className="placeholder-select">{placeholder}</p>;
             }
-            return values;
+            return selected;
           }}
         >
-          {options.map((option: { value: any; label: any }) => (
-            <MenuItem key={option.value} value={option.label}>
-              {option.label}
-            </MenuItem>
-          ))}
+          <option aria-label="none" value="" />
+          {options.map(
+            (option: {
+              child: { label: any; value: any }[];
+              label: any;
+              value: any;
+            }) =>
+              option.child ? (
+                <optgroup label={option.label} className="optgroupSelect">
+                  {option.child.map((childData: { label: any; value: any }) => (
+                    <option
+                      label={childData.label}
+                      className="optionSelect"
+                      value={childData.label}
+                    />
+                  ))}
+                </optgroup>
+              ) : (
+                <option
+                  label={option.label}
+                  key={option.value}
+                  value={option.value}
+                  className="optgroupSelect"
+                />
+              )
+          )}
         </Select>
         {showError && (
           <MessageError
@@ -119,4 +138,4 @@ function SelectInput(props: SelectInputProps) {
   );
 }
 
-export default SelectInput;
+export default SelectGroup;
