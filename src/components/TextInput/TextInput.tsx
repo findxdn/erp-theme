@@ -83,7 +83,6 @@ const TextInput = (props: TextInputProps) => {
       <TextField
         {...props._props}
         sx={style}
-        required
         name={name}
         onBlur={onBlur}
         onChange={onChange}
