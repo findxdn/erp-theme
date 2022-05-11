@@ -26,11 +26,12 @@ const StyleTextArea = styled(({ ...rest }) => <textarea {...rest} />)(
     minHeight: `${minHeight}px`,
     border: `1px solid ${isError ? "red" : "#d8d7d7"}`,
     padding: "10px",
-    borderRadius: "3px",
+    borderRadius: "5px",
     "&:hover": {
       borderColor: "#138300",
     },
     "&:focus": {
+      outline: "none !important",
       borderColor: "#138300",
     },
   })
@@ -52,7 +53,7 @@ export default function TextNote(props: TextNoteProps) {
     showError = !_.isEmpty(errors[name]);
   }
   return (
-    <Box component="form" noValidate autoComplete="off" className={className}>
+    <Box className={className}>
       <StyleTextArea
         isError={showError}
         fullWidth

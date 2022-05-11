@@ -20,30 +20,25 @@ export interface CustomAutocompleteProps {
   _props?: any;
 }
 
-const style = {
-  width: "100%",
-  fontSize: 14,
-  paddingRight: "10px",
-  color: "#333333",
-  zIndex: "1",
-  ".MuiSelect-select": {
-    padding: "6px 10px",
+const styleTextField = {
+  "& .MuiOutlinedInput-root": {
     borderRadius: "5px",
-  },
-  "& .MuiOutlinedInput-notchedOutline": {
-    borderColor: "#d8d7d7",
-  },
-  "&:hover .MuiOutlinedInput-notchedOutline": {
-    borderColor: "#000",
-  },
-  "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-    border: `2px solid #`,
-  },
-  "&:hover:not(.Mui-disabled):before": {
-    borderBottom: `1px solid #b3292a`,
-  },
-  "&:after": {
-    borderBottom: `1px solid #b3292a`,
+    height: "32px",
+    padding: "0px",
+    width: "100%",
+    fontSize: 14,
+    color: "#333333",
+    zIndex: "1",
+    "& .MuiOutlinedInput-input": {
+      height: "16px",
+      paddingLeft: "10px",
+    },
+    "&:hover .MuiOutlinedInput-notchedOutline": {
+      borderColor: "#138300",
+    },
+    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+      border: "1px solid #138300",
+    },
   },
 };
 
@@ -74,7 +69,6 @@ function CustomAutocomplete(props: CustomAutocompleteProps) {
           setValue(newValue);
         }}
         defaultValue={defaultValue}
-        // sx={style}
         className={className}
         options={options}
         popupIcon={<ExpandMoreSharpIcon />}
@@ -84,6 +78,7 @@ function CustomAutocomplete(props: CustomAutocompleteProps) {
             <TextField
               {...params}
               fullWidth
+              sx={styleTextField}
               placeholder={placeholder}
               error={showError}
             />
