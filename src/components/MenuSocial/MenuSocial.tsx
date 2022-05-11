@@ -65,8 +65,26 @@ import {
 
 export interface PropsMenuSocial {}
 
+const HRM_KEYS = {
+  EMPLOYEE: "EMPLOYEE",
+};
+
+const MODULE_HRM_DEFAULT = {
+  [HRM_KEYS.EMPLOYEE]: {
+    name: "Nhân sự",
+    icon: <IcPersonal />,
+    onClick: ()=>{
+
+    },
+    active: false,
+  },
+};
+
 function MenuSocial(props: PropsMenuSocial) {
   const headerLink = "https://ilove.fm.com.vn/";
+
+  const MODULE_HRM = MODULE_HRM_DEFAULT;
+
   return (
     <div className="social-menu-container">
       <div className="menu-search">
@@ -77,7 +95,18 @@ function MenuSocial(props: PropsMenuSocial) {
           <div className="menu-hrm">
             <p className="menu-hrm-title">hrm</p>
             <div className="hrm-icon">
-              <div
+              {Object.keys(MODULE_HRM).map((key) => {
+                return (
+                  <div
+                    className={`hrm-icon-item ${`unactive-module`}`}
+                    onClick={() => window.location.assign(headerLink + "hrm")}
+                  >
+                    {MODULE_HRM[key]?.icon}
+                    <p>{MODULE_HRM[key]?.name}</p>
+                  </div>
+                );
+              })}
+              {/* <div
                 className="hrm-icon-item"
                 onClick={() => window.location.assign(headerLink + "hrm")}
               >
@@ -127,7 +156,7 @@ function MenuSocial(props: PropsMenuSocial) {
               <div className="hrm-icon-item unactive-module">
                 <IcCtp />
                 <p>Cộng tác phí</p>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="menu-hrm">
