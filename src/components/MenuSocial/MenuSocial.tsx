@@ -63,27 +63,130 @@ import {
   IcQuota,
 } from "../../assets/icons/manufacture";
 
-export interface PropsMenuSocial {}
+export interface PropsMenuSocial {
+  hrm: any,
+  system: any
+}
 
 const HRM_KEYS = {
   EMPLOYEE: "EMPLOYEE",
+  DEPARTMENT: "DEPARTMENT",
+  RECRUIT: "RECRUIT",
+  ELEARNING: "ELEARNING",
+  TIMEKEEPING: "TIMEKEEPING",
+  PAYROLL: "PAYROLL",
+  WELFARE: "WELFARE",
+  INSURANCE: "INSURANCE",
+  BOOKING: "BOOKING",
+  OFFER: "OFFER",
+  CTV: "CTV",
+  CTP: "CTP",
 };
+
+const SYSTEM_KEYS = {
+  WEB_APP: 'WEB_APP'
+}
 
 const MODULE_HRM_DEFAULT = {
   [HRM_KEYS.EMPLOYEE]: {
     name: "Nhân sự",
     icon: <IcPersonal />,
-    onClick: ()=>{
-
-    },
+    onClick: ()=>{},
+    active: true,
+  },
+  [HRM_KEYS.DEPARTMENT]: {
+    name: "Phòng ban",
+    icon: <IcDepartment />,
+    onClick: ()=>{},
+    active: true,
+  },
+  [HRM_KEYS.RECRUIT]: {
+    name: "Tuyển dụng",
+    icon: <IcRecruit />,
+    onClick: ()=>{},
+    active: false,
+  },
+  [HRM_KEYS.ELEARNING]: {
+    name: "E-leaning",
+    icon: <IcRecruit />,
+    onClick: ()=>{},
+    active: false,
+  },
+  [HRM_KEYS.TIMEKEEPING]: {
+    name: "Chấm công",
+    icon: <IcTimekeeping />,
+    onClick: ()=>{},
+    active: true,
+  },
+  [HRM_KEYS.PAYROLL]: {
+    name: "Bảng lương",
+    icon: <IcTimekeeping />,
+    onClick: ()=>{},
+    active: false,
+  },
+  [HRM_KEYS.WELFARE]: {
+    name: "Phúc lợi",
+    icon: <IcWelfare />,
+    onClick: ()=>{},
+    active: false,
+  },
+  [HRM_KEYS.INSURANCE]: {
+    name: "Bảo hiểm",
+    icon: <IcInsurance />,
+    onClick: ()=>{},
+    active: false,
+  },
+  [HRM_KEYS.BOOKING]: {
+    name: "Booking",
+    icon: <IcBooking />,
+    onClick: ()=>{},
+    active: false,
+  },
+  [HRM_KEYS.OFFER]: {
+    name: "Đề xuất",
+    icon: <IcOffer />,
+    onClick: ()=>{},
+    active: false,
+  },
+  [HRM_KEYS.CTV]: {
+    name: "CTV",
+    icon: <IcCtv />,
+    onClick: ()=>{},
+    active: false,
+  },
+  [HRM_KEYS.CTP]: {
+    name: "Cộng tác phí",
+    icon: <IcCtp />,
+    onClick: ()=>{},
     active: false,
   },
 };
 
+const MODULE_SYSTEM_DEFAULT = {
+  [SYSTEM_KEYS.WEB_APP]: {
+    name: "Web/App",
+    icon: <IcWebApp />,
+    onClick: ()=>{},
+    active: true,
+  },
+};
+
+
 function MenuSocial(props: PropsMenuSocial) {
   const headerLink = "https://ilove.fm.com.vn/";
 
-  const MODULE_HRM = MODULE_HRM_DEFAULT;
+  const getCustomObject = (moduleKey, MODULE_DEFAULT)=>{
+    let custom = {};
+    if(props[moduleKey]){
+       Object.keys(props[moduleKey]).forEach((key)=>{
+        custom[key] = Object.assign(MODULE_DEFAULT[key], props[moduleKey][key]);
+       })
+    }
+    return Object.assign(MODULE_DEFAULT, custom);
+  }
+
+  const MODULE_HRM = getCustomObject('hrm', MODULE_HRM_DEFAULT);
+  const MODULE_SYSTEM = getCustomObject('system', MODULE_SYSTEM_DEFAULT);
 
   return (
     <div className="social-menu-container">
@@ -98,65 +201,18 @@ function MenuSocial(props: PropsMenuSocial) {
               {Object.keys(MODULE_HRM).map((key) => {
                 return (
                   <div
-                    className={`hrm-icon-item ${`unactive-module`}`}
-                    onClick={() => window.location.assign(headerLink + "hrm")}
+                    className={`hrm-icon-item ${!MODULE_HRM[key]?.active && `unactive-module`}`}
+                    onClick={() => {
+                      if(MODULE_HRM[key]?.active){
+                        MODULE_HRM[key]?.onClick();
+                      }
+                    }}
                   >
                     {MODULE_HRM[key]?.icon}
                     <p>{MODULE_HRM[key]?.name}</p>
                   </div>
                 );
               })}
-              {/* <div
-                className="hrm-icon-item"
-                onClick={() => window.location.assign(headerLink + "hrm")}
-              >
-                <IcPersonal />
-                <p>Nhân sự</p>
-              </div>
-              <div className="hrm-icon-item unactive-module">
-                <IcDepartment />
-                <p>Phòng ban</p>
-              </div>
-              <div className="hrm-icon-item unactive-module">
-                <IcRecruit />
-                <p>Tuyển dụng</p>
-              </div>
-              <div className="hrm-icon-item unactive-module">
-                <IcELearning />
-                <p>E-leaning</p>
-              </div>
-              <div className="hrm-icon-item unactive-module">
-                <IcTimekeeping />
-                <p>Chấm công</p>
-              </div>
-              <div className="hrm-icon-item unactive-module">
-                <IcPayroll />
-                <p>Bảng lương</p>
-              </div>
-              <div className="hrm-icon-item unactive-module">
-                <IcWelfare />
-                <p>Phúc lợi</p>
-              </div>
-              <div className="hrm-icon-item unactive-module">
-                <IcInsurance />
-                <p>Bảo hiểm</p>
-              </div>
-              <div className="hrm-icon-item unactive-module">
-                <IcBooking />
-                <p>Booking</p>
-              </div>
-              <div className="hrm-icon-item unactive-module">
-                <IcOffer />
-                <p>Đề xuất</p>
-              </div>
-              <div className="hrm-icon-item unactive-module">
-                <IcCtv />
-                <p>CTV</p>
-              </div>
-              <div className="hrm-icon-item unactive-module">
-                <IcCtp />
-                <p>Cộng tác phí</p>
-              </div> */}
             </div>
           </div>
           <div className="menu-hrm">
@@ -198,7 +254,22 @@ function MenuSocial(props: PropsMenuSocial) {
           <div className="menu-hrm">
             <p className="menu-hrm-title">hệ thống</p>
             <div className="hrm-icon">
-              <div className="hrm-icon-item unactive-module">
+            {Object.keys(MODULE_SYSTEM).map((key) => {
+                return (
+                  <div
+                    className={`hrm-icon-item ${!MODULE_SYSTEM[key]?.active && `unactive-module`}`}
+                    onClick={() => {
+                      if(MODULE_SYSTEM[key]?.active){
+                        MODULE_SYSTEM[key]?.onClick();
+                      }
+                    }}
+                  >
+                    {MODULE_SYSTEM[key]?.icon}
+                    <p>{MODULE_SYSTEM[key]?.name}</p>
+                  </div>
+                );
+              })}
+              {/* <div className="hrm-icon-item unactive-module">
                 <IcReport />
                 <p>Báo cáo</p>
               </div>
@@ -229,7 +300,7 @@ function MenuSocial(props: PropsMenuSocial) {
               <div className="hrm-icon-item unactive-module">
                 <IcHelpDesk />
                 <p>HelpDesk</p>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
