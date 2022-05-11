@@ -66,6 +66,7 @@ import {
 export interface PropsMenuSocial {
   hrm: any,
   system: any
+  pos: any,
 }
 
 const HRM_KEYS = {
@@ -85,6 +86,15 @@ const HRM_KEYS = {
 
 const SYSTEM_KEYS = {
   WEB_APP: 'WEB_APP'
+}
+
+const POS_KEYS = {
+  POS: 'POS',
+  PRODUCT: 'PRODUCT',
+  SHOP: 'SHOP',
+  ORDER: 'ORDER',
+  STOCK: 'STOCK',
+  NCC: 'NCC',
 }
 
 const MODULE_HRM_DEFAULT = {
@@ -171,6 +181,45 @@ const MODULE_SYSTEM_DEFAULT = {
   },
 };
 
+const MODULE_POS_DEFAULT = {
+  [POS_KEYS.POS]: {
+    name: "Pos",
+    icon: <IcPos />,
+    onClick: ()=>{},
+    active: true,
+  },
+  [POS_KEYS.PRODUCT]: {
+    name: "Sản phẩm",
+    icon: <IcProduct />,
+    onClick: ()=>{},
+    active: false,
+  },
+  [POS_KEYS.SHOP]: {
+    name: "Cửa hàng",
+    icon: <IcShop />,
+    onClick: ()=>{},
+    active: true,
+  },
+  [POS_KEYS.ORDER]: {
+    name: "Đơn hàng",
+    icon: <IcOrder />,
+    onClick: ()=>{},
+    active: true,
+  },
+  [POS_KEYS.STOCK]: {
+    name: "Kho",
+    icon: <IcStock />,
+    onClick: ()=>{},
+    active: true,
+  },
+  [POS_KEYS.NCC]: {
+    name: "NCC",
+    icon: <IcNCC />,
+    onClick: ()=>{},
+    active: true,
+  },
+};
+
 
 function MenuSocial(props: PropsMenuSocial) {
   const headerLink = "https://ilove.fm.com.vn/";
@@ -187,6 +236,7 @@ function MenuSocial(props: PropsMenuSocial) {
 
   const MODULE_HRM = getCustomObject('hrm', MODULE_HRM_DEFAULT);
   const MODULE_SYSTEM = getCustomObject('system', MODULE_SYSTEM_DEFAULT);
+  const MODULE_POS = getCustomObject('pos', MODULE_POS_DEFAULT);
 
   return (
     <div className="social-menu-container">
@@ -308,7 +358,22 @@ function MenuSocial(props: PropsMenuSocial) {
           <div className="menu-pos">
             <p className="menu-pos-title">bán hàng</p>
             <div className="pos-icon">
-              <div
+            {Object.keys(MODULE_POS).map((key) => {
+                return (
+                  <div
+                    className={`pos-icon-item ${!MODULE_POS[key]?.active && `unactive-module`}`}
+                    onClick={() => {
+                      if(MODULE_POS[key]?.active){
+                        MODULE_POS[key]?.onClick();
+                      }
+                    }}
+                  >
+                    {MODULE_POS[key]?.icon}
+                    <p>{MODULE_POS[key]?.name}</p>
+                  </div>
+                );
+              })}
+              {/* <div
                 className="pos-icon-item"
                 onClick={() => window.location.assign(headerLink + "pos")}
               >
@@ -346,7 +411,7 @@ function MenuSocial(props: PropsMenuSocial) {
               >
                 <IcNCC />
                 <p>NCC</p>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="menu-pos">
