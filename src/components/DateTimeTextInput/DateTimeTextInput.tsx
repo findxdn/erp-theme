@@ -66,15 +66,8 @@ export default function DateTimeTextInput(props: DateTimeTextInputProps) {
     setShowIcRight(!showIcRight);
   };
   return (
-    <Box
-      component="form"
-      noValidate
-      autoComplete="off"
-      sx={{ position: "relative" }}
-      className={className}
-    >
+    <Box sx={{ position: "relative" }} className={className}>
       <TextField
-        required
         name={name}
         sx={style}
         onBlur={onBlur}

@@ -56,18 +56,21 @@ const CustomDateTimePicker = (props: CustomDateTimePickerProps) => {
     getMinutes: () => number;
     getSeconds: () => number;
   }) => {
-    const data = `${
-      newValue.getMonth() + 1
-    }/${newValue.getDate()}/${newValue.getFullYear()} ${newValue.getHours()}:${
-      newValue.getMinutes() + 1
-    }:${newValue.getSeconds()}`;
-    setValue(data);
+    if (newValue != null) {
+      const data = `${
+        newValue.getMonth() + 1
+      }/${newValue.getDate()}/${newValue.getFullYear()} ${newValue.getHours()}:${
+        newValue.getMinutes() + 1
+      }:${newValue.getSeconds()}`;
+      setValue(data);
+    } else {
+      setValue("");
+    }
   };
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns} required>
       <DateTimePicker
         {...props._props}
-        // @ts-expect-error
         onChange={handleOnchange}
         value={value}
         components={{
@@ -77,7 +80,6 @@ const CustomDateTimePicker = (props: CustomDateTimePickerProps) => {
           <TextField
             sx={styled ? styled : style}
             {...params}
-            {...register}
             error={showError}
             fullWidth
             name={name}

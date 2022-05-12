@@ -55,6 +55,8 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
         newValue.getMonth() + 1
       }/${newValue.getDate()}/${newValue.getFullYear()}`;
       setValue(day);
+    } else {
+      setValue("");
     }
   };
   let showError = false;
@@ -75,7 +77,6 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
         renderInput={(params) => (
           <TextField
             {...params}
-            {...register}
             error={showError}
             fullWidth
             sx={styled ? styled : style}
