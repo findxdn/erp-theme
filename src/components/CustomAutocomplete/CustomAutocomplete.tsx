@@ -18,6 +18,9 @@ export interface CustomAutocompleteProps {
   styles?: any;
   defaultValue?: any;
   _props?: any;
+  ref?: any;
+  setValue?: any;
+  value?: any;
 }
 
 const styleTextField = {
@@ -52,28 +55,28 @@ function CustomAutocomplete(props: CustomAutocompleteProps) {
     defaultValue,
     styles,
     className,
+    setValue,
+    value,
+    ref,
   } = props;
+
   let showError = false;
   if (!_.isEmpty(errors)) {
     showError = !_.isEmpty(errors[name]);
   }
-  const [value, setValue] = React.useState<string | null>();
-
   return (
     <>
       <Autocomplete
-        {...props._props}
-        value={value}
-        onChange={(event: any, newValue: string | null) => {
-          onChange(newValue);
-          setValue(newValue);
+        ref={ref}
+        value={options.find((x: any) => x.key == value)}
+        onChange={(event, newValue) => {
+          props.onChange && props.onChange(newValue.key);
+          setValue(name, newValue.key);
         }}
-        defaultValue={defaultValue}
         className={className}
         options={options}
         popupIcon={<ExpandMoreSharpIcon />}
         renderInput={(params) => {
-          console.log(">>>>> params", params);
           return (
             <TextField
               {...params}
@@ -85,6 +88,7 @@ function CustomAutocomplete(props: CustomAutocompleteProps) {
           );
         }}
       />
+
       {showError && (
         <MessageError type={errors[name].type} message={errors[name].message} />
       )}

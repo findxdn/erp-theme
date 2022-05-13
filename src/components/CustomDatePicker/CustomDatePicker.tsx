@@ -17,6 +17,7 @@ export interface CustomDatePickerProps {
   inputFormat?: any;
   _props?: any;
   setValue?: any;
+  value?: any;
 }
 
 const style = {
@@ -43,50 +44,49 @@ const style = {
 };
 
 const CustomDatePicker = (props: CustomDatePickerProps) => {
-  const { register, errors, name, onChange, styled, inputFormat, className, setValue } =
-    props;
+  const {
+    errors,
+    name,
+    styled,
+    inputFormat = "dd/MM/yyyy",
+    className,
+    setValue,
+    value = "",
+  } = props;
 
-  const [value, setValue1] = React.useState("");
-  const handleOnchange = (newValue: {
-    getMonth: () => number;
-    getDate: () => any;
-    getFullYear: () => any;
-  }) => {
-    if (newValue != null) {
-      const day = `${
-        newValue.getMonth() + 1
-      }/${newValue.getDate()}/${newValue.getFullYear()}`;
-      setValue1(day);
-      setValue(name, newValue);
-    }
+  const handleOnchange = (newValue: any) => {
+    props.onChange && props.onChange(newValue);
+    setValue(name, newValue);
   };
+
   let showError = false;
   if (!_.isEmpty(errors)) {
     showError = !_.isEmpty(errors[name]);
   }
+
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns} required>
       <DatePicker
-        {...props._props}
+        {...props}
         className={className}
         value={value}
         onChange={handleOnchange}
         components={{
           OpenPickerIcon: IcDateTime,
         }}
-        inputFormat={inputFormat != null ? inputFormat : "dd/MM/yyyy"}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            error={showError}
-            fullWidth
-            sx={styled ? styled : style}
-            name={name}
-            value={value}
-            onChange={onChange(value)}
-          />
-        )}
+        inputFormat={inputFormat}
+        renderInput={(params) => {
+          return (
+            <TextField
+              {...params}
+              error={showError}
+              fullWidth
+              sx={styled ? styled : style}
+            />
+          );
+        }}
       />
+
       {showError && (
         <MessageError type={errors[name].type} message={errors[name].message} />
       )}
