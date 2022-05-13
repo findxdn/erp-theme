@@ -21,6 +21,7 @@ export interface TextInputProps {
   isPassword?: any;
   className?: string;
   _props?: any;
+  setValue?: any;
 }
 
 const style = {
@@ -65,6 +66,7 @@ const TextInput = (props: TextInputProps) => {
     defaultValue,
     isPassword,
     className,
+    setValue
   } = props;
 
   let showError = false;
@@ -78,6 +80,11 @@ const TextInput = (props: TextInputProps) => {
     setShowIcRight(!showIcRight);
   };
 
+  const handleOnChange = (val:any)=>{
+    onChange(val);
+    setValue(name, val)
+  }
+
   return (
     <Box className={className} sx={{ width: "100%", padding: "0px" }}>
       <TextField
@@ -85,7 +92,7 @@ const TextInput = (props: TextInputProps) => {
         sx={style}
         name={name}
         onBlur={onBlur}
-        onChange={onChange}
+        onChange={handleOnChange}
         value={value}
         defaultValue={defaultValue}
         type={isPassword ? "password" : type}

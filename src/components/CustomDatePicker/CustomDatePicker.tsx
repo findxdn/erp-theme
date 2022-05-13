@@ -16,6 +16,7 @@ export interface CustomDatePickerProps {
   className?: string;
   inputFormat?: any;
   _props?: any;
+  setValue?: any;
 }
 
 const style = {
@@ -42,9 +43,10 @@ const style = {
 };
 
 const CustomDatePicker = (props: CustomDatePickerProps) => {
-  const { register, errors, name, onChange, styled, inputFormat, className } =
+  const { register, errors, name, onChange, styled, inputFormat, className, setValue } =
     props;
-  const [value, setValue] = React.useState("");
+
+  const [value, setValue1] = React.useState("");
   const handleOnchange = (newValue: {
     getMonth: () => number;
     getDate: () => any;
@@ -54,7 +56,8 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
       const day = `${
         newValue.getMonth() + 1
       }/${newValue.getDate()}/${newValue.getFullYear()}`;
-      setValue(day);
+      setValue1(day);
+      setValue(name, newValue);
     }
   };
   let showError = false;
@@ -75,7 +78,6 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
         renderInput={(params) => (
           <TextField
             {...params}
-            {...register}
             error={showError}
             fullWidth
             sx={styled ? styled : style}
