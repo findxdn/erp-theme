@@ -265,7 +265,7 @@ const MODULE_POS_DEFAULT = {
     name: "Pos",
     icon: <IcPos />,
     onClick: () => {
-      window.location.assign(headerLink + "pos");
+      window.location.href = (headerLink + "pos");
     },
     active: true,
   },
@@ -273,7 +273,7 @@ const MODULE_POS_DEFAULT = {
     name: "Sản phẩm",
     icon: <IcProduct />,
     onClick: () => {
-      window.location.assign(headerLink + "products");
+      window.location.href = (headerLink + "products");
     },
     active: true,
   },
@@ -287,7 +287,7 @@ const MODULE_POS_DEFAULT = {
     name: "Đơn hàng",
     icon: <IcOrder />,
     onClick: () => {
-      window.location.assign(headerLink + "orders");
+      window.location.href =(headerLink + "orders");
     },
     active: true,
   },
@@ -295,7 +295,7 @@ const MODULE_POS_DEFAULT = {
     name: "Kho",
     icon: <IcStock />,
     onClick: () => {
-      window.location.assign(headerLink + "stocks");
+      window.location.href =(headerLink + "stocks");
     },
     active: true,
   },
@@ -303,7 +303,7 @@ const MODULE_POS_DEFAULT = {
     name: "NCC",
     icon: <IcNCC />,
     onClick: () => {
-      window.location.assign(headerLink + "suppliers");
+      window.location.href =(headerLink + "suppliers");
     },
     active: false,
   },
