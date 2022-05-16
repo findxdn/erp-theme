@@ -64,13 +64,21 @@ function GetDataOption(option: any, values: any) {
 }
 
 function SelectInput(props: SelectInputProps) {
-  const { options, placeholder, errors, name, onChange, className } = props;
+  const { options, placeholder, errors, value, name, onChange, className } =
+    props;
   let showError = false;
   if (!_.isEmpty(errors)) {
     showError = !_.isEmpty(errors[name]);
   }
   const theme = useTheme();
-  const [personName, setPersonName] = React.useState("");
+  const [personName, setPersonName] = React.useState(
+    value != null
+      ? () => {
+          onChange(value);
+          return value.label;
+        }
+      : ""
+  );
 
   const handleChange = (event: { target: { value: any } }) => {
     const {

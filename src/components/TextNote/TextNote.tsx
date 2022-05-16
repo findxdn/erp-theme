@@ -43,6 +43,7 @@ export default function TextNote(props: TextNoteProps) {
     name,
     errors,
     onChange,
+    value,
     onBlur,
     minHeight = 40,
     maxHeight = 150,
@@ -63,6 +64,7 @@ export default function TextNote(props: TextNoteProps) {
         name={name}
         minHeight={minHeight}
         maxHeight={maxHeight}
+        value={value}
       />
       {showError && (
         <MessageError type={errors[name].type} message={errors[name].message} />
