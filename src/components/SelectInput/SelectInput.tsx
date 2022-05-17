@@ -16,6 +16,7 @@ export interface SelectInputProps {
   errors?: any;
   options?: any;
   className?: any;
+  setValue?: any;
 }
 const MenuProps = {
   PaperProps: {
@@ -52,20 +53,17 @@ const style = {
   },
 };
 
-function GetDataOption(option: any, values: any) {
-  let dataOption = {};
-  option.forEach(optionFunction);
-  function optionFunction(item: { value: any; label: any }) {
-    if (String(item.label) === String(values)) {
-      dataOption = item;
-    }
-  }
-  return dataOption;
-}
-
 function SelectInput(props: SelectInputProps) {
-  const { options, placeholder, errors, value, name, onChange, className } =
-    props;
+  const {
+    options,
+    placeholder,
+    errors,
+    value,
+    name,
+    onChange,
+    className,
+    setValue,
+  } = props;
   let showError = false;
   if (!_.isEmpty(errors)) {
     showError = !_.isEmpty(errors[name]);
@@ -84,8 +82,10 @@ function SelectInput(props: SelectInputProps) {
     const {
       target: { value },
     } = event;
-    setPersonName(value);
-    onChange(GetDataOption(options, value));
+    const dataHandle = options.find((x: any) => x.value == value);
+    setPersonName(dataHandle.label);
+    onChange(dataHandle);
+    setValue(name, dataHandle);
   };
 
   return (
@@ -111,7 +111,7 @@ function SelectInput(props: SelectInputProps) {
           }}
         >
           {options.map((option: { value: any; label: any }) => (
-            <MenuItem key={option.value} value={option.label}>
+            <MenuItem key={option.value} value={option.value}>
               {option.label}
             </MenuItem>
           ))}

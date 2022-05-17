@@ -66,7 +66,7 @@ const TextInput = (props: TextInputProps) => {
     defaultValue,
     isPassword,
     className,
-    setValue
+    setValue,
   } = props;
 
   let showError = false;
@@ -80,10 +80,10 @@ const TextInput = (props: TextInputProps) => {
     setShowIcRight(!showIcRight);
   };
 
-  const handleOnChange = (val:any)=>{
+  const handleOnChange = (val: any) => {
     onChange(val);
-    setValue(name, val)
-  }
+    setValue(name, val);
+  };
 
   return (
     <Box className={className} sx={{ width: "100%", padding: "0px" }}>
