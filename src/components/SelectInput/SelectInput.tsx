@@ -16,7 +16,8 @@ export interface SelectInputProps {
   errors?: any;
   options?: any;
   className?: any;
-  setValue?: any;
+  onBlur?: any;
+  ref?: any;
 }
 const MenuProps = {
   PaperProps: {
@@ -43,7 +44,7 @@ const style = {
     borderColor: "#138300",
   },
   "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-    border: `2px solid #138300`,
+    border: `1px solid #138300`,
   },
   "&:hover:not(.Mui-disabled):before": {
     borderBottom: `1px solid #138300`,
@@ -62,32 +63,13 @@ function SelectInput(props: SelectInputProps) {
     name,
     onChange,
     className,
-    setValue,
+    onBlur,
+    ref,
   } = props;
   let showError = false;
   if (!_.isEmpty(errors)) {
     showError = !_.isEmpty(errors[name]);
   }
-  const theme = useTheme();
-  const [personName, setPersonName] = React.useState(
-    value != null
-      ? () => {
-          onChange(value);
-          return value.label;
-        }
-      : ""
-  );
-
-  const handleChange = (event: { target: { value: any } }) => {
-    const {
-      target: { value },
-    } = event;
-    const dataHandle = options.find((x: any) => x.value == value);
-    setPersonName(dataHandle.label);
-    onChange(dataHandle);
-    setValue(name, dataHandle);
-  };
-
   return (
     <div>
       <FormControl error={showError} fullWidth>
@@ -97,17 +79,25 @@ function SelectInput(props: SelectInputProps) {
           IconComponent={ExpandMoreSharpIcon}
           fullWidth
           displayEmpty
-          value={personName}
-          onChange={handleChange}
+          value={value}
+          onChange={onChange}
           input={<OutlinedInput />}
           MenuProps={MenuProps}
           className={className}
           placeholder={placeholder}
+          onBlur={onBlur}
+          ref={ref}
           renderValue={(values) => {
-            if (values === "") {
+            const dataChange = options.find((x: any) => x.value == values);
+            if (
+              dataChange === "" ||
+              dataChange === null ||
+              values === "" ||
+              values === null
+            ) {
               return <p className="placeholder-select">{placeholder}</p>;
             }
-            return values;
+            return dataChange?.label;
           }}
         >
           {options.map((option: { value: any; label: any }) => (
