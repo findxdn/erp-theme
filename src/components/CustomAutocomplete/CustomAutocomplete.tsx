@@ -70,6 +70,12 @@ function CustomAutocomplete(props: CustomAutocompleteProps) {
         ref={ref}
         value={options.find((x: any) => x.key == value)}
         onChange={(event, newValue) => {
+          console.log(newValue);
+          if (newValue === null) {
+            setValue(name, null);
+            onChange(null);
+            return;
+          }
           props.onChange && props.onChange(newValue.key);
           setValue(name, newValue.key);
         }}
