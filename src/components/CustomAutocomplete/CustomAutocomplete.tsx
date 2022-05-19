@@ -64,10 +64,12 @@ function CustomAutocomplete(props: CustomAutocompleteProps) {
   if (!_.isEmpty(errors)) {
     showError = !_.isEmpty(errors[name]);
   }
+
+  console.log("xxxxx ref", ref);
   return (
     <>
       <Autocomplete
-        ref={ref}
+        // ref={ref}
         value={options.find((x: any) => x.key == value)}
         onChange={(event, newValue) => {
           console.log(newValue);
