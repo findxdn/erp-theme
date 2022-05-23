@@ -287,7 +287,7 @@ const MODULE_POS_DEFAULT = {
     name: "Đơn hàng",
     icon: <IcOrder />,
     onClick: () => {
-      window.location.href = headerLink + "orders";
+      window.location.href = headerLink + "order";
     },
     active: true,
   },
@@ -295,7 +295,7 @@ const MODULE_POS_DEFAULT = {
     name: "Kho",
     icon: <IcStock />,
     onClick: () => {
-      window.location.href = headerLink + "stocks";
+      window.location.href = headerLink + "stock";
     },
     active: true,
   },
@@ -303,7 +303,7 @@ const MODULE_POS_DEFAULT = {
     name: "NCC",
     icon: <IcNCC />,
     onClick: () => {
-      window.location.href = headerLink + "suppliers";
+      window.location.href = headerLink + "supplier";
     },
     active: false,
   },
@@ -314,7 +314,7 @@ const MODULE_CRM_DEFAULT = {
     name: "Khách hàng",
     icon: <IcUser />,
     onClick: () => {
-      window.location.assign(headerLink + "customers");
+      window.location.assign(headerLink + "customer");
     },
     active: true,
   },
