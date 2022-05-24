@@ -88,7 +88,9 @@ function MultiSelect(props: MultiSelectProps) {
   };
   const handleDelete = (e: { preventDefault: () => void }, value: any) => {
     e.preventDefault();
-    setPersonName(personName.filter((item) => item !== value));
+    const dataHandle = personName.filter((item) => item !== value);
+    setPersonName(dataHandle);
+    onChange(dataHandle);
   };
   return (
     <div>

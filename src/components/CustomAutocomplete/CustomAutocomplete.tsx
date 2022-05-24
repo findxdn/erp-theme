@@ -55,7 +55,7 @@ function CustomAutocomplete(props: CustomAutocompleteProps) {
     defaultValue,
     styles,
     className,
-    setValue,
+    setValue = () => {},
     value,
     ref,
   } = props;

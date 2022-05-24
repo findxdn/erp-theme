@@ -50,7 +50,7 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
     styled,
     inputFormat = "dd/MM/yyyy",
     className,
-    setValue,
+    setValue = () => {},
     value = "",
   } = props;
 

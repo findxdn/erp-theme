@@ -59,14 +59,14 @@ const TextInput = (props: TextInputProps) => {
     name,
     placeholder,
     value,
-    onChange,
+    onChange = () => {},
     onBlur,
     errors,
     type,
     defaultValue,
     isPassword,
     className,
-    setValue,
+    setValue = () => {},
   } = props;
 
   let showError = false;
