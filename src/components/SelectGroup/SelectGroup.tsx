@@ -69,11 +69,6 @@ function SelectGroup(props: SelectGroupProps) {
   if (!_.isEmpty(errors)) {
     showError = !_.isEmpty(errors[name]);
   }
-  const [personName, setPersonName] = React.useState([]);
-  const handleChange = (event: { target: { value: any } }) => {
-    setPersonName(value);
-    onChange(event.target.value);
-  };
 
   return (
     <div>
@@ -85,8 +80,8 @@ function SelectGroup(props: SelectGroupProps) {
           IconComponent={ExpandMoreSharpIcon}
           fullWidth
           displayEmpty
-          value={value != null ? value : personName}
-          onChange={handleChange}
+          value={value}
+          onChange={onChange}
           input={<OutlinedInput />}
           MenuProps={MenuProps}
           className={className}
@@ -113,7 +108,7 @@ function SelectGroup(props: SelectGroupProps) {
                     <option
                       label={childData.label}
                       className="optionSelect"
-                      value={childData.label}
+                      value={childData.value}
                     />
                   ))}
                 </optgroup>
