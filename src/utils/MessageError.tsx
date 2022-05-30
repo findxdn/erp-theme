@@ -3,10 +3,11 @@ import React from "react";
 export interface MessageErrorProps {
   type: string;
   message: string;
+  style?: any;
 }
 
 function MessageError(props: MessageErrorProps) {
-  const { type, message } = props;
+  const { type, message, style={ color: "red", marginTop: "7px" } } = props;
 
   const getMessage = () => {
     if (message) {
@@ -22,7 +23,7 @@ function MessageError(props: MessageErrorProps) {
     }
   };
 
-  return <p style={{ color: "red", marginTop: "7px" }}>{getMessage()}</p>;
+  return <p style={style}>{getMessage()}</p>;
 }
 
 export default MessageError;

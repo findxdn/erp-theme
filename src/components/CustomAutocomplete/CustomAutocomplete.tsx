@@ -19,7 +19,6 @@ export interface CustomAutocompleteProps {
   defaultValue?: any;
   _props?: any;
   ref?: any;
-  setValue?: any;
   value?: any;
 }
 
@@ -55,8 +54,6 @@ function CustomAutocomplete(props: CustomAutocompleteProps) {
     defaultValue,
     styles,
     className,
-    setValue = () => {},
-    value,
     ref,
   } = props;
 
@@ -65,23 +62,24 @@ function CustomAutocomplete(props: CustomAutocompleteProps) {
     showError = !_.isEmpty(errors[name]);
   }
 
-  console.log("xxxxx ref", ref);
+  const [value, setValue] = React.useState<string | null>();
+
   return (
     <>
       <Autocomplete
         // ref={ref}
         value={options.find((x: any) => x.key == value)}
         onChange={(event, newValue) => {
-          console.log(newValue);
           if (newValue === null) {
-            setValue(name, null);
+            setValue(null);
             onChange(null);
             return;
           }
-          props.onChange && props.onChange(newValue.key);
-          setValue(name, newValue.key);
+          onChange(newValue.key);
+          setValue(newValue.key);
         }}
         className={className}
+        defaultValue={defaultValue}
         options={options}
         popupIcon={<ExpandMoreSharpIcon />}
         renderInput={(params) => {

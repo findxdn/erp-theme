@@ -13,6 +13,7 @@ export interface CustomDateTimePickerProps {
   errors?: any;
   onChange?: any;
   values?: string;
+  defaultValue?: any;
   className?: string;
   styled?: any;
   _props?: any;
@@ -42,7 +43,7 @@ const style = {
 };
 
 const CustomDateTimePicker = (props: CustomDateTimePickerProps) => {
-  const { register, errors, name, onChange, values, className, styled } = props;
+  const { register, errors, name, onChange, defaultValue, values, className, styled } = props;
   const [value, setValue] = React.useState(values);
   let showError = false;
   if (!_.isEmpty(errors)) {
@@ -76,6 +77,7 @@ const CustomDateTimePicker = (props: CustomDateTimePickerProps) => {
         components={{
           OpenPickerIcon: IcDateTime,
         }}
+        defaultValue={defaultValue}
         renderInput={(params: JSX.IntrinsicAttributes & TextFieldProps) => (
           <TextField
             sx={styled ? styled : style}

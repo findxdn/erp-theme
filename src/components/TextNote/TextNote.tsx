@@ -48,6 +48,7 @@ export default function TextNote(props: TextNoteProps) {
     minHeight = 40,
     maxHeight = 150,
     className,
+    defaultValue,
   } = props;
   let showError = false;
   if (!_.isEmpty(errors)) {
@@ -65,6 +66,7 @@ export default function TextNote(props: TextNoteProps) {
         minHeight={minHeight}
         maxHeight={maxHeight}
         value={value}
+        defaultValue={defaultValue}
       />
       {showError && (
         <MessageError type={errors[name].type} message={errors[name].message} />
