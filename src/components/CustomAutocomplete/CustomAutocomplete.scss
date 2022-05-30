@@ -1,0 +1,16 @@
+.MuiTooltip-popper {
+  height: 24px !important;
+  .MuiTooltip-tooltipPlacementBottom {
+    font-size: 14px !important;
+    background-color: #ffffff !important;
+    border-radius: 3px;
+    border: 1px solid #FF0000;
+    margin-top: 10px !important;
+    .p {
+      margin-top: 0px !important;
+    }
+  }
+  .MuiTooltip-arrow {
+    margin-top: -10px !important;
+  }
+}

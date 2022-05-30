@@ -6,17 +6,23 @@ import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import _ from "lodash";
 import { IcDateTime } from "../../assets/icons/index";
 import MessageError from "../../utils/MessageError";
+import { Tooltip } from '@mui/material';
+import { makeStyles } from "@material-ui/core/styles";
 
 export interface CustomDateTimePickerProps {
   name: string;
   register?: any;
   errors?: any;
   onChange?: any;
-  values?: string;
-  defaultValue?: any;
-  className?: string;
+  onBlur?: any;
+  ref?: any;
   styled?: any;
+  className?: string;
+  inputFormat?: any;
   _props?: any;
+  defaultValue?: any;
+  isTooltip?: any;
+  placeholder?: any;
 }
 
 const style = {
@@ -43,31 +49,42 @@ const style = {
 };
 
 const CustomDateTimePicker = (props: CustomDateTimePickerProps) => {
-  const { register, errors, name, onChange, defaultValue, values, className, styled } = props;
-  const [value, setValue] = React.useState(values);
+  const { 
+    register, 
+    errors, 
+    name, 
+    onChange, 
+    defaultValue, 
+    className, 
+    styled,
+    isTooltip = false,
+    placeholder,
+    onBlur,
+    ref,
+  } = props;
+
+  const [value, setValue] = React.useState(defaultValue ? defaultValue : null);
+
   let showError = false;
   if (!_.isEmpty(errors)) {
     showError = !_.isEmpty(errors[name]);
   }
-  const handleOnchange = (newValue: {
-    getMonth: () => number;
-    getDate: () => number;
-    getFullYear: () => number;
-    getHours: () => number;
-    getMinutes: () => number;
-    getSeconds: () => number;
-  }) => {
-    if (newValue != null) {
-      const data = `${
-        newValue.getMonth() + 1
-      }/${newValue.getDate()}/${newValue.getFullYear()} ${newValue.getHours()}:${
-        newValue.getMinutes() + 1
-      }:${newValue.getSeconds()}`;
-      setValue(data);
-    } else {
-      setValue("");
-    }
+  const handleOnchange = (newValue) => {
+    setValue(newValue)
+    onChange(newValue)
   };
+
+  const useStyles = makeStyles(theme => ({
+    arrow: {
+      "&:before": {
+        border: "1px solid #FF0000",
+        color: "#ffffff"
+      }
+    },
+  }));
+
+  let classes = useStyles();
+
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns} required>
       <DateTimePicker
@@ -78,19 +95,35 @@ const CustomDateTimePicker = (props: CustomDateTimePickerProps) => {
           OpenPickerIcon: IcDateTime,
         }}
         defaultValue={defaultValue}
-        renderInput={(params: JSX.IntrinsicAttributes & TextFieldProps) => (
-          <TextField
-            sx={styled ? styled : style}
-            {...params}
-            error={showError}
-            fullWidth
-            name={name}
-            className={className}
-            onChange={onChange(value)}
-          />
-        )}
+        renderInput={(params) => {
+          return (
+            <Tooltip 
+              placement="bottom"
+              arrow
+              classes={{ arrow: classes.arrow }}
+              title={ (showError && isTooltip) ? (
+              <MessageError 
+                type={errors[name].type} 
+                message={errors[name].message} 
+                style={{ color: "red", marginTop: "0px" }}
+              />
+            ) : "" }>
+              <TextField
+                {...params}
+                className={className}
+                error={showError}
+                fullWidth
+                sx={styled ? styled : style}
+                inputProps={{
+                  ...params.inputProps,
+                  placeholder: placeholder
+                }}
+              />
+            </Tooltip>
+          );
+        }}
       />
-      {showError && (
+      {(showError && !isTooltip) && (
         <MessageError type={errors[name].type} message={errors[name].message} />
       )}
     </LocalizationProvider>

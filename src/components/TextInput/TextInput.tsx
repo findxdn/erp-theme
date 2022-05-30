@@ -33,7 +33,7 @@ const TextInput = (props: TextInputProps) => {
     placeholder,
     value,
     onChange = () => {},
-    readOnly,
+    readOnly = false,
     onBlur,
     errors,
     type,
@@ -112,7 +112,9 @@ const TextInput = (props: TextInputProps) => {
       ) : "" }>
         <TextField
           {...props._props}
-          classes={readOnly ? { root: 'Mui-disabled' } : {}}
+          inputProps={{
+            readOnly: readOnly,
+          }}
           sx={style}
           name={name}
           onBlur={onBlur}

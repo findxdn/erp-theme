@@ -40,7 +40,7 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
     ref,
   } = props;
 
-  const [value, setValue] = React.useState('');
+  const [value, setValue] = React.useState(defaultValue ? defaultValue : null);
 
   const handleOnchange = (newValue) => {
     setValue(newValue)
@@ -89,7 +89,6 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns} required>
       <DatePicker
-        className={className}
         value={value}
         onChange={handleOnchange}
         components={{
@@ -111,10 +110,14 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
             ) : "" }>
               <TextField
                 {...params}
+                className={className}
                 error={showError}
                 fullWidth
-                onChange={onChange(value)}
                 sx={styled ? styled : style}
+                inputProps={{
+                  ...params.inputProps,
+                  placeholder: placeholder
+                }}
               />
             </Tooltip>
           );
