@@ -169,7 +169,7 @@ const MODULE_HRM_DEFAULT = {
     name: "Chấm công",
     icon: <IcTimekeeping />,
     onClick: () => {
-      window.location.href = headerLink + "hrm/manage-checkin4";
+      window.location.href = headerLink + "hrm/manage-checkin";
     },
     active: true,
   },
