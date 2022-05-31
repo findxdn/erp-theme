@@ -148,7 +148,9 @@ const MODULE_HRM_DEFAULT = {
   [HRM_KEYS.DEPARTMENT]: {
     name: "Phòng ban",
     icon: <IcDepartment />,
-    onClick: () => {},
+    onClick: () => {
+      window.location.href = headerLink + "hrm/manage-office";
+    },
     active: true,
   },
   [HRM_KEYS.RECRUIT]: {
@@ -166,7 +168,9 @@ const MODULE_HRM_DEFAULT = {
   [HRM_KEYS.TIMEKEEPING]: {
     name: "Chấm công",
     icon: <IcTimekeeping />,
-    onClick: () => {},
+    onClick: () => {
+      window.location.href = headerLink + "hrm/manage-checkin4";
+    },
     active: true,
   },
   [HRM_KEYS.PAYROLL]: {
