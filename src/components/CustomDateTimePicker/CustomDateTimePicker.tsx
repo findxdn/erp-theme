@@ -23,6 +23,7 @@ export interface CustomDateTimePickerProps {
   defaultValue?: any;
   isTooltip?: any;
   placeholder?: any;
+  value?: any;
 }
 
 const style = {
@@ -60,19 +61,14 @@ const CustomDateTimePicker = (props: CustomDateTimePickerProps) => {
     isTooltip = false,
     placeholder,
     onBlur,
+    value,
     ref,
   } = props;
-
-  const [value, setValue] = React.useState(defaultValue ? defaultValue : null);
 
   let showError = false;
   if (!_.isEmpty(errors)) {
     showError = !_.isEmpty(errors[name]);
   }
-  const handleOnchange = (newValue) => {
-    setValue(newValue)
-    onChange(newValue)
-  };
 
   const useStyles = makeStyles(theme => ({
     arrow: {
@@ -89,8 +85,8 @@ const CustomDateTimePicker = (props: CustomDateTimePickerProps) => {
     <LocalizationProvider dateAdapter={AdapterDateFns} required>
       <DateTimePicker
         {...props._props}
-        onChange={handleOnchange}
-        value={value}
+        onChange={ (e) => props.onChange(e)}
+        value={props?.value}
         components={{
           OpenPickerIcon: IcDateTime,
         }}
@@ -114,6 +110,7 @@ const CustomDateTimePicker = (props: CustomDateTimePickerProps) => {
                 error={showError}
                 fullWidth
                 sx={styled ? styled : style}
+                defaultValue={defaultValue}
                 inputProps={{
                   ...params.inputProps,
                   placeholder: placeholder

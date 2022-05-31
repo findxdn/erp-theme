@@ -23,6 +23,7 @@ export interface CustomDatePickerProps {
   defaultValue?: any;
   isTooltip?: any;
   placeholder?: any;
+  value?: any;
 }
 
 const CustomDatePicker = (props: CustomDatePickerProps) => {
@@ -32,6 +33,7 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
     styled,
     inputFormat = "dd/MM/yyyy",
     className,
+    value,
     defaultValue = "",
     isTooltip = false,
     placeholder,
@@ -39,13 +41,6 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
     onBlur,
     ref,
   } = props;
-
-  const [value, setValue] = React.useState(defaultValue ? defaultValue : null);
-
-  const handleOnchange = (newValue) => {
-    setValue(newValue)
-    onChange(newValue)
-  };
 
   let showError = false;
 
@@ -89,8 +84,8 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns} required>
       <DatePicker
-        value={value}
-        onChange={handleOnchange}
+        value={props?.value}
+        onChange={ (e) => props.onChange(e)}
         components={{
           OpenPickerIcon: IcDateTime,
         }}
@@ -114,6 +109,7 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
                 error={showError}
                 fullWidth
                 sx={styled ? styled : style}
+                defaultValue={defaultValue}
                 inputProps={{
                   ...params.inputProps,
                   placeholder: placeholder
