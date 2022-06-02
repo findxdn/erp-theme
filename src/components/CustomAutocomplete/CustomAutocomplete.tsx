@@ -7,7 +7,7 @@ import { Tooltip } from '@mui/material';
 import _ from "lodash";
 import MessageError from "../../utils/MessageError";
 import { makeStyles } from "@material-ui/core/styles";
-import './CustomAutoComplete.scss'
+
 export interface CustomAutocompleteProps {
   name: string;
   className?: string;
@@ -102,7 +102,7 @@ function CustomAutocomplete(props: CustomAutocompleteProps) {
             <Tooltip 
               placement="bottom"
               arrow
-              classes={{ arrow: classes.arrow }}
+              classes={{ arrow: classes.arrow, tooltip: classes.tooltip }}
               title={ (showError && isTooltip) ? (
               <MessageError 
                 type={errors[name].type} 

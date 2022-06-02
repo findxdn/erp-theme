@@ -78,6 +78,16 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
         color: "#ffffff"
       }
     },
+    tooltip: {
+      fontSize: '14px !important',
+      backgroundColor: '#ffffff !important',
+      borderRadius: '3px',
+      border: '1px solid #FF0000',
+      marginTop: '10px !important',
+      "&:.p": {
+        marginTop: '0px !important',
+      }
+    }
   }));
 
   let classes = useStyles();
@@ -95,7 +105,7 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
             <Tooltip 
               placement="bottom"
               arrow
-              classes={{ arrow: classes.arrow }}
+              classes={{ arrow: classes.arrow, tooltip: classes.tooltip }}
               title={ (showError && isTooltip) ? (
               <MessageError 
                 type={errors[name].type} 

@@ -32,7 +32,7 @@ const TextInput = (props: TextInputProps) => {
     name,
     placeholder,
     value,
-    onChange = () => {},
+    onChange = () => { },
     readOnly = false,
     onBlur,
     errors,
@@ -61,19 +61,24 @@ const TextInput = (props: TextInputProps) => {
     },
     "& .MuiOutlinedInput-root": {
       borderRadius: "5px",
+      backgroundColor: `${readOnly ? '#adb0b4':'#ffffff'}`,
       height: "32px",
       width: "100%",
       fontSize: 14,
       color: "#333333",
       zIndex: "1",
+      border: `${readOnly ? '0px' : '0.5px'}`,
       "& .MuiOutlinedInput-notchedOutline": {
-        borderColor: `${(showError)? '#FF0000' : '#d8d7d7'}`,
+        border: `${readOnly ? '0px' : '0.5px'}`,
+        borderColor: `${(showError && !readOnly)? '#FF0000' : '#d8d7d7'}`,
       },
       "&:hover .MuiOutlinedInput-notchedOutline": {
-        borderColor: `${(showError)? '#FF0000' : '#138300'}`,
+        border: `${readOnly ? '0px' : '0.5px'}`,
+        borderColor: `${(showError && !readOnly)? '#FF0000' : '#138300'}`,
       },
       "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-        border: `1px solid ${(showError)? '#FF0000' : '#138300'}`,
+        border: `${readOnly ? '0px' : '0.5px'}`,
+        borderColor: `${(showError && !readOnly) ? '#FF0000' : '#138300'}`,
       },
     },
   };
@@ -91,25 +96,35 @@ const TextInput = (props: TextInputProps) => {
         color: "#ffffff"
       }
     },
+    tooltip: {
+      fontSize: '14px !important',
+      backgroundColor: '#ffffff !important',
+      borderRadius: '3px',
+      border: '1px solid #FF0000',
+      marginTop: '10px !important',
+      "&:.p": {
+        marginTop: '0px !important',
+      }
+    }
   }));
 
 
-  
+
   let classes = useStyles();
 
   return (
     <Box className={className} sx={{ width: "100%", padding: "0px" }}>
-      <Tooltip 
+      <Tooltip
         placement="bottom"
         arrow
-        classes={{ arrow: classes.arrow }}
-        title={ (showError && isTooltip) ? (
-        <MessageError 
-          type={errors[name].type} 
-          message={errors[name].message} 
-          style={{ color: "red", marginTop: "0px" }}
-        />
-      ) : "" }>
+        classes={{ arrow: classes.arrow, tooltip: classes.tooltip }}
+        title={(showError && isTooltip) ? (
+          <MessageError
+            type={errors[name].type}
+            message={errors[name].message}
+            style={{ color: "red", marginTop: "0px" }}
+          />
+        ) : ""}>
         <TextField
           {...props._props}
           inputProps={{
