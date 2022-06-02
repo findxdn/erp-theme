@@ -100,7 +100,6 @@ function MultiSelect(props: MultiSelectProps) {
           className={className}
           input={<OutlinedInput />}
           renderValue={(selected) => {
-            console.log(selected)
             if (Array.isArray(selected)) {
               return (
                 <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>

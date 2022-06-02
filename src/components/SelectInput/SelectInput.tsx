@@ -100,11 +100,12 @@ function SelectInput(props: SelectInputProps) {
             return dataChange?.label;
           }}
         >
-          {options?.map((option: { value: any; label: any }) => (
+          {Array.isArray(options)?
+            (options.map((option: { value: any; label: any }) => (
             <MenuItem key={option?.value} value={option.value}>
               {option.label}
             </MenuItem>
-          ))}
+          ))) : {}}
         </Select>
         {showError && (
           <MessageError
