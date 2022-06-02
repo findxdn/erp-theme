@@ -35,22 +35,22 @@ const style = {
   zIndex: "1",
   ".MuiSelect-select": {
     padding: "6px 10px",
-    borderRadius: "5px",
+    borderRadius: "3px",
   },
   "& .MuiOutlinedInput-notchedOutline": {
-    borderColor: "#d8d7d7",
+    border: "0.5px solid #d8d7d7",
   },
   "&:hover .MuiOutlinedInput-notchedOutline": {
-    borderColor: "#138300",
+    border: "0.5px solidy#138300",
   },
   "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-    border: `1px solid #138300`,
+    border: `0.5px solid #138300`,
   },
   "&:hover:not(.Mui-disabled):before": {
-    borderBottom: `1px solid #138300`,
+    borderBottom: `0.5px solid #138300`,
   },
   "&:after": {
-    borderBottom: `1px solid #138300`,
+    borderBottom: `0.5px solid #138300`,
   },
 };
 
@@ -100,8 +100,8 @@ function SelectInput(props: SelectInputProps) {
             return dataChange?.label;
           }}
         >
-          {options.map((option: { value: any; label: any }) => (
-            <MenuItem key={option.value} value={option.value}>
+          {options?.map((option: { value: any; label: any }) => (
+            <MenuItem key={option?.value} value={option.value}>
               {option.label}
             </MenuItem>
           ))}

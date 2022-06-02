@@ -47,7 +47,7 @@ const style = {
     borderColor: "#138300",
   },
   "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-    border: `2px solid #138300`,
+    border: `1px solid #138300`,
   },
   "&:hover:not(.Mui-disabled):before": {
     borderBottom: `1px solid #138300`,
@@ -71,27 +71,19 @@ function getStyles(
 }
 
 function MultiSelect(props: MultiSelectProps) {
-  const { options, errors, name, register, onChange, className } = props;
+  const { options,
+    errors,
+    name,
+    register,
+    onChange,
+    className,
+    placeholder = '',
+    value = [] } = props;
   let showError = false;
   if (!_.isEmpty(errors)) {
     showError = !_.isEmpty(errors[name]);
   }
   const theme = useTheme();
-  const [personName, setPersonName] = React.useState([]);
-
-  const handleChange = (event: { target: { value: any } }) => {
-    const {
-      target: { value },
-    } = event;
-    setPersonName(typeof value === "string" ? value.split(",") : value);
-    onChange(value);
-  };
-  const handleDelete = (e: { preventDefault: () => void }, value: any) => {
-    e.preventDefault();
-    const dataHandle = personName.filter((item) => item !== value);
-    setPersonName(dataHandle);
-    onChange(dataHandle);
-  };
   return (
     <div>
       <FormControl error={showError} fullWidth>
@@ -102,38 +94,48 @@ function MultiSelect(props: MultiSelectProps) {
           IconComponent={ExpandMoreSharpIcon}
           fullWidth
           displayEmpty
-          value={personName}
-          onChange={handleChange}
+          value={value}
+          onChange={onChange}
           multiple
           className={className}
           input={<OutlinedInput />}
-          renderValue={(selected) => (
-            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
-              {selected.map((value: any) => (
-                <Chip
-                  sx={{ borderRadius: "5px", height: "24px" }}
-                  key={value}
-                  label={value}
-                  clickable
-                  onDelete={(e) => handleDelete(e, value)}
-                  deleteIcon={
-                    <CancelIcon
-                      onMouseDown={(e) => {
-                        e.stopPropagation();
-                      }}
-                    />
-                  }
-                />
-              ))}
-            </Box>
-          )}
+          renderValue={(selected) => {
+            console.log(selected)
+            if (Array.isArray(selected)) {
+              return (
+                <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+                  {selected?.map((values: any) => {
+                    const dataChange = options.find((x: any) => x.value == values);
+                    return (
+                      <Chip
+                        sx={{ borderRadius: "5px", height: "24px" }}
+                        key={dataChange?.values}
+                        label={dataChange?.label}
+                        clickable
+                        onDelete={(e) => {
+                          props.onChange(value.filter((item) => item !== values))
+                        }}
+                        deleteIcon={
+                          <CancelIcon
+                            onMouseDown={(e) => {
+                              e.stopPropagation();
+                            }}
+                          />
+                        }
+                      />
+                    )
+                  })}
+                </Box>
+              )
+            }
+            return <p className="placeholder-select">{placeholder}</p>
+          }}
           MenuProps={MenuProps}
         >
           {options.map((option: { value: any; label: any }) => (
             <MenuItem
               key={option.value}
-              value={option.label}
-              style={getStyles(option, personName, theme)}
+              value={option.value}
             >
               {option.label}
             </MenuItem>
