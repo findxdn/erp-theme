@@ -7,6 +7,8 @@ import { Tooltip } from '@mui/material';
 import _ from "lodash";
 import MessageError from "../../utils/MessageError";
 import { makeStyles } from "@material-ui/core/styles";
+import Box from '@mui/material/Box';
+import MenuItem from "@mui/material/MenuItem";
 
 export interface CustomAutocompleteProps {
   name: string;
@@ -53,6 +55,7 @@ function CustomAutocomplete(props: CustomAutocompleteProps) {
     name,
     errors,
     onChange,
+    value,
     defaultValue,
     styles,
     className,
@@ -65,8 +68,6 @@ function CustomAutocomplete(props: CustomAutocompleteProps) {
     showError = !_.isEmpty(errors[name]);
   }
 
-  const [value, setValue] = React.useState<string | null>();
-
   const useStyles = makeStyles(theme => ({
     arrow: {
       "&:before": {
@@ -78,20 +79,12 @@ function CustomAutocomplete(props: CustomAutocompleteProps) {
 
 
   let classes = useStyles();
-
   return (
     <>
       <Autocomplete
-        // ref={ref}
         value={options.find((x: any) => x.key == value)}
-        onChange={(event, newValue) => {
-          if (newValue === null) {
-            setValue(null);
-            onChange(null);
-            return;
-          }
-          onChange(newValue.key);
-          setValue(newValue.key);
+        onChange={(e, newValue) => {
+          onChange(newValue.key)
         }}
         className={className}
         defaultValue={defaultValue}
@@ -99,17 +92,17 @@ function CustomAutocomplete(props: CustomAutocompleteProps) {
         popupIcon={<ExpandMoreSharpIcon />}
         renderInput={(params) => {
           return (
-            <Tooltip 
+            <Tooltip
               placement="bottom"
               arrow
               classes={{ arrow: classes.arrow, tooltip: classes.tooltip }}
-              title={ (showError && isTooltip) ? (
-              <MessageError 
-                type={errors[name].type} 
-                message={errors[name].message} 
-                style={{ color: "red", marginTop: "0px" }}
-              />
-            ) : "" }>
+              title={(showError && isTooltip) ? (
+                <MessageError
+                  type={errors[name].type}
+                  message={errors[name].message}
+                  style={{ color: "red", marginTop: "0px" }}
+                />
+              ) : ""}>
               <TextField
                 {...params}
                 fullWidth
