@@ -50,16 +50,21 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
 
   const style = {
     width: "100%",
-    fontSize: "14px !important",
     color: "#333333",
     zIndex: "1",
     margin: "0px",
+    "& .MuiOutlinedInput-input": {
+      paddingLeft: "10px",
+      fontSize: "14px !important",
+      fontWidth: 400,
+    },
     "& .MuiOutlinedInput-root": {
       borderRadius: "5px",
       height: "32px",
       width: "100%",
       borderColor: "#138300",
       "& .MuiOutlinedInput-notchedOutline": {
+        paddingLeft: "10px !important",
         borderColor: `${(showError)? '#FF0000' : '#d8d7d7'}`,
       },
       "&:hover .MuiOutlinedInput-notchedOutline": {

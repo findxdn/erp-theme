@@ -7,7 +7,7 @@ export interface MessageErrorProps {
 }
 
 function MessageError(props: MessageErrorProps) {
-  const { type, message, style={ color: "red", marginTop: "7px" } } = props;
+  const { type, message, style={ color: "red", marginTop: "7px", fontWeight: "900 !important", fontSize: '14px' } } = props;
 
   const getMessage = () => {
     if (message) {

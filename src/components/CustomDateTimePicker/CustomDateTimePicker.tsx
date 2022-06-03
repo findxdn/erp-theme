@@ -32,6 +32,11 @@ const style = {
   color: "#333333",
   zIndex: "1",
   marginTop: "0px",
+  "& .MuiOutlinedInput-input": {
+    paddingLeft: "10px",
+    fontSize: "14px !important",
+    fontWidth: 400,
+  },
   "& .MuiOutlinedInput-root": {
     borderRadius: "5px",
     height: "32px",

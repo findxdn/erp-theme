@@ -40,14 +40,11 @@ const style = {
   "& .MuiOutlinedInput-notchedOutline": {
     border: "0.5px solid #d8d7d7",
   },
-  "&:hover .MuiOutlinedInput-notchedOutline": {
-    border: "0.5px solidy#138300",
-  },
   "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
     border: `0.5px solid #138300`,
   },
-  "&:hover:not(.Mui-disabled):before": {
-    borderBottom: `0.5px solid #138300`,
+  "&:hover .MuiOutlinedInput-notchedOutline": {
+    border: `0.5px solid #138300`,
   },
   "&:after": {
     borderBottom: `0.5px solid #138300`,
@@ -95,17 +92,20 @@ function SelectInput(props: SelectInputProps) {
               values === "" ||
               values === null
             ) {
-              return <p className="placeholder-select">{placeholder}</p>;
+              return <p className="placeholder-select" style={{
+                fontSize: 14,
+                color: '#8e8e8e'
+              }}>{placeholder}</p>;
             }
             return dataChange?.label;
           }}
         >
-          {Array.isArray(options)?
+          {Array.isArray(options) ?
             (options.map((option: { value: any; label: any }) => (
-            <MenuItem key={option?.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))) : {}}
+              <MenuItem key={option?.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))) : {}}
         </Select>
         {showError && (
           <MessageError
