@@ -24,6 +24,7 @@ export interface TextInputProps {
   isTooltip?: any;
   readOnly?: any;
   _props?: any;
+  textAlign?: any;
 }
 
 const TextInput = (props: TextInputProps) => {
@@ -41,6 +42,7 @@ const TextInput = (props: TextInputProps) => {
     isPassword,
     isTooltip = false,
     className,
+    textAlign = 'left',
   } = props;
 
   let showError = false;
@@ -58,6 +60,7 @@ const TextInput = (props: TextInputProps) => {
       "$ .MuiOutlinedInput-input": {
         padding: "4px 10px",
       },
+      textAlign: {textAlign},
     },
     "& .MuiOutlinedInput-root": {
       borderRadius: "5px",
