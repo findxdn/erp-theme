@@ -61,24 +61,20 @@ const TextInput = (props: TextInputProps) => {
     },
     "& .MuiOutlinedInput-root": {
       borderRadius: "5px",
-      backgroundColor: `${readOnly ? '#adb0b4':'#ffffff'}`,
       height: "32px",
       width: "100%",
       fontSize: 14,
       color: "#333333",
       zIndex: "1",
-      border: `${readOnly ? '0px' : '0.5px'}`,
+      backgroundColor: `${readOnly ? '#adb0b4':'#ffffff'}`,
       "& .MuiOutlinedInput-notchedOutline": {
-        border: `${readOnly ? '0px' : '0.5px'}`,
-        borderColor: `${(showError && !readOnly)? '#FF0000' : '#d8d7d7'}`,
+        border: `${ readOnly ? '0px' : '1px' } solid ${(showError)? '#FF0000' : '#d8d7d7'}`,
       },
       "&:hover .MuiOutlinedInput-notchedOutline": {
-        border: `${readOnly ? '0px' : '0.5px'}`,
-        borderColor: `${(showError && !readOnly)? '#FF0000' : '#138300'}`,
+        border: `${ readOnly ? '0px' : '1px' } solid ${(showError)? '#FF0000' : '#138300'}`,
       },
       "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-        border: `${readOnly ? '0px' : '0.5px'}`,
-        borderColor: `${(showError && !readOnly) ? '#FF0000' : '#138300'}`,
+        border: `${ readOnly ? '0px' : '1px' } solid ${(showError)? '#FF0000' : '#138300'}`,
       },
     },
   };
