@@ -123,6 +123,11 @@ const CustomDateTimePicker = (props: CustomDateTimePickerProps) => {
                 defaultValue={defaultValue}
                 inputProps={{
                   ...params.inputProps,
+                  sx: {
+                    "&::placeholder": {
+                      fontSize: 14,
+                    }
+                  },
                   placeholder: placeholder
                 }}
               />

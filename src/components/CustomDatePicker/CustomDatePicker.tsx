@@ -50,7 +50,7 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
 
   const style = {
     width: "100%",
-    fontSize: 14,
+    fontSize: "14px !important",
     color: "#333333",
     zIndex: "1",
     margin: "0px",
@@ -87,7 +87,13 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
       "&:.p": {
         marginTop: '0px !important',
       }
-    }
+    },
+    input: {
+      color: 'red',
+      '&::placeholder': {
+        color: 'red',
+      },
+    }      
   }));
 
   let classes = useStyles();
@@ -105,7 +111,7 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
             <Tooltip 
               placement="bottom"
               arrow
-              classes={{ arrow: classes.arrow, tooltip: classes.tooltip }}
+              classes={{ arrow: classes.arrow, tooltip: classes.tooltip, input: classes.input, }}
               title={ (showError && isTooltip) ? (
               <MessageError 
                 type={errors[name].type} 
@@ -122,6 +128,11 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
                 defaultValue={defaultValue}
                 inputProps={{
                   ...params.inputProps,
+                  sx: {
+                    "&::placeholder": {
+                      fontSize: 14,
+                    }
+                  },
                   placeholder: placeholder
                 }}
               />
