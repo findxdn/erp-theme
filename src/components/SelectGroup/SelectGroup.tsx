@@ -85,11 +85,10 @@ function SelectGroup(props: SelectGroupProps) {
           input={<OutlinedInput />}
           MenuProps={MenuProps}
           className={className}
-          label={placeholder}
           defaultValue=""
           placeholder={placeholder}
           renderValue={(selected) => {
-            if (selected.length === 0) {
+            if( selected === null || !Array.isArray(selected) || selected.length === 0){
               return <p className="placeholder-select">{placeholder}</p>;
             }
             return selected;

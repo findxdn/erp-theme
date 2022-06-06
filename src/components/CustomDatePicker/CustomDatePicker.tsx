@@ -24,12 +24,13 @@ export interface CustomDatePickerProps {
   isTooltip?: any;
   placeholder?: any;
   value?: any;
+  isOpenTabelSetDate?: any;
 }
 
 const CustomDatePicker = (props: CustomDatePickerProps) => {
   const {
     errors,
-    name="",
+    name = "",
     styled,
     inputFormat = "dd/MM/yyyy",
     className,
@@ -40,9 +41,12 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
     onChange,
     onBlur,
     ref,
+    isOpenTabelSetDate = true,
   } = props;
 
   let showError = false;
+
+  const [open, setOpen] = React.useState(false);
 
   if (!_.isEmpty(errors)) {
     showError = !_.isEmpty(errors[name]);
@@ -65,17 +69,17 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
       borderColor: "#138300",
       "& .MuiOutlinedInput-notchedOutline": {
         paddingLeft: "10px !important",
-        borderColor: `${(showError)? '#FF0000' : '#d8d7d7'}`,
+        borderColor: `${(showError) ? '#FF0000' : '#d8d7d7'}`,
       },
       "&:hover .MuiOutlinedInput-notchedOutline": {
-        borderColor: `${(showError)? '#FF0000' : '#138300'}`,
+        borderColor: `${(showError) ? '#FF0000' : '#138300'}`,
       },
       "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-        border: `1px solid ${(showError)? '#FF0000' : '#138300'}`,
+        border: `1px solid ${(showError) ? '#FF0000' : '#138300'}`,
       },
     },
   };
-  
+
   const useStyles = makeStyles(theme => ({
     arrow: {
       "&:before": {
@@ -98,7 +102,7 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
       '&::placeholder': {
         color: 'red',
       },
-    }      
+    }
   }));
 
   let classes = useStyles();
@@ -106,26 +110,30 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
     <LocalizationProvider dateAdapter={AdapterDateFns} required>
       <DatePicker
         value={props?.value}
-        onChange={ (e) => props.onChange(e)}
+        onChange={(e) => props.onChange(e)}
+        open={open}
+        onOpen={() => setOpen(true)}
+        onClose={() => setOpen(false)}
         components={{
           OpenPickerIcon: IcDateTime,
         }}
         inputFormat={inputFormat}
         renderInput={(params) => {
           return (
-            <Tooltip 
+            <Tooltip
               placement="bottom"
               arrow
-              classes={{ arrow: classes.arrow, tooltip: classes.tooltip, input: classes.input, }}
-              title={ (showError && isTooltip) ? (
-              <MessageError 
-                type={errors[name].type} 
-                message={errors[name].message} 
-                style={{ color: "red", marginTop: "0px" }}
-              />
-            ) : "" }>
+              classes={{ arrow: classes.arrow, tooltip: classes.tooltip }}
+              title={(showError && isTooltip) ? (
+                <MessageError
+                  type={errors[name].type}
+                  message={errors[name].message}
+                  style={{ color: "red", marginTop: "0px" }}
+                />
+              ) : ""}>
               <TextField
                 {...params}
+                onClick={(e) => isOpenTabelSetDate && setOpen(true)}
                 className={className}
                 error={showError}
                 fullWidth
