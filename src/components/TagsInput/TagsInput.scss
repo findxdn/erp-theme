@@ -1,0 +1,12 @@
+.tagsInput-chip {
+  height: 32px;
+  display: flex;
+  flex-direction: row;
+  overflow-y: hidden;
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  max-width: 60%;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

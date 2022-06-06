@@ -82,9 +82,13 @@ function CustomAutocomplete(props: CustomAutocompleteProps) {
   return (
     <>
       <Autocomplete
-        value={options.find((x: any) => x.key == value)}
+        value={options.find((x: any) => x.key == value) ?? null}
         onChange={(e, newValue) => {
-          onChange(newValue.key)
+          if(newValue) {
+            onChange(newValue.key)
+          } else {
+            onChange(null)
+          }
         }}
         className={className}
         defaultValue={defaultValue}

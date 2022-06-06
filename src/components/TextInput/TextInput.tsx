@@ -7,6 +7,7 @@ import MessageError from "../../utils/MessageError";
 import "./TextInput.scss";
 import { Tooltip } from '@mui/material';
 import { makeStyles } from "@material-ui/core/styles";
+import Downshift from 'downshift';
 
 export interface TextInputProps {
   name: string;
