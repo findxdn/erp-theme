@@ -88,7 +88,8 @@ export default function TagsInput(props: TagsInputProps) {
     zIndex: '1',
     '& .MuiInputBase-input': {
       padding: '0px',
-      width: '60px',
+      minWidth: '60px',
+      flex: 1,
     },
     '& .MuiOutlinedInput-root': {
       flexWrap: 'wrap',
@@ -184,10 +185,8 @@ export default function TagsInput(props: TagsInputProps) {
                           key={item}
                           tabIndex={-1}
                           style={{
-                            display: 'flex',
                             alignItems: 'center',
                             height: '24px',
-                            padding: '2px',
                           }}
                           label={item}
                           className={classes.chip}
