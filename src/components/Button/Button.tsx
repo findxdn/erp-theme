@@ -1,5 +1,6 @@
 import React from "react";
 import "./Button.scss";
+import { IconButton } from '@mui/material'
 
 export interface ButtonProps {
   onClick?: any;
@@ -22,17 +23,29 @@ const Button = (props: ButtonProps) => {
     type = "button",
   } = props;
   return (
-    <button
-      type={type}
-      style={sx}
-      onClick={onClick}
-      disabled={disabled}
-      className={`button-default ${!!className ? className : ""}`}
-    >
-      {icon ? <span className="icon-style">{!!icon && icon}</span> : <></>}
-      {children}
-    </button>
+    <IconButton>
+      <button
+        type={type}
+        style={sx}
+        onClick={onClick}
+        disabled={disabled}
+        className={`button-default ${!!className ? className : ""}`}
+      >
+        {icon ? <span className="icon-style">{!!icon && icon}</span> : <></>}
+        {children}
+      </button>
+    </IconButton>
   );
 };
 
 export default Button;
+{/* <button
+  type={type}
+  style={sx}
+  onClick={onClick}
+  disabled={disabled}
+  className={`button-default ${!!className ? className : ""}`}
+>
+  {icon ? <span className="icon-style">{!!icon && icon}</span> : <></>}
+  {children}
+</button> */}

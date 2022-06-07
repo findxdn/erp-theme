@@ -1,48 +1,50 @@
-import React, { useEffect, useRef } from 'react';
+/* eslint-disable max-len */
+import React, { useEffect } from 'react';
 import Chip from '@mui/material/Chip';
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@mui/material/TextField';
 import Downshift from 'downshift';
-import './TagsInput.scss'
+import { Tooltip } from '@mui/material';
+import MessageError from "../../utils/MessageError";
+import _ from "lodash";
 
 export interface TagsInputProps {
   name: string;
+  className?: string;
   placeholder?: any;
+  onChange?: any;
+  errors?: any;
+  styles?: any;
+  defaultValue?: any;
   ref?: any;
   value?: any;
-  onChange?: any;
-  disabled?: any;
-  onBlur?: any;
-  errors?: any;
-  defaultValue?: any;
-  type?: any;
-  isPassword?: any;
-  className?: string;
   isTooltip?: any;
   readOnly?: any;
-  _props?: any;
-  textAlign?: any;
 }
 
-
-const useStyles = makeStyles((theme) => ({
-  chip: {
-    margin: theme.spacing(0.5, 0.25),
-    height: '22px',
-  },
-}));
-
-const TagsInput = (props: TagsInputProps) => {
-  const classes = useStyles();
-  const { 
+export default function TagsInput(props: TagsInputProps) {
+  const {
     placeholder,
-    onChange, 
-    value, 
+    onChange,
+    value,
+    errors,
+    isTooltip = false,
+    name, 
+    readOnly = false,
   } = props;
+
+  let showError = false;
+  if (!_.isEmpty(errors)) {
+    showError = !_.isEmpty(errors[name]);
+  }
+  
   const [inputValue, setInputValue] = React.useState('');
   const [selectedItem, setSelectedItem] = React.useState(value || []);
 
   function handleKeyDown(event) {
+    if (value === null || !Array.isArray(value)) {
+      setSelectedItem([])
+    }
     if (event.key === 'Tab') {
       const newSelectedItem = [...selectedItem];
       const duplicatedValues = newSelectedItem.indexOf(
@@ -80,29 +82,31 @@ const TagsInput = (props: TagsInputProps) => {
   };
 
   const style = {
-    width: '40%',
+    width: '100%',
     fontSize: 14,
     color: '#333333',
     zIndex: '1',
-    height: '32px',
     '& .MuiInputBase-input': {
       padding: '0px',
+      width: '60px',
     },
     '& .MuiOutlinedInput-root': {
+      flexWrap: 'wrap',
+      minHeight: '32px',
       borderRadius: '5px',
       fontSize: 14,
       padding: '0px 10px',
       color: '#333333',
       zIndex: '1',
-      backgroundColor: '#ffffff',
+      backgroundColor: `${readOnly ? '#e2e4e7':'#ffffff'}`,
       '& .MuiOutlinedInput-notchedOutline': {
-        border: '1px solid #d8d7d7',
+        border: `${ readOnly ? '0px' : '1px' } solid ${(showError)? '#FF0000' : '#d8d7d7'}`,
       },
       '&:hover .MuiOutlinedInput-notchedOutline': {
-        border: '1px solid #138300',
+        border: `${ readOnly ? '0px' : '1px' } solid ${(showError)? '#FF0000' : '#138300'}`,
       },
       '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-        border: '1px solid #138300',
+        border: `${ readOnly ? '0px' : '1px' } solid ${(showError)? '#FF0000' : '#138300'}`,
       },
     },
   };
@@ -110,6 +114,37 @@ const TagsInput = (props: TagsInputProps) => {
   function handleInputChange(event) {
     setInputValue(event.target.value);
   }
+
+  const [showIcRight, setShowIcRight] = React.useState(true);
+
+  const handleOnclickIconRight = () => {
+    setShowIcRight(!showIcRight);
+  };
+
+  const useStyles = makeStyles(theme => ({
+    arrow: {
+      "&:before": {
+        border: "1px solid #FF0000",
+        color: "#ffffff"
+      }
+    },
+    tooltip: {
+      fontSize: '14px !important',
+      backgroundColor: '#ffffff !important',
+      borderRadius: '3px',
+      border: '1px solid #FF0000',
+      marginTop: '10px !important',
+      "&:.p": {
+        marginTop: '0px !important',
+      }
+    },
+    chip: {
+      margin: theme.spacing(0.5, 0.25),
+      height: '22px',
+    },
+  }));
+
+  let classes = useStyles();
 
   return (
     <div>
@@ -125,17 +160,32 @@ const TagsInput = (props: TagsInputProps) => {
           });
           return (
             <div>
-              <TextField
-                sx={style}
-                InputProps={{
-                  startAdornment: (
-                    <div className="tagsInput-chip">
-                      {(value !== null && Array.isArray(value)) ? value.map((item) => (
+              <Tooltip
+                placement="bottom"
+                arrow
+                classes={{ arrow: classes.arrow, tooltip: classes.tooltip }}
+                title={(showError && isTooltip) ? (
+                  <MessageError
+                    type={errors[name].type}
+                    message={errors[name].message}
+                    style={{ color: "red", marginTop: "0px" }}
+                  />
+                ) : ""}>
+                <TextField
+                  sx={style}
+                  id="outlined-textarea"
+                  multiline
+                  fullWidth
+                  InputProps={{
+                    readOnly: readOnly,
+                    startAdornment: (
+                      (value !== null && Array.isArray(value)) ? value.map((item) => (
                         <Chip
                           key={item}
                           tabIndex={-1}
                           style={{
-                            display: 'inline',
+                            display: 'flex',
+                            alignItems: 'center',
                             height: '24px',
                             padding: '2px',
                           }}
@@ -144,23 +194,26 @@ const TagsInput = (props: TagsInputProps) => {
                           onDelete={handleDelete(item)}
                         />
                         // eslint-disable-next-line react/jsx-no-useless-fragment
-                      )) : <></>}
-                    </div>
-                  ),
-                  onBlur,
-                  onChange: (event) => {
-                    handleInputChange(event);
-                  },
-                  onFocus,
-                }}
-                {...inputProps}
-              />
+                      )) : <></>
+                    ),
+                    onBlur,
+                    onChange: (event) => {
+                      handleInputChange(event);
+                    },
+                    onFocus,
+                  }}
+                  {...inputProps}
+                />
+              </Tooltip>
+              {
+                (showError && !isTooltip) ? (
+                  <MessageError type={errors[name].type} message={errors[name].message} />
+                ) : <></>
+              }
             </div>
           );
         }}
-      </Downshift>
-    </div>
+      </Downshift >
+    </div >
   );
 }
-
-export default TagsInput

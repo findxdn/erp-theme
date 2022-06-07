@@ -24,29 +24,8 @@ export interface CustomAutocompleteProps {
   ref?: any;
   value?: any;
   isTooltip?: any;
+  disabled?: any;
 }
-
-const styleTextField = {
-  "& .MuiOutlinedInput-root": {
-    borderRadius: "5px",
-    height: "32px",
-    padding: "0px",
-    width: "100%",
-    fontSize: 14,
-    color: "#333333",
-    zIndex: "1",
-    "& .MuiOutlinedInput-input": {
-      height: "16px",
-      paddingLeft: "10px",
-    },
-    "&:hover .MuiOutlinedInput-notchedOutline": {
-      borderColor: "#138300",
-    },
-    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-      border: "1px solid #138300",
-    },
-  },
-};
 
 function CustomAutocomplete(props: CustomAutocompleteProps) {
   const {
@@ -59,6 +38,7 @@ function CustomAutocomplete(props: CustomAutocompleteProps) {
     defaultValue,
     styles,
     className,
+    disabled = false,
     ref,
     isTooltip = false,
   } = props;
@@ -67,6 +47,32 @@ function CustomAutocomplete(props: CustomAutocompleteProps) {
   if (!_.isEmpty(errors)) {
     showError = !_.isEmpty(errors[name]);
   }
+
+  const styleTextField = {
+    "& .MuiOutlinedInput-root": {
+      borderRadius: "5px",
+      height: "32px",
+      padding: "0px",
+      width: "100%",
+      fontSize: 14,
+      color: "#333333",
+      zIndex: "1",
+      backgroundColor: `${disabled ? '#e2e4e7':'#ffffff'}`,
+      "& .MuiOutlinedInput-input": {
+        height: "16px",
+        paddingLeft: "10px",
+      },
+      "& .MuiOutlinedInput-notchedOutline": {
+        border: `${ disabled ? '0px' : '1px' } solid ${(showError)? '#FF0000' : '#d8d7d7'}`,
+      },
+      "&:hover .MuiOutlinedInput-notchedOutline": {
+        border: `${ disabled ? '0px' : '1px' } solid ${(showError)? '#FF0000' : '#138300'}`,
+      },
+      "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+        border: `${ disabled ? '0px' : '1px' } solid ${(showError)? '#FF0000' : '#138300'}`,
+      },
+    },
+  };
 
   const useStyles = makeStyles(theme => ({
     arrow: {
@@ -90,11 +96,14 @@ function CustomAutocomplete(props: CustomAutocompleteProps) {
             onChange(null)
           }
         }}
+        disabled={disabled}
         className={className}
         defaultValue={defaultValue}
         options={options}
         popupIcon={<ExpandMoreSharpIcon />}
         renderInput={(params) => {
+          const inputProps = params.inputProps;
+          inputProps.autoComplete = "off";
           return (
             <Tooltip
               placement="bottom"

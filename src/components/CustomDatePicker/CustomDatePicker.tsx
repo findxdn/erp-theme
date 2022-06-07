@@ -25,6 +25,7 @@ export interface CustomDatePickerProps {
   placeholder?: any;
   value?: any;
   isOpenTabelSetDate?: any;
+  disabled?: any;
 }
 
 const CustomDatePicker = (props: CustomDatePickerProps) => {
@@ -41,6 +42,7 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
     onChange,
     onBlur,
     ref,
+    disabled = false,
     isOpenTabelSetDate = true,
   } = props;
 
@@ -63,19 +65,20 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
       fontWidth: 400,
     },
     "& .MuiOutlinedInput-root": {
+      backgroundColor: `${disabled ? '#e2e4e7' : '#ffffff'}`,
       borderRadius: "5px",
       height: "32px",
       width: "100%",
       borderColor: "#138300",
       "& .MuiOutlinedInput-notchedOutline": {
         paddingLeft: "10px !important",
-        borderColor: `${(showError) ? '#FF0000' : '#d8d7d7'}`,
+        border: `${disabled ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#d8d7d7'}`,
       },
       "&:hover .MuiOutlinedInput-notchedOutline": {
-        borderColor: `${(showError) ? '#FF0000' : '#138300'}`,
+        border: `${disabled ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#138300'}`,
       },
       "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-        border: `1px solid ${(showError) ? '#FF0000' : '#138300'}`,
+        border: `${disabled ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#138300'}`,
       },
     },
   };
@@ -117,6 +120,7 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
         components={{
           OpenPickerIcon: IcDateTime,
         }}
+        disabled={disabled}
         inputFormat={inputFormat}
         renderInput={(params) => {
           return (
@@ -133,7 +137,7 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
               ) : ""}>
               <TextField
                 {...params}
-                onClick={(e) => isOpenTabelSetDate && setOpen(true)}
+                onClick={(e) => isOpenTabelSetDate && disabled && setOpen(true)}
                 className={className}
                 error={showError}
                 fullWidth

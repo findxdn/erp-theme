@@ -7,7 +7,6 @@ import MessageError from "../../utils/MessageError";
 import "./TextInput.scss";
 import { Tooltip } from '@mui/material';
 import { makeStyles } from "@material-ui/core/styles";
-import Downshift from 'downshift';
 
 export interface TextInputProps {
   name: string;
@@ -70,7 +69,7 @@ const TextInput = (props: TextInputProps) => {
       fontSize: 14,
       color: "#333333",
       zIndex: "1",
-      backgroundColor: `${readOnly ? '#adb0b4':'#ffffff'}`,
+      backgroundColor: `${readOnly ? '#e2e4e7':'#ffffff'}`,
       "& .MuiOutlinedInput-notchedOutline": {
         border: `${ readOnly ? '0px' : '1px' } solid ${(showError)? '#FF0000' : '#d8d7d7'}`,
       },
