@@ -96,7 +96,7 @@ export default function Switch(props: SwitchProps) {
         {...label}
         className={className}
         component={Root}
-        onChange={(e) => onChange(e.target.checked)}
+        onChange={onChange}
         checked={value}
       />
     </div>

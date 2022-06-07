@@ -85,6 +85,9 @@ function SelectInput(props: SelectInputProps) {
           onBlur={onBlur}
           ref={ref}
           renderValue={(values) => {
+            if( isNaN(value) && value.label) {
+              return value?.label
+            }
             const dataChange = options.find((x: any) => x.value == values);
             if (
               dataChange === "" ||

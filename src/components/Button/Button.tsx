@@ -1,7 +1,6 @@
 import React from "react";
 import "./Button.scss";
-import { IconButton } from '@mui/material'
-
+import Button from '@mui/material/Button'
 export interface ButtonProps {
   onClick?: any;
   children?: string | any;
@@ -12,7 +11,7 @@ export interface ButtonProps {
   type?: any;
 }
 
-const Button = (props: ButtonProps) => {
+const Buttons = (props: ButtonProps) => {
   const {
     onClick,
     children,
@@ -23,29 +22,17 @@ const Button = (props: ButtonProps) => {
     type = "button",
   } = props;
   return (
-    <IconButton>
-      <button
-        type={type}
-        style={sx}
-        onClick={onClick}
-        disabled={disabled}
-        className={`button-default ${!!className ? className : ""}`}
-      >
-        {icon ? <span className="icon-style">{!!icon && icon}</span> : <></>}
-        {children}
-      </button>
-    </IconButton>
+    <Button
+      type={type}
+      sx={{ textTransform: 'none', ...sx }}
+      onClick={onClick}
+      disabled={disabled}
+      className={`button-default ${!!className ? className : ""}`}
+    >
+      {icon ? <span className="icon-style">{!!icon && icon}</span> : <></>}
+      {children}
+    </Button>
   );
 };
 
-export default Button;
-{/* <button
-  type={type}
-  style={sx}
-  onClick={onClick}
-  disabled={disabled}
-  className={`button-default ${!!className ? className : ""}`}
->
-  {icon ? <span className="icon-style">{!!icon && icon}</span> : <></>}
-  {children}
-</button> */}
+export default Buttons;
