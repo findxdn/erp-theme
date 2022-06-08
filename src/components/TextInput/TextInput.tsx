@@ -25,6 +25,8 @@ export interface TextInputProps {
   readOnly?: any;
   _props?: any;
   textAlign?: any;
+  onKeyUp?: any;
+  onKeyDown?: any;
 }
 
 const TextInput = (props: TextInputProps) => {
@@ -43,6 +45,8 @@ const TextInput = (props: TextInputProps) => {
     isTooltip = false,
     className,
     textAlign = 'left',
+    onKeyUp,
+    onKeyDown
   } = props;
 
   let showError = false;
@@ -140,6 +144,8 @@ const TextInput = (props: TextInputProps) => {
           error={showError}
           fullWidth
           placeholder={placeholder}
+          onKeyUp={onKeyUp}
+          onKeyDown={onKeyDown}
         />
       </Tooltip>
       {isPassword && (
