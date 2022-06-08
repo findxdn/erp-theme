@@ -105,9 +105,10 @@ function SelectGroup(props: SelectGroupProps) {
                 <optgroup label={option.label} className="optgroupSelect">
                   {option.child.map((childData: { label: any; value: any }) => (
                     <option
+                      key={childData.value}
                       label={childData.label}
-                      className="optionSelect"
                       value={childData.value}
+                      className="optionSelect"
                     />
                   ))}
                 </optgroup>
