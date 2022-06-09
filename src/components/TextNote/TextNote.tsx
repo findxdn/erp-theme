@@ -26,7 +26,7 @@ const StyleTextArea = styled(({ ...rest }) => <textarea {...rest} />)(
     minHeight: `${minHeight}px`,
     border: `1px solid ${isError ? "red" : "#d8d7d7"}`,
     padding: "10px",
-    borderRadius: "5px",
+    borderRadius: "3px",
     "&:hover": {
       borderColor: "#138300",
     },

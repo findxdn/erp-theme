@@ -38,7 +38,7 @@ const style = {
   zIndex: "1",
   ".MuiSelect-select": {
     padding: "6px 10px",
-    borderRadius: "5px",
+    borderRadius: "3px",
   },
   "& .MuiOutlinedInput-notchedOutline": {
     borderColor: "#d8d7d7",
@@ -107,7 +107,7 @@ function MultiSelect(props: MultiSelectProps) {
                     const dataChange = options.find((x: any) => x.value == values);
                     return (
                       <Chip
-                        sx={{ borderRadius: "5px", height: "24px" }}
+                        sx={{ borderRadius: "3px", height: "24px" }}
                         key={dataChange?.values}
                         label={dataChange?.label}
                         clickable

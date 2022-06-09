@@ -25,7 +25,7 @@ const style = {
   color: "#333333",
   zIndex: "1",
   "& .MuiOutlinedInput-root": {
-    borderRadius: "5px",
+    borderRadius: "3px",
     height: "32px",
     width: "100%",
     fontSize: 14,

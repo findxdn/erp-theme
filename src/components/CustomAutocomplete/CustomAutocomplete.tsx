@@ -50,7 +50,7 @@ function CustomAutocomplete(props: CustomAutocompleteProps) {
 
   const styleTextField = {
     "& .MuiOutlinedInput-root": {
-      borderRadius: "5px",
+      borderRadius: "3px",
       height: "32px",
       padding: "0px",
       width: "100%",

@@ -66,7 +66,7 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
     },
     "& .MuiOutlinedInput-root": {
       backgroundColor: `${disabled ? '#e2e4e7' : '#ffffff'}`,
-      borderRadius: "5px",
+      borderRadius: "3px",
       height: "32px",
       width: "100%",
       borderColor: "#138300",
@@ -100,12 +100,6 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
         marginTop: '0px !important',
       }
     },
-    input: {
-      color: 'red',
-      '&::placeholder': {
-        color: 'red',
-      },
-    }
   }));
 
   let classes = useStyles();
@@ -148,6 +142,7 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
                   sx: {
                     "&::placeholder": {
                       fontSize: 14,
+                      color:  '#333333',
                     }
                   },
                   placeholder: placeholder

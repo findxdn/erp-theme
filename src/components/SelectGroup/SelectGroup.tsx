@@ -17,6 +17,7 @@ export interface SelectGroupProps {
   errors?: any;
   options?: any;
   className?: any;
+  disabled?: any;
 }
 
 const MenuProps = {
@@ -27,33 +28,6 @@ const MenuProps = {
   },
 };
 
-const style = {
-  width: "100%",
-  fontSize: 14,
-  paddingRight: "10px",
-  color: "#333333",
-  zIndex: "1",
-  ".MuiNativeSelect-select": {
-    padding: "6px 10px",
-    borderRadius: "5px",
-  },
-  "& .MuiOutlinedInput-notchedOutline": {
-    borderColor: "#d8d7d7",
-  },
-  "&:hover .MuiOutlinedInput-notchedOutline": {
-    borderColor: "#138300",
-  },
-  "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-    border: "1px solid #138300",
-  },
-  "&:hover:not(.Mui-disabled):before": {
-    borderBottom: "1px solid #138300",
-  },
-  "&:after": {
-    borderBottom: "1px solid #138300",
-  },
-};
-
 function SelectGroup(props: SelectGroupProps) {
   const {
     options,
@@ -61,6 +35,7 @@ function SelectGroup(props: SelectGroupProps) {
     errors,
     name,
     value,
+    disabled = false,
     register,
     onChange,
     className,
@@ -69,6 +44,29 @@ function SelectGroup(props: SelectGroupProps) {
   if (!_.isEmpty(errors)) {
     showError = !_.isEmpty(errors[name]);
   }
+
+  const style = {
+    width: "100%",
+    fontSize: 14,
+    paddingRight: "10px",
+    color: "#333333",
+    height: "32px",
+    zIndex: "1",
+    borderRadius: "3px",
+    backgroundColor: `${disabled ? '#e2e4e7' : '#ffffff'}`,
+    ".MuiSelect-select": {
+      padding: "6px 10px",
+    },
+    "& .MuiOutlinedInput-notchedOutline": {
+      border: `${disabled ? '0px' : '1px'} solid #d8d7d7`,
+    },
+    "&:hover .MuiOutlinedInput-notchedOutline": {
+      borderColor: `${disabled ? '' : '#138300'}`,
+    },
+    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+      border: `${disabled ? '0px' : '1px'} solid #138300`,
+    },
+  };
 
   return (
     <div>
@@ -80,6 +78,7 @@ function SelectGroup(props: SelectGroupProps) {
           IconComponent={ExpandMoreSharpIcon}
           fullWidth
           displayEmpty
+          disabled={disabled}
           value={value}
           onChange={onChange}
           input={<OutlinedInput />}
@@ -88,7 +87,7 @@ function SelectGroup(props: SelectGroupProps) {
           defaultValue=""
           placeholder={placeholder}
           renderValue={(selected) => {
-            if( selected === null || !Array.isArray(selected) || selected.length === 0){
+            if (selected === null || !Array.isArray(selected) || selected.length === 0) {
               return <p className="placeholder-select">{placeholder}</p>;
             }
             return selected;

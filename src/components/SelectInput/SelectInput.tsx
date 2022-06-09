@@ -18,6 +18,7 @@ export interface SelectInputProps {
   className?: any;
   onBlur?: any;
   ref?: any;
+  disabled?: any;
 }
 const MenuProps = {
   PaperProps: {
@@ -27,46 +28,46 @@ const MenuProps = {
   },
 };
 
-const style = {
-  width: "100%",
-  fontSize: 14,
-  paddingRight: "10px",
-  color: "#333333",
-  zIndex: "1",
-  ".MuiSelect-select": {
-    padding: "6px 10px",
-    borderRadius: "3px",
-  },
-  "& .MuiOutlinedInput-notchedOutline": {
-    border: "0.5px solid #d8d7d7",
-  },
-  "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-    border: `0.5px solid #138300`,
-  },
-  "&:hover .MuiOutlinedInput-notchedOutline": {
-    border: `0.5px solid #138300`,
-  },
-  "&:after": {
-    borderBottom: `0.5px solid #138300`,
-  },
-};
-
 function SelectInput(props: SelectInputProps) {
   const {
     options,
     placeholder,
     errors,
-    value,
+    value = [],
     name,
     onChange,
     className,
     onBlur,
     ref,
+    disabled = false,
   } = props;
   let showError = false;
   if (!_.isEmpty(errors)) {
     showError = !_.isEmpty(errors[name]);
   }
+
+  const style = {
+    width: "100%",
+    fontSize: 14,
+    paddingRight: "10px",
+    color: "#333333",
+    zIndex: "1",
+    borderRadius: "3px",
+    backgroundColor: `${disabled ? '#e2e4e7' : '#ffffff'}`,
+    ".MuiSelect-select": {
+      padding: "6px 10px",
+    },
+    "& .MuiOutlinedInput-notchedOutline": {
+      border: `${disabled ? '0px' : '1px'} solid #d8d7d7`,
+    },
+    "&:hover .MuiOutlinedInput-notchedOutline": {
+      borderColor: `${disabled ? '' : '#138300'}`,
+    },
+    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+      border: `${disabled ? '0px' : '1px'} solid #138300`,
+    },
+  };
+
   return (
     <div>
       <FormControl error={showError} fullWidth>
@@ -84,8 +85,9 @@ function SelectInput(props: SelectInputProps) {
           placeholder={placeholder}
           onBlur={onBlur}
           ref={ref}
+          disabled={disabled}
           renderValue={(values) => {
-            if( isNaN(value) && value.label) {
+            if (props?.value !== null && isNaN(props?.value)) {
               return value?.label
             }
             const dataChange = options.find((x: any) => x.value == values);
@@ -97,7 +99,7 @@ function SelectInput(props: SelectInputProps) {
             ) {
               return <p className="placeholder-select" style={{
                 fontSize: 14,
-                color: '#8e8e8e'
+                color: '#a9a9a9'
               }}>{placeholder}</p>;
             }
             return dataChange?.label;
