@@ -88,6 +88,7 @@ function CustomAutocomplete(props: CustomAutocompleteProps) {
   return (
     <>
       <Autocomplete
+        {...props._props}
         value={options.find((x: any) => x.key == value) ?? null}
         onChange={(e, newValue) => {
           if(newValue) {
