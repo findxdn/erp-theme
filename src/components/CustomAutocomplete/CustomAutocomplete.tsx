@@ -25,6 +25,7 @@ export interface CustomAutocompleteProps {
   value?: any;
   isTooltip?: any;
   disabled?: any;
+  inputRef?: any;
 }
 
 function CustomAutocomplete(props: CustomAutocompleteProps) {
@@ -41,6 +42,7 @@ function CustomAutocomplete(props: CustomAutocompleteProps) {
     disabled = false,
     ref,
     isTooltip = false,
+    inputRef,
   } = props;
 
   let showError = false;
@@ -119,6 +121,7 @@ function CustomAutocomplete(props: CustomAutocompleteProps) {
               ) : ""}>
               <TextField
                 {...params}
+                inputRef={inputRef}
                 fullWidth
                 sx={styleTextField}
                 placeholder={placeholder}
