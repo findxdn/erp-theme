@@ -28,6 +28,7 @@ export interface CustomAutocompleteProps {
   inputRef?: any;
   isSearchOpitons?: any;
   onChangeInput?: any;
+  noOptionsText?: any;
 }
 
 function CustomAutocomplete(props: CustomAutocompleteProps) {
@@ -47,6 +48,7 @@ function CustomAutocomplete(props: CustomAutocompleteProps) {
     inputRef,
     onChangeInput = null,
     isSearchOpitons = false,
+    noOptionsText = 'Không tìm thấy',
   } = props;
 
   let showError = false;
@@ -119,6 +121,7 @@ function CustomAutocomplete(props: CustomAutocompleteProps) {
     <>
       <Autocomplete
         {...props._props}
+        noOptionsText={noOptionsText}
         value={options.find((x: any) => x.key == value) ?? null}
         onChange={(e, newValue) => {
           if (newValue) {
