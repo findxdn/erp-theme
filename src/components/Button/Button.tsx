@@ -24,7 +24,7 @@ const Buttons = (props: ButtonProps) => {
   return (
     <Button
       type={type}
-      sx={{ textTransform: 'none', ...sx }}
+      sx={{ textTransform: 'none', padding: '10px 20px', ...sx }}
       onClick={onClick}
       disabled={disabled}
       className={`button-default ${!!className ? className : ""}`}

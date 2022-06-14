@@ -80,6 +80,7 @@ function SelectInput(props: SelectInputProps) {
           value={value}
           onChange={onChange}
           input={<OutlinedInput />}
+          inputProps={{ MenuProps: { disableScrollLock: true } }}
           MenuProps={MenuProps}
           className={className}
           placeholder={placeholder}
