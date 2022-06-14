@@ -30,14 +30,13 @@ function Box(props: BoxProps) {
     onChange({ box_title: boxTitle, value: props });
     return (
       <div
-        className={`d-flex justify-content-between align-items-center box-title ${
-          isBorder ? "border-title" : ""
-        }`}
+        className={`d-flex justify-content-between align-items-center box-title ${isBorder ? "border-title" : ""
+          }`}
       >
         <div className="d-flex align-items-center">
           {iconTitleLeft && iconTitleLeft}
           <p className={`${iconTitleLeft ? "bases__margin-left--15" : ""}`}>
-            {pTitle}
+            {pTitle.toUpperCase()}
           </p>
         </div>
         <div>{iconTitleRight && iconTitleRight}</div>
@@ -62,7 +61,7 @@ Box.defaultProps = {
   isHaveBorderTitle: false,
   iconTitleLeft: null,
   iconTitleRight: null,
-  onChange: () => {},
+  onChange: () => { },
 };
 
 export default Box;

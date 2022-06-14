@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import _ from "lodash";
-import { IcEyeClose } from "../../assets/icons/index";
+import { IcEyeClose, IcEyeOpen } from "../../assets/icons/index";
 import MessageError from "../../utils/MessageError";
 import "./TextInput.scss";
 import { Tooltip } from '@mui/material';
 import { makeStyles } from "@material-ui/core/styles";
+import InputAdornment from '@mui/material/InputAdornment';
+import { IconButton } from '@mui/material'
 
 export interface TextInputProps {
   name: string;
@@ -40,7 +42,7 @@ const TextInput = (props: TextInputProps) => {
     readOnly = false,
     onBlur,
     errors,
-    type,
+    type = 'text',
     defaultValue = '',
     isPassword,
     isTooltip = false,
@@ -76,6 +78,7 @@ const TextInput = (props: TextInputProps) => {
       color: "#333333",
       zIndex: "1",
       backgroundColor: `${readOnly ? '#e2e4e7' : '#ffffff'}`,
+      paddingRight: '0px',
       "& .MuiOutlinedInput-notchedOutline": {
         border: `${readOnly ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#d8d7d7'}`,
       },
@@ -88,10 +91,10 @@ const TextInput = (props: TextInputProps) => {
     },
   };
 
-  const [showIcRight, setShowIcRight] = useState(true);
+  const [showPassword, setShowPassword] = useState(isPassword);
 
   const handleOnclickIconRight = () => {
-    setShowIcRight(!showIcRight);
+    setShowPassword(!showPassword);
   };
 
   const useStyles = makeStyles(theme => ({
@@ -135,6 +138,24 @@ const TextInput = (props: TextInputProps) => {
           inputProps={{
             readOnly: readOnly,
           }}
+          InputProps={{
+            endAdornment: isPassword ?
+              (
+                <IconButton
+                  onClick={handleOnclickIconRight}
+                  style={{
+                    height: '24px',
+                    width: '30px',
+                    padding: '2px 0px 2px 8px',
+                    marginRight: '3px',
+                  }}
+                >
+                  <InputAdornment position="start">
+                    {showPassword ? <IcEyeClose /> : <IcEyeOpen />}
+                  </InputAdornment>
+                </IconButton>
+              ) : <></>
+          }}
           sx={style}
           name={name}
           onBlur={onBlur}
@@ -142,7 +163,7 @@ const TextInput = (props: TextInputProps) => {
           ref={ref}
           value={value}
           defaultValue={defaultValue}
-          type={isPassword ? "password" : type}
+          type={showPassword ? "password" : type}
           error={showError}
           fullWidth
           placeholder={placeholder}
@@ -151,19 +172,12 @@ const TextInput = (props: TextInputProps) => {
           onKeyPress={onKeyPress}
         />
       </Tooltip>
-      {isPassword && (
-        <div
-          className="iconRight-textInput"
-          role="button"
-          onClick={handleOnclickIconRight}
-        >
-          <IcEyeClose />
-        </div>
-      )}
-      {(showError && !isTooltip) ? (
-        <MessageError type={errors[name].type} message={errors[name].message} />
-      ) : <></>}
-    </Box>
+      {
+        (showError && !isTooltip) ? (
+          <MessageError type={errors[name].type} message={errors[name].message} />
+        ) : <></>
+      }
+    </Box >
   );
 };
 

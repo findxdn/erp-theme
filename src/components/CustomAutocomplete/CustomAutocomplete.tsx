@@ -26,6 +26,8 @@ export interface CustomAutocompleteProps {
   isTooltip?: any;
   disabled?: any;
   inputRef?: any;
+  isSearchOpitons?: any;
+  onChangeInput?: any;
 }
 
 function CustomAutocomplete(props: CustomAutocompleteProps) {
@@ -43,6 +45,8 @@ function CustomAutocomplete(props: CustomAutocompleteProps) {
     ref,
     isTooltip = false,
     inputRef,
+    onChangeInput = null,
+    isSearchOpitons = false,
   } = props;
 
   let showError = false;
@@ -59,19 +63,19 @@ function CustomAutocomplete(props: CustomAutocompleteProps) {
       fontSize: 14,
       color: "#333333",
       zIndex: "1",
-      backgroundColor: `${disabled ? '#e2e4e7':'#ffffff'}`,
+      backgroundColor: `${disabled ? '#e2e4e7' : '#ffffff'}`,
       "& .MuiOutlinedInput-input": {
         height: "16px",
         paddingLeft: "10px",
       },
       "& .MuiOutlinedInput-notchedOutline": {
-        border: `${ disabled ? '0px' : '1px' } solid ${(showError)? '#FF0000' : '#d8d7d7'}`,
+        border: `${disabled ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#d8d7d7'}`,
       },
       "&:hover .MuiOutlinedInput-notchedOutline": {
-        border: `${ disabled ? '0px' : '1px' } solid ${(showError)? '#FF0000' : '#138300'}`,
+        border: `${disabled ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#138300'}`,
       },
       "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-        border: `${ disabled ? '0px' : '1px' } solid ${(showError)? '#FF0000' : '#138300'}`,
+        border: `${disabled ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#138300'}`,
       },
     },
   };
@@ -83,9 +87,33 @@ function CustomAutocomplete(props: CustomAutocompleteProps) {
         color: "#ffffff"
       }
     },
+    tooltip: {
+      fontSize: '14px !important',
+      backgroundColor: '#ffffff !important',
+      borderRadius: '3px',
+      border: '1px solid #FF0000',
+      marginTop: '10px !important',
+      "&:.p": {
+        marginTop: '0px !important',
+      }
+    },
   }));
 
+  const [inputValue, setInputValue] = React.useState("");
 
+  const onChangeTextField = (e) => {
+    if( onChangeInput  !== null)
+      props?.onChangeInput(e?.target?.value)
+    setInputValue(e?.target?.value)
+  }
+  const convertViToEn = (str: string) => {
+    return str
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/đ/g, "d")
+      .replace(/Đ/g, "D");
+  }
   let classes = useStyles();
   return (
     <>
@@ -93,12 +121,17 @@ function CustomAutocomplete(props: CustomAutocompleteProps) {
         {...props._props}
         value={options.find((x: any) => x.key == value) ?? null}
         onChange={(e, newValue) => {
-          if(newValue) {
+          if (newValue) {
             onChange(newValue.key)
           } else {
             onChange(null)
           }
         }}
+        filterOptions={(options) =>
+          options.filter((option) =>
+            isSearchOpitons ? option : convertViToEn(option.label).includes(convertViToEn(inputValue))
+          )
+        }
         disabled={disabled}
         className={className}
         defaultValue={defaultValue}
@@ -123,6 +156,7 @@ function CustomAutocomplete(props: CustomAutocompleteProps) {
                 {...params}
                 inputRef={inputRef}
                 fullWidth
+                onChange={onChangeTextField}
                 sx={styleTextField}
                 placeholder={placeholder}
                 error={showError}

@@ -12,16 +12,16 @@
     color: #ffffff;
     border-color: transparent;
     &:hover {
-      background-color: #1ba103;
+      background-color: #1BA103;
     }
   }
   &.border-green {
     color: #138300;
-    border-color: #138300;
+    border: 1px solid #138300;
   }
   &.border-red {
     color: #ff4d4d;
-    border-color: #ff4d4d;
+    border: 1px solid #ff4d4d;
     &:hover {
       background-color: #e64a191a;
     }
