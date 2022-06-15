@@ -20,8 +20,18 @@ export default function MultiRadio(props: MultiRadioProps) {
   const { name, control, options, row, errors, onChange, className } = props;
   const [value, setValue] = React.useState<string | null>(options[0]);
   let showError = false;
-  if (!_.isEmpty(errors)) {
-    showError = !_.isEmpty(errors[name]);
+  let error = {}
+  let arr = name.split(".");
+  if (arr.length >= 1) {
+    let result = arr.reduce((rs, e) => {
+      if (rs[e]) {
+        return rs = rs[e]
+      }
+      return {}
+
+    }, errors)
+    error = result
+    showError = !_.isEmpty(error);
   }
   return (
     <FormControl error={showError} fullWidth>
@@ -39,12 +49,12 @@ export default function MultiRadio(props: MultiRadioProps) {
           (options: {
             value: any;
             label:
-              | string
-              | number
-              | React.ReactElement<
-                  any,
-                  string | React.JSXElementConstructor<any>
-                >;
+            | string
+            | number
+            | React.ReactElement<
+              any,
+              string | React.JSXElementConstructor<any>
+            >;
           }) => (
             <FormControlLabel
               key={options.value}
@@ -55,8 +65,8 @@ export default function MultiRadio(props: MultiRadioProps) {
           )
         )}
       </RadioGroup>
-      {showError && (
-        <MessageError type={errors[name].type} message={errors[name].message} />
+      {error?.message && (
+        <MessageError type={error?.type} message={error?.message} />
       )}
     </FormControl>
   );
@@ -67,5 +77,5 @@ MultiRadio.defaultProps = {
   options: [],
   row: false,
   control: <CustomRadio />,
-  onChange: () => {},
+  onChange: () => { },
 };

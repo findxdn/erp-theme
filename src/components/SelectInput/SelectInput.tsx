@@ -42,8 +42,18 @@ function SelectInput(props: SelectInputProps) {
     disabled = false,
   } = props;
   let showError = false;
-  if (!_.isEmpty(errors)) {
-    showError = !_.isEmpty(errors[name]);
+  let error = {}
+  let arr = name.split(".");
+  if (arr.length >= 1) {
+    let result = arr.reduce((rs, e) => {
+      if (rs[e]) {
+        return rs = rs[e]
+      }
+      return {}
+
+    }, errors)
+    error = result
+    showError = !_.isEmpty(error);
   }
 
   const style = {
@@ -58,13 +68,13 @@ function SelectInput(props: SelectInputProps) {
       padding: "6px 10px",
     },
     "& .MuiOutlinedInput-notchedOutline": {
-      border: `${disabled ? '0px' : '1px'} solid #d8d7d7`,
+      border: `${disabled ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#d8d7d7'}`,
     },
     "&:hover .MuiOutlinedInput-notchedOutline": {
-      borderColor: `${disabled ? '' : '#138300'}`,
+      borderColor: `${disabled ? '' : (showError) ? '#FF0000' : '#138300'}`,
     },
     "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-      border: `${disabled ? '0px' : '1px'} solid #138300`,
+      border: `${disabled ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#138300'}`,
     },
   };
 
@@ -113,11 +123,8 @@ function SelectInput(props: SelectInputProps) {
               </MenuItem>
             ))) : {}}
         </Select>
-        {showError && (
-          <MessageError
-            type={errors[name].type}
-            message={errors[name].message}
-          />
+        {error?.message && (
+          <MessageError type={error?.type} message={error?.message} />
         )}
       </FormControl>
     </div>

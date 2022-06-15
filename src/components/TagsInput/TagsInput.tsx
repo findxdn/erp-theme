@@ -29,15 +29,25 @@ export default function TagsInput(props: TagsInputProps) {
     value,
     errors,
     isTooltip = false,
-    name, 
+    name,
     readOnly = false,
   } = props;
 
   let showError = false;
-  if (!_.isEmpty(errors)) {
-    showError = !_.isEmpty(errors[name]);
+  let error = {}
+  let arr = name.split(".");
+  if (arr.length >= 1) {
+    let result = arr.reduce((rs, e) => {
+      if (rs[e]) {
+        return rs = rs[e]
+      }
+      return {}
+
+    }, errors)
+    error = result
+    showError = !_.isEmpty(error);
   }
-  
+
   const [inputValue, setInputValue] = React.useState('');
   const [selectedItem, setSelectedItem] = React.useState(value || []);
 
@@ -99,15 +109,15 @@ export default function TagsInput(props: TagsInputProps) {
       padding: '0px 10px',
       color: '#333333',
       zIndex: '1',
-      backgroundColor: `${readOnly ? '#e2e4e7':'#ffffff'}`,
+      backgroundColor: `${readOnly ? '#e2e4e7' : '#ffffff'}`,
       '& .MuiOutlinedInput-notchedOutline': {
-        border: `${ readOnly ? '0px' : '1px' } solid ${(showError)? '#FF0000' : '#d8d7d7'}`,
+        border: `${readOnly ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#d8d7d7'}`,
       },
       '&:hover .MuiOutlinedInput-notchedOutline': {
-        border: `${ readOnly ? '0px' : '1px' } solid ${(showError)? '#FF0000' : '#138300'}`,
+        border: `${readOnly ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#138300'}`,
       },
       '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-        border: `${ readOnly ? '0px' : '1px' } solid ${(showError)? '#FF0000' : '#138300'}`,
+        border: `${readOnly ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#138300'}`,
       },
     },
   };
@@ -205,8 +215,8 @@ export default function TagsInput(props: TagsInputProps) {
                 />
               </Tooltip>
               {
-                (showError && !isTooltip) ? (
-                  <MessageError type={errors[name].type} message={errors[name].message} />
+                (error?.message && !isTooltip) ? (
+                  <MessageError type={error?.type} message={error?.message} />
                 ) : <></>
               }
             </div>

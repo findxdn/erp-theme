@@ -50,8 +50,18 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
 
   const [open, setOpen] = React.useState(false);
 
-  if (!_.isEmpty(errors)) {
-    showError = !_.isEmpty(errors[name]);
+  let error = {}
+  let arr = name.split(".");
+  if (arr.length >= 1) {
+    let result = arr.reduce((rs, e) => {
+      if (rs[e]) {
+        return rs = rs[e]
+      }
+      return {}
+
+    }, errors)
+    error = result
+    showError = !_.isEmpty(error);
   }
 
   const style = {
@@ -142,7 +152,7 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
                   sx: {
                     "&::placeholder": {
                       fontSize: 14,
-                      color:  '#333333',
+                      color: '#333333',
                     }
                   },
                   placeholder: placeholder
@@ -152,8 +162,8 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
           );
         }}
       />
-      {(showError && !isTooltip) && (
-        <MessageError type={errors[name].type} message={errors[name].message} />
+      {(error?.message && !isTooltip) && (
+        <MessageError type={error?.type} message={error?.message} />
       )}
     </LocalizationProvider>
   );

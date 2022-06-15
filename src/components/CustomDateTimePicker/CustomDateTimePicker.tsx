@@ -55,13 +55,13 @@ const style = {
 };
 
 const CustomDateTimePicker = (props: CustomDateTimePickerProps) => {
-  const { 
-    register, 
-    errors, 
-    name, 
-    onChange, 
-    defaultValue, 
-    className, 
+  const {
+    register,
+    errors,
+    name,
+    onChange,
+    defaultValue,
+    className,
     styled,
     isTooltip = false,
     placeholder,
@@ -71,8 +71,18 @@ const CustomDateTimePicker = (props: CustomDateTimePickerProps) => {
   } = props;
 
   let showError = false;
-  if (!_.isEmpty(errors)) {
-    showError = !_.isEmpty(errors[name]);
+  let error = {}
+  let arr = name.split(".");
+  if (arr.length >= 1) {
+    let result = arr.reduce((rs, e) => {
+      if (rs[e]) {
+        return rs = rs[e]
+      }
+      return {}
+
+    }, errors)
+    error = result
+    showError = !_.isEmpty(error);
   }
 
   const useStyles = makeStyles(theme => ({
@@ -100,7 +110,7 @@ const CustomDateTimePicker = (props: CustomDateTimePickerProps) => {
     <LocalizationProvider dateAdapter={AdapterDateFns} required>
       <DateTimePicker
         {...props._props}
-        onChange={ (e) => props.onChange(e)}
+        onChange={(e) => props.onChange(e)}
         value={props?.value}
         components={{
           OpenPickerIcon: IcDateTime,
@@ -108,17 +118,17 @@ const CustomDateTimePicker = (props: CustomDateTimePickerProps) => {
         defaultValue={defaultValue}
         renderInput={(params) => {
           return (
-            <Tooltip 
+            <Tooltip
               placement="bottom"
               arrow
               classes={{ arrow: classes.arrow, tooltip: classes.tooltip }}
-              title={ (showError && isTooltip) ? (
-              <MessageError 
-                type={errors[name].type} 
-                message={errors[name].message} 
-                style={{ color: "red", marginTop: "0px" }}
-              />
-            ) : "" }>
+              title={(showError && isTooltip) ? (
+                <MessageError
+                  type={errors[name].type}
+                  message={errors[name].message}
+                  style={{ color: "red", marginTop: "0px" }}
+                />
+              ) : ""}>
               <TextField
                 {...params}
                 className={className}
@@ -140,8 +150,8 @@ const CustomDateTimePicker = (props: CustomDateTimePickerProps) => {
           );
         }}
       />
-      {(showError && !isTooltip) && (
-        <MessageError type={errors[name].type} message={errors[name].message} />
+      {(error?.message && !isTooltip) && (
+        <MessageError type={error?.type} message={error?.message} />
       )}
     </LocalizationProvider>
   );

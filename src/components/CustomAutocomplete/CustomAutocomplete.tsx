@@ -52,8 +52,18 @@ function CustomAutocomplete(props: CustomAutocompleteProps) {
   } = props;
 
   let showError = false;
-  if (!_.isEmpty(errors)) {
-    showError = !_.isEmpty(errors[name]);
+  let error = {}
+  let arr = name.split(".");
+  if (arr.length >= 1) {
+    let result = arr.reduce((rs, e) => {
+      if (rs[e]) {
+        return rs = rs[e]
+      }
+      return {}
+
+    }, errors)
+    error = result
+    showError = !_.isEmpty(error);
   }
 
   const styleTextField = {
@@ -104,7 +114,7 @@ function CustomAutocomplete(props: CustomAutocompleteProps) {
   const [inputValue, setInputValue] = React.useState("");
 
   const onChangeTextField = (e) => {
-    if( onChangeInput  !== null)
+    if (onChangeInput !== null)
       props?.onChangeInput(e?.target?.value)
     setInputValue(e?.target?.value)
   }
@@ -168,8 +178,8 @@ function CustomAutocomplete(props: CustomAutocompleteProps) {
           );
         }}
       />
-      {(showError && !isTooltip) && (
-        <MessageError type={errors[name].type} message={errors[name].message} />
+      {(error?.message && !isTooltip) && (
+        <MessageError type={error?.type} message={error?.message} />
       )}
     </>
   );

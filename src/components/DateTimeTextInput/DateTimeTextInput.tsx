@@ -58,8 +58,18 @@ export default function DateTimeTextInput(props: DateTimeTextInputProps) {
   } = props;
 
   let showError = false;
-  if (!_.isEmpty(errors)) {
-    showError = !_.isEmpty(errors[name]);
+  let error = {}
+  let arr = name.split(".");
+  if (arr.length >= 1) {
+    let result = arr.reduce((rs, e) => {
+      if (rs[e]) {
+        return rs = rs[e]
+      }
+      return {}
+
+    }, errors)
+    error = result
+    showError = !_.isEmpty(error);
   }
   const [showIcRight, setShowIcRight] = useState(true);
   const handleOnclickIconRight = () => {
@@ -88,8 +98,8 @@ export default function DateTimeTextInput(props: DateTimeTextInputProps) {
           <IcEyeClose />
         </div>
       )}
-      {showError && (
-        <MessageError type={errors[name].type} message={errors[name].message} />
+      {error?.message && (
+        <MessageError type={error?.type} message={error?.message} />
       )}
     </Box>
   );

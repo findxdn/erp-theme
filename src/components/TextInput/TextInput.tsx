@@ -54,10 +54,21 @@ const TextInput = (props: TextInputProps) => {
   } = props;
 
   let showError = false;
-  if (!_.isEmpty(errors)) {
-    showError = !_.isEmpty(errors[name]);
-  }
 
+  let arr = name.split(".");
+
+  let error = {}
+  if (arr.length >= 1) {
+      let result = arr.reduce((rs, e) => {
+          if (rs[e]) {
+              return rs = rs[e]
+          }
+          return {}
+
+      }, errors)
+      error = result
+      showError = !_.isEmpty(error);
+  }
   const style = {
     width: "100%",
     fontSize: 14,
@@ -173,8 +184,8 @@ const TextInput = (props: TextInputProps) => {
         />
       </Tooltip>
       {
-        (showError && !isTooltip) ? (
-          <MessageError type={errors[name].type} message={errors[name].message} />
+        (error?.message && !isTooltip) ? (
+          <MessageError type={error?.type} message={error?.message} />
         ) : <></>
       }
     </Box >
