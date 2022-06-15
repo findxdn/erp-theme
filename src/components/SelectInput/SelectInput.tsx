@@ -59,7 +59,6 @@ function SelectInput(props: SelectInputProps) {
   const style = {
     width: "100%",
     fontSize: 14,
-    paddingRight: "10px",
     color: "#333333",
     zIndex: "1",
     borderRadius: "3px",

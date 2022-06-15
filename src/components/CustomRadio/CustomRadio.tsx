@@ -9,7 +9,6 @@ const style = {
   width: "100%",
   marginTop: "-10px",
   fontSize: 14,
-  paddingRight: "10px",
   zIndex: "1",
 };
 

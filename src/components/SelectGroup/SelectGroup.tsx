@@ -58,7 +58,6 @@ function SelectGroup(props: SelectGroupProps) {
   const style = {
     width: "100%",
     fontSize: 14,
-    paddingRight: "10px",
     color: "#333333",
     height: "32px",
     zIndex: "1",

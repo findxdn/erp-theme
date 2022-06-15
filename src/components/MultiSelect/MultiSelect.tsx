@@ -33,7 +33,6 @@ const MenuProps = {
 const style = {
   width: "100%",
   fontSize: 14,
-  paddingRight: "10px",
   color: "#333333",
   zIndex: "1",
   ".MuiSelect-select": {
