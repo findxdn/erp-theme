@@ -27,16 +27,16 @@ export default function TagsInput(props: TagsInputProps) {
     placeholder,
     onChange,
     value,
-    errors,
+    errors = null,
     isTooltip = false,
     name,
     readOnly = false,
   } = props;
 
   let showError = false;
-  let error = {}
+  let error = null
   let arr = name.split(".");
-  if (arr.length >= 1) {
+  if (arr.length >= 1 && errors !== null) {
     let result = arr.reduce((rs, e) => {
       if (rs[e]) {
         return rs = rs[e]

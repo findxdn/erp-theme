@@ -20,9 +20,9 @@ export default function MultiRadio(props: MultiRadioProps) {
   const { name, control, options, row, errors, onChange, className } = props;
   const [value, setValue] = React.useState<string | null>(options[0]);
   let showError = false;
-  let error = {}
+  let error = null
   let arr = name.split(".");
-  if (arr.length >= 1) {
+  if (arr.length >= 1 && errors !== null) {
     let result = arr.reduce((rs, e) => {
       if (rs[e]) {
         return rs = rs[e]

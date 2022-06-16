@@ -41,7 +41,7 @@ export default function TextNote(props: TextNoteProps) {
   const {
     placeholder,
     name,
-    errors,
+    errors = null,
     onChange,
     value,
     onBlur,
@@ -51,9 +51,9 @@ export default function TextNote(props: TextNoteProps) {
     defaultValue,
   } = props;
   let showError = false;
-  let error = {}
+  let error = null
   let arr = name.split(".");
-  if (arr.length >= 1) {
+  if (arr.length >= 1 && errors !== null) {
     let result = arr.reduce((rs, e) => {
       if (rs[e]) {
         return rs = rs[e]

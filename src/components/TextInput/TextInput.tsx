@@ -30,6 +30,7 @@ export interface TextInputProps {
   onKeyUp?: any;
   onKeyDown?: any;
   onKeyPress?: any;
+  onChangeType?: any;
 }
 
 const TextInput = (props: TextInputProps) => {
@@ -41,25 +42,26 @@ const TextInput = (props: TextInputProps) => {
     onChange = () => { },
     readOnly = false,
     onBlur,
-    errors,
+    errors = null,
     type = 'text',
     defaultValue = '',
-    isPassword,
+    isPassword = false,
     isTooltip = false,
     className,
     textAlign = 'left',
     onKeyUp,
     onKeyDown,
     onKeyPress,
+    onChangeType = null,
   } = props;
 
   let showError = false;
 
   let arr = name.split(".");
 
-  let error = {}
-  if (arr.length >= 1) {
-      let result = arr.reduce((rs, e) => {
+  let error = null
+  if (arr.length >= 1 && errors !== null) {
+    let result = arr.reduce((rs, e) => {
           if (rs[e]) {
               return rs = rs[e]
           }
@@ -105,6 +107,10 @@ const TextInput = (props: TextInputProps) => {
   const [showPassword, setShowPassword] = useState(isPassword);
 
   const handleOnclickIconRight = () => {
+    if ( onChangeType !== null) {
+      props?.onChangeType();
+      return;
+    }
     setShowPassword(!showPassword);
   };
 
@@ -127,8 +133,6 @@ const TextInput = (props: TextInputProps) => {
     }
   }));
 
-
-
   let classes = useStyles();
 
   return (
@@ -150,7 +154,7 @@ const TextInput = (props: TextInputProps) => {
             readOnly: readOnly,
           }}
           InputProps={{
-            endAdornment: isPassword ?
+            endAdornment: ( isPassword || onChangeType !== null ) ?
               (
                 <IconButton
                   onClick={handleOnclickIconRight}
@@ -162,7 +166,7 @@ const TextInput = (props: TextInputProps) => {
                   }}
                 >
                   <InputAdornment position="start">
-                    {showPassword ? <IcEyeClose /> : <IcEyeOpen />}
+                    { (showPassword || ( onChangeType !== null && type ==='password')) ? <IcEyeClose /> : <IcEyeOpen />}
                   </InputAdornment>
                 </IconButton>
               ) : <></>

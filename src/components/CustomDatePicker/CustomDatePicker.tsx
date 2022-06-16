@@ -30,7 +30,7 @@ export interface CustomDatePickerProps {
 
 const CustomDatePicker = (props: CustomDatePickerProps) => {
   const {
-    errors,
+    errors = null,
     name = "",
     styled,
     inputFormat = "dd/MM/yyyy",
@@ -50,9 +50,9 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
 
   const [open, setOpen] = React.useState(false);
 
-  let error = {}
+  let error = null
   let arr = name.split(".");
-  if (arr.length >= 1) {
+  if (arr.length >= 1 && errors !== null) {
     let result = arr.reduce((rs, e) => {
       if (rs[e]) {
         return rs = rs[e]

@@ -32,7 +32,7 @@ function SelectGroup(props: SelectGroupProps) {
   const {
     options,
     placeholder,
-    errors,
+    errors = null,
     name,
     value,
     disabled = false,
@@ -41,9 +41,9 @@ function SelectGroup(props: SelectGroupProps) {
     className,
   } = props;
   let showError = false;
-  let error = {}
+  let error = null
   let arr = name.split(".");
-  if (arr.length >= 1) {
+  if (arr.length >= 1 && errors !== null) {
     let result = arr.reduce((rs, e) => {
       if (rs[e]) {
         return rs = rs[e]

@@ -50,7 +50,7 @@ export default function DateTimeTextInput(props: DateTimeTextInputProps) {
     value,
     onChange,
     onBlur,
-    errors,
+    errors = null,
     type,
     defaultValue,
     isPassword,
@@ -58,9 +58,9 @@ export default function DateTimeTextInput(props: DateTimeTextInputProps) {
   } = props;
 
   let showError = false;
-  let error = {}
+  let error = null
   let arr = name.split(".");
-  if (arr.length >= 1) {
+  if (arr.length >= 1 && errors !== null) {
     let result = arr.reduce((rs, e) => {
       if (rs[e]) {
         return rs = rs[e]

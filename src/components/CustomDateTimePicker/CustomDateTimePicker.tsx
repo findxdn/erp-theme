@@ -57,7 +57,7 @@ const style = {
 const CustomDateTimePicker = (props: CustomDateTimePickerProps) => {
   const {
     register,
-    errors,
+    errors = null,
     name,
     onChange,
     defaultValue,
@@ -71,9 +71,9 @@ const CustomDateTimePicker = (props: CustomDateTimePickerProps) => {
   } = props;
 
   let showError = false;
-  let error = {}
+  let error = null
   let arr = name.split(".");
-  if (arr.length >= 1) {
+  if (arr.length >= 1 && errors !== null) {
     let result = arr.reduce((rs, e) => {
       if (rs[e]) {
         return rs = rs[e]

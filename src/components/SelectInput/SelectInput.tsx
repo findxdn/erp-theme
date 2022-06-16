@@ -32,7 +32,7 @@ function SelectInput(props: SelectInputProps) {
   const {
     options,
     placeholder,
-    errors,
+    errors = null,
     value = [],
     name,
     onChange,
@@ -42,9 +42,9 @@ function SelectInput(props: SelectInputProps) {
     disabled = false,
   } = props;
   let showError = false;
-  let error = {}
+  let error = null
   let arr = name.split(".");
-  if (arr.length >= 1) {
+  if (arr.length >= 1 && errors !== null) {
     let result = arr.reduce((rs, e) => {
       if (rs[e]) {
         return rs = rs[e]

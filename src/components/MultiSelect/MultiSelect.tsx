@@ -70,27 +70,33 @@ function getStyles(
 }
 
 function MultiSelect(props: MultiSelectProps) {
-  const { options,
-    errors,
+  const {
+    options,
+    errors = null,
     name,
     register,
     onChange,
     className,
-    placeholder = '',
-    value = [] } = props;
+    placeholder = "",
+    value = [],
+  } = props;
   let showError = false;
-  let arr = name.split(".");
-  if (arr.length >= 1) {
-    let result = arr.reduce((rs, e) => {
-      if (rs[e]) {
-        return rs = rs[e]
-      }
-      return {}
-
-    }, errors)
-    error = result
-    showError = !_.isEmpty(error);
+  let error = null;
+  let arr = [];
+  if (name && errors !== null) {
+    arr = name.split(".");
+    if (arr.length >= 1) {
+      let result = arr.reduce((rs, e) => {
+        if (rs[e]) {
+          return (rs = rs[e]);
+        }
+        return {};
+      }, errors);
+      error = result;
+      showError = !_.isEmpty(error);
+    }
   }
+
   const theme = useTheme();
   return (
     <div>
@@ -112,7 +118,9 @@ function MultiSelect(props: MultiSelectProps) {
               return (
                 <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
                   {selected?.map((values: any) => {
-                    const dataChange = options.find((x: any) => x.value == values);
+                    const dataChange = options.find(
+                      (x: any) => x.value == values
+                    );
                     return (
                       <Chip
                         sx={{ borderRadius: "3px", height: "24px" }}
@@ -120,7 +128,7 @@ function MultiSelect(props: MultiSelectProps) {
                         label={dataChange?.label}
                         clickable
                         onDelete={(e) => {
-                          props.onChange(value.filter((item) => item !== values))
+                          props.onChange(value.filter((e:any) => e !== values));
                         }}
                         deleteIcon={
                           <CancelIcon
@@ -130,20 +138,17 @@ function MultiSelect(props: MultiSelectProps) {
                           />
                         }
                       />
-                    )
+                    );
                   })}
                 </Box>
-              )
+              );
             }
-            return <p className="placeholder-select">{placeholder}</p>
+            return <p className="placeholder-select">{placeholder}</p>;
           }}
           MenuProps={MenuProps}
         >
           {options.map((option: { value: any; label: any }) => (
-            <MenuItem
-              key={option.value}
-              value={option.value}
-            >
+            <MenuItem key={option.value} value={option.value}>
               {option.label}
             </MenuItem>
           ))}
