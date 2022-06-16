@@ -21,4 +21,5 @@ export { default as Image } from './Image'
 export { default as ButtonSearch } from './ButtonSearch'
 export { default as MenuSocial } from './MenuSocial'
 export { default as SelectGroup } from './SelectGroup'
-export { default as TagsInput } from "./TagsInput";
+export { default as TagsInput } from "./TagsInput"
+export { default as GroupSelect } from "./GroupSelect"

@@ -1,10 +1,6 @@
 {
   "name": "@findxdn/erp-theme",
-<<<<<<< HEAD
-  "version": "0.0.96",
-=======
-  "version": "0.0.95",
->>>>>>> 4273a53d61b76be874ca31faea9e461257067f3d
+  "version": "0.0.97",
   "description": "A imple template for a custom React component library",
   "scripts": {
     "rollup": "rollup -c",
