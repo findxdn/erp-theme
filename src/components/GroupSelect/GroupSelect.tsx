@@ -2,7 +2,7 @@ import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { makeStyles } from "@material-ui/core/styles";
-import { Tooltip } from 'chart.js';
+import { Tooltip } from '@mui/material';
 import ExpandMoreSharpIcon from "@mui/icons-material/ExpandMoreSharp";
 import MessageError from "../../utils/MessageError";
 import _ from 'lodash';
@@ -34,7 +34,7 @@ export default function GroupSelect(props: GroupSelectProps) {
     placeholder,
     options = [],
     name,
-    errors,
+    errors = null,
     onChange,
     value,
     defaultValue,
@@ -45,8 +45,18 @@ export default function GroupSelect(props: GroupSelectProps) {
     isTooltip = false,
   } = props;
   let showError = false;
-  if (!_.isEmpty(errors)) {
-    showError = !_.isEmpty(errors[name]);
+  let error: { message: string; type: string; }
+  let arr = name.split(".");
+  if (arr.length >= 1 && errors !== null) {
+    let result = arr.reduce((rs, e) => {
+      if (rs[e]) {
+        return rs = rs[e]
+      }
+      return {}
+
+    }, errors)
+    error = result
+    showError = !_.isEmpty(error);
   }
   const styleTextField = {
     "& .MuiOutlinedInput-root": {
@@ -81,7 +91,19 @@ export default function GroupSelect(props: GroupSelectProps) {
         color: "#ffffff"
       }
     },
+    tooltip: {
+      fontSize: '14px !important',
+      backgroundColor: '#ffffff !important',
+      borderRadius: '3px',
+      border: '1px solid #FF0000',
+      marginTop: '10px !important',
+      "&:.p": {
+        marginTop: '0px !important',
+      }
+    },
   }));
+
+  let classes = useStyles();
 
   return (
     <>
@@ -102,16 +124,30 @@ export default function GroupSelect(props: GroupSelectProps) {
         getOptionLabel={(option) => option.label}
         sx={{ width: 300 }}
         popupIcon={<ExpandMoreSharpIcon />}
-        renderInput={(params) => <TextField
-          {...params}
-          fullWidth
-          sx={styleTextField}
-          placeholder={placeholder}
-          error={showError}
-        />}
+        renderInput={(params) =>
+          <Tooltip
+            placement="bottom"
+            arrow
+            classes={{ arrow: classes.arrow, tooltip: classes.tooltip }}
+            title={(error?.message && isTooltip) ? (
+              <MessageError
+                type={error?.type}
+                message={error?.message}
+                style={{ color: "red", marginTop: "0px" }}
+              />
+            ) : ""}>
+            <TextField
+              {...params}
+              fullWidth
+              sx={styleTextField}
+              placeholder={placeholder}
+              error={showError}
+            />
+          </Tooltip>
+        }
       />
-      {(showError && !isTooltip) && (
-        <MessageError type={errors[name].type} message={errors[name].message} />
+      {(error?.message && !isTooltip) && (
+        <MessageError type={error?.type} message={error?.message} />
       )}
     </>
   );

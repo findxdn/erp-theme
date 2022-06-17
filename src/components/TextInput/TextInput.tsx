@@ -60,6 +60,7 @@ const TextInput = (props: TextInputProps) => {
   let arr = name.split(".");
 
   let error = null
+  
   if (arr.length >= 1 && errors !== null) {
     let result = arr.reduce((rs, e) => {
           if (rs[e]) {
@@ -141,10 +142,10 @@ const TextInput = (props: TextInputProps) => {
         placement="bottom"
         arrow
         classes={{ arrow: classes.arrow, tooltip: classes.tooltip }}
-        title={(showError && isTooltip) ? (
-          <MessageError
-            type={errors[name].type}
-            message={errors[name].message}
+        title={(error?.message && isTooltip) ? (
+          <MessageError 
+            type={error?.type} 
+            message={error?.message} 
             style={{ color: "red", marginTop: "0px" }}
           />
         ) : ""}>

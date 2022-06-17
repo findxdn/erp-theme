@@ -34,7 +34,7 @@ export default function TagsInput(props: TagsInputProps) {
   } = props;
 
   let showError = false;
-  let error = null
+  let error: { message: string; type: string; }
   let arr = name.split(".");
   if (arr.length >= 1 && errors !== null) {
     let result = arr.reduce((rs, e) => {
@@ -175,10 +175,10 @@ export default function TagsInput(props: TagsInputProps) {
                 placement="bottom"
                 arrow
                 classes={{ arrow: classes.arrow, tooltip: classes.tooltip }}
-                title={(showError && isTooltip) ? (
+                title={(error?.message && isTooltip) ? (
                   <MessageError
-                    type={errors[name].type}
-                    message={errors[name].message}
+                    type={error?.type}
+                    message={error?.message}
                     style={{ color: "red", marginTop: "0px" }}
                   />
                 ) : ""}>

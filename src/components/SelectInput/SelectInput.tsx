@@ -6,7 +6,9 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import ExpandMoreSharpIcon from "@mui/icons-material/ExpandMoreSharp";
 import _ from "lodash";
+import { Tooltip } from '@mui/material';
 import MessageError from "../../utils/MessageError";
+import { makeStyles } from "@material-ui/core/styles";
 
 export interface SelectInputProps {
   name: string;
@@ -19,6 +21,7 @@ export interface SelectInputProps {
   onBlur?: any;
   ref?: any;
   disabled?: any;
+  isTooltip?: any;
 }
 const MenuProps = {
   PaperProps: {
@@ -38,11 +41,12 @@ function SelectInput(props: SelectInputProps) {
     onChange,
     className,
     onBlur,
-    ref,
+    ref = null,
     disabled = false,
+    isTooltip = false,
   } = props;
   let showError = false;
-  let error = null
+  let error: { message: string; type: string; }
   let arr = name.split(".");
   if (arr.length >= 1 && errors !== null) {
     let result = arr.reduce((rs, e) => {
@@ -77,6 +81,46 @@ function SelectInput(props: SelectInputProps) {
     },
   };
 
+  const renderValues = (values: any) => {
+    if (props?.value !== null && isNaN(props?.value)) {
+      return value?.label
+    }
+    const dataChange = options.find((x: any) => x.value == values);
+    if (
+      dataChange === "" ||
+      dataChange === null ||
+      values === "" ||
+      values === null
+    ) {
+      return <p className="placeholder-select" style={{
+        fontSize: 14,
+        color: '#a9a9a9'
+      }}>{placeholder}</p>;
+    }
+    return dataChange?.label;
+  }
+
+  const useStyles = makeStyles(theme => ({
+    arrow: {
+      "&:before": {
+        border: "1px solid #FF0000",
+        color: "#ffffff"
+      }
+    },
+    tooltip: {
+      fontSize: '14px !important',
+      backgroundColor: '#ffffff !important',
+      borderRadius: '3px',
+      border: '1px solid #FF0000',
+      marginTop: '10px !important',
+      "&:.p": {
+        marginTop: '0px !important',
+      }
+    },
+  }));
+
+  let classes = useStyles();
+
   return (
     <div>
       <FormControl error={showError} fullWidth>
@@ -97,22 +141,18 @@ function SelectInput(props: SelectInputProps) {
           ref={ref}
           disabled={disabled}
           renderValue={(values) => {
-            if (props?.value !== null && isNaN(props?.value)) {
-              return value?.label
-            }
-            const dataChange = options.find((x: any) => x.value == values);
-            if (
-              dataChange === "" ||
-              dataChange === null ||
-              values === "" ||
-              values === null
-            ) {
-              return <p className="placeholder-select" style={{
-                fontSize: 14,
-                color: '#a9a9a9'
-              }}>{placeholder}</p>;
-            }
-            return dataChange?.label;
+            return <Tooltip
+              placement="bottom"
+              arrow
+              classes={{ arrow: classes.arrow, tooltip: classes.tooltip }}
+              title={(error?.message && isTooltip) ? (
+                <MessageError
+                  type={error?.type}
+                  message={error?.message}
+                  style={{ color: "red", marginTop: "0px" }} />
+              ) : ""}>
+              {renderValues(values)}
+            </Tooltip>;
           }}
         >
           {Array.isArray(options) ?
@@ -122,7 +162,7 @@ function SelectInput(props: SelectInputProps) {
               </MenuItem>
             ))) : {}}
         </Select>
-        {error?.message && (
+        {(error?.message && !isTooltip) && (
           <MessageError type={error?.type} message={error?.message} />
         )}
       </FormControl>
