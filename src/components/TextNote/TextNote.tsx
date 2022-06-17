@@ -17,25 +17,8 @@ export interface TextNoteProps {
   minHeight?: any;
   maxHeight?: any;
   className?: string;
+  ref?: string;
 }
-
-const StyleTextArea = styled(({ ...rest }) => <textarea {...rest} />)(
-  ({ isError, maxHeight, minHeight }) => ({
-    width: "100%",
-    maxHeight: `${maxHeight}px`,
-    minHeight: `${minHeight}px`,
-    border: `1px solid ${isError ? "red" : "#d8d7d7"}`,
-    padding: "10px",
-    borderRadius: "3px",
-    "&:hover": {
-      borderColor: "#138300",
-    },
-    "&:focus": {
-      outline: "none !important",
-      borderColor: "#138300",
-    },
-  })
-);
 
 export default function TextNote(props: TextNoteProps) {
   const {
@@ -49,7 +32,9 @@ export default function TextNote(props: TextNoteProps) {
     maxHeight = 150,
     className,
     defaultValue,
+    ref = null,
   } = props;
+
   let showError = false;
   let error = null
   let arr = name.split(".");
@@ -64,18 +49,40 @@ export default function TextNote(props: TextNoteProps) {
     error = result
     showError = !_.isEmpty(error);
   }
+
+  const style = {
+    width: "100%",
+    maxHeight: `${maxHeight}px`,
+    minHeight: `${minHeight}px`,
+    border: `1px solid ${showError ? "red" : "#d8d7d7"}`,
+    padding: "10px",
+    borderRadius: "3px",
+    "& .textarea": {
+      "&:hover .textarea": {
+        outline: "none !important",
+        border: `1px solid ${showError ? "FF0000" : "#138300"}`,
+      },
+      "&:focus": {
+        outline: "none !important",
+        border: `1px solid ${showError ? "FF0000" : "#138300"}`,
+      },
+    },
+    "& .textarea :focus": {
+      outline: "none !important",
+      border: `1px solid ${showError ? "FF0000" : "#138300"}`,
+    },
+  }
+
   return (
     <Box className={className}>
-      <StyleTextArea
-        isError={showError}
-        fullWidth
+      <textarea
         placeholder={placeholder}
         onBlur={onBlur}
         onChange={onChange}
         name={name}
-        minHeight={minHeight}
-        maxHeight={maxHeight}
+        style={style}
         value={value}
+        ref={ref}
         defaultValue={defaultValue}
       />
       {error?.message && (

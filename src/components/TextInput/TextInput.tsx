@@ -19,7 +19,6 @@ export interface TextInputProps {
   disabled?: any;
   onBlur?: any;
   errors?: any;
-  defaultValue?: any;
   type?: any;
   isPassword?: any;
   className?: string;
@@ -44,7 +43,6 @@ const TextInput = (props: TextInputProps) => {
     onBlur,
     errors = null,
     type = 'text',
-    defaultValue = '',
     isPassword = false,
     isTooltip = false,
     className,
@@ -178,7 +176,6 @@ const TextInput = (props: TextInputProps) => {
           onChange={onChange}
           ref={ref}
           value={value}
-          defaultValue={defaultValue}
           type={showPassword ? "password" : type}
           error={showError}
           fullWidth
