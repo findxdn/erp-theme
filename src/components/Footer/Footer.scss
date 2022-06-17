@@ -1,11 +1,21 @@
 .footer {
   height: 50px;
+  background-color: #ffffff;
+  z-index: 1;
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
   position: fixed;
   bottom: 0px;
-  background-color: #ffffff;
+  left: 10px;
   width: 100%;
-  padding-inline: 30px;
-
+  padding: 10px 30px;
+  border-top: 1px solid #d8d7d7;
+  .btn-spacing{
+    padding-right: 15px;
+    cursor: pointer;
+  }
+  
   .nav-bar-footer {
     display: flex;
     flex-direction: row;

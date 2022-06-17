@@ -20,7 +20,6 @@ export interface CustomDatePickerProps {
   className?: string;
   inputFormat?: any;
   _props?: any;
-  defaultValue?: any;
   isTooltip?: any;
   placeholder?: any;
   value?: any;
@@ -36,7 +35,6 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
     inputFormat = "dd/MM/yyyy",
     className,
     value,
-    defaultValue = "",
     isTooltip = false,
     placeholder,
     onChange,
@@ -146,7 +144,6 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
                 error={showError}
                 fullWidth
                 sx={styled ? styled : style}
-                defaultValue={defaultValue}
                 inputProps={{
                   ...params.inputProps,
                   sx: {

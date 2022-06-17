@@ -7,8 +7,6 @@ import { Tooltip } from '@mui/material';
 import _ from "lodash";
 import MessageError from "../../utils/MessageError";
 import { makeStyles } from "@material-ui/core/styles";
-import Box from '@mui/material/Box';
-import MenuItem from "@mui/material/MenuItem";
 
 export interface CustomAutocompleteProps {
   name: string;

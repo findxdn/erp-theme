@@ -94,15 +94,8 @@ function SelectGroup(props: SelectGroupProps) {
           MenuProps={MenuProps}
           className={className}
           defaultValue=""
-          placeholder={placeholder}
-          renderValue={(selected) => {
-            if (selected === null || !Array.isArray(selected) || selected.length === 0) {
-              return <p className="placeholder-select">{placeholder}</p>;
-            }
-            return selected;
-          }}
         >
-          <option aria-label="none" value="" />
+          <option aria-label="none" value="" label={placeholder}/>
           {options.map(
             (option: {
               child: { label: any; value: any }[];
@@ -110,7 +103,7 @@ function SelectGroup(props: SelectGroupProps) {
               value: any;
             }) =>
               option.child ? (
-                <optgroup label={option.label} className="optgroupSelect">
+                <optgroup label={option.label} key={option.value} className="optgroupSelect">
                   {option.child.map((childData: { label: any; value: any }) => (
                     <option
                       key={childData.value}

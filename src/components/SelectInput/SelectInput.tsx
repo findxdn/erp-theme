@@ -9,6 +9,7 @@ import _ from "lodash";
 import { Tooltip } from '@mui/material';
 import MessageError from "../../utils/MessageError";
 import { makeStyles } from "@material-ui/core/styles";
+import TextField from "@mui/material/TextField";
 
 export interface SelectInputProps {
   name: string;
@@ -81,25 +82,6 @@ function SelectInput(props: SelectInputProps) {
     },
   };
 
-  const renderValues = (values: any) => {
-    if (props?.value !== null && isNaN(props?.value)) {
-      return value?.label
-    }
-    const dataChange = options.find((x: any) => x.value == values);
-    if (
-      dataChange === "" ||
-      dataChange === null ||
-      values === "" ||
-      values === null
-    ) {
-      return <p className="placeholder-select" style={{
-        fontSize: 14,
-        color: '#a9a9a9'
-      }}>{placeholder}</p>;
-    }
-    return dataChange?.label;
-  }
-
   const useStyles = makeStyles(theme => ({
     arrow: {
       "&:before": {
@@ -132,7 +114,21 @@ function SelectInput(props: SelectInputProps) {
           displayEmpty
           value={value}
           onChange={onChange}
-          input={<OutlinedInput />}
+          input={
+            <Tooltip
+              placement="bottom"
+              arrow
+              classes={{ arrow: classes.arrow, tooltip: classes.tooltip }}
+              title={(error?.message && isTooltip) ? (
+                <MessageError
+                  type={error?.type}
+                  message={error?.message}
+                  style={{ color: "red", marginTop: "0px" }}
+                />
+              ) : ""}>
+              <OutlinedInput />
+            </Tooltip>
+          }
           inputProps={{ MenuProps: { disableScrollLock: true } }}
           MenuProps={MenuProps}
           className={className}
@@ -141,18 +137,22 @@ function SelectInput(props: SelectInputProps) {
           ref={ref}
           disabled={disabled}
           renderValue={(values) => {
-            return <Tooltip
-              placement="bottom"
-              arrow
-              classes={{ arrow: classes.arrow, tooltip: classes.tooltip }}
-              title={(error?.message && isTooltip) ? (
-                <MessageError
-                  type={error?.type}
-                  message={error?.message}
-                  style={{ color: "red", marginTop: "0px" }} />
-              ) : ""}>
-              {renderValues(values)}
-            </Tooltip>;
+            if (props?.value !== null && isNaN(props?.value)) {
+              return value?.label
+            }
+            const dataChange = options.find((x: any) => x.value == values);
+            if (
+              dataChange === "" ||
+              dataChange === null ||
+              values === "" ||
+              values === null
+            ) {
+              return <p className="placeholder-select" style={{
+                fontSize: 14,
+                color: '#a9a9a9'
+              }}>{placeholder}</p>;
+            }
+            return dataChange?.label;
           }}
         >
           {Array.isArray(options) ?

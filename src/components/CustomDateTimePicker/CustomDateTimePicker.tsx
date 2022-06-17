@@ -24,35 +24,9 @@ export interface CustomDateTimePickerProps {
   isTooltip?: any;
   placeholder?: any;
   value?: any;
+  disabled?: any;
 }
 
-const style = {
-  width: "100%",
-  fontSize: 14,
-  color: "#333333",
-  zIndex: "1",
-  marginTop: "0px",
-  "& .MuiOutlinedInput-input": {
-    paddingLeft: "10px",
-    fontSize: "14px !important",
-    fontWidth: 400,
-  },
-  "& .MuiOutlinedInput-root": {
-    borderRadius: "3px",
-    height: "32px",
-    width: "100%",
-    borderColor: "#138300",
-    "& .MuiOutlinedInput-notchedOutline": {
-      borderColor: "#d8d7d7",
-    },
-    "&:hover .MuiOutlinedInput-notchedOutline": {
-      borderColor: "#138300",
-    },
-    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-      border: "1px solid #138300",
-    },
-  },
-};
 
 const CustomDateTimePicker = (props: CustomDateTimePickerProps) => {
   const {
@@ -68,6 +42,7 @@ const CustomDateTimePicker = (props: CustomDateTimePickerProps) => {
     onBlur,
     value,
     ref,
+    disabled = false,
   } = props;
 
   let showError = false;
@@ -104,6 +79,35 @@ const CustomDateTimePicker = (props: CustomDateTimePickerProps) => {
     }
   }));
 
+  const style = {
+    width: "100%",
+    fontSize: 14,
+    color: "#333333",
+    zIndex: "1",
+    marginTop: "0px",
+    "& .MuiOutlinedInput-input": {
+      paddingLeft: "10px",
+      fontSize: "14px !important",
+      fontWidth: 400,
+    },
+    "& .MuiOutlinedInput-root": {
+      borderRadius: "3px",
+      height: "32px",
+      width: "100%",
+      borderColor: "#138300",
+      "& .MuiOutlinedInput-notchedOutline": {
+        paddingLeft: "10px !important",
+        border: `${disabled ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#d8d7d7'}`,
+      },
+      "&:hover .MuiOutlinedInput-notchedOutline": {
+        border: `${disabled ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#138300'}`,
+      },
+      "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+        border: `${disabled ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#138300'}`,
+      },
+    },
+  };
+
   let classes = useStyles();
 
   return (
@@ -115,6 +119,7 @@ const CustomDateTimePicker = (props: CustomDateTimePickerProps) => {
         components={{
           OpenPickerIcon: IcDateTime,
         }}
+        disabled={disabled}
         defaultValue={defaultValue}
         renderInput={(params) => {
           return (
