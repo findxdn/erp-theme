@@ -18,6 +18,7 @@ export interface SelectGroupProps {
   options?: any;
   className?: any;
   disabled?: any;
+  _props?: any;
 }
 
 const MenuProps = {
@@ -81,6 +82,7 @@ function SelectGroup(props: SelectGroupProps) {
     <div>
       <FormControl error={showError} fullWidth>
         <Select
+          {...props._props}
           native
           name={name}
           sx={style}
@@ -95,7 +97,7 @@ function SelectGroup(props: SelectGroupProps) {
           className={className}
           defaultValue=""
         >
-          <option aria-label="none" value="" label={placeholder}/>
+          <option aria-label="none" value="" label={placeholder} />
           {options.map(
             (option: {
               child: { label: any; value: any }[];

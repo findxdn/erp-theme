@@ -17,6 +17,7 @@ export interface TextNoteProps {
   minHeight?: any;
   maxHeight?: any;
   className?: string;
+  _props?: any;
 }
 
 const StyleTextArea = styled(({ ...rest }) => <textarea {...rest} />)(
@@ -67,6 +68,7 @@ export default function TextNote(props: TextNoteProps) {
   return (
     <Box className={className}>
       <StyleTextArea
+        {...props._props}
         isError={showError}
         fullWidth
         placeholder={placeholder}
