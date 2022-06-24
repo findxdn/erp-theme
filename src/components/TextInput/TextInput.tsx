@@ -19,6 +19,7 @@ export interface TextInputProps {
   disabled?: any;
   onBlur?: any;
   errors?: any;
+  defaultValue?: any;
   type?: any;
   isPassword?: any;
   className?: string;
@@ -30,7 +31,7 @@ export interface TextInputProps {
   onKeyDown?: any;
   onKeyPress?: any;
   onChangeType?: any;
-  maxLength?: any;
+  _inputProps: any;
 }
 
 const TextInput = (props: TextInputProps) => {
@@ -44,6 +45,7 @@ const TextInput = (props: TextInputProps) => {
     onBlur,
     errors = null,
     type = 'text',
+    defaultValue = '',
     isPassword = false,
     isTooltip = false,
     className,
@@ -51,9 +53,7 @@ const TextInput = (props: TextInputProps) => {
     onKeyUp,
     onKeyDown,
     onKeyPress,
-    disabled = false,
     onChangeType = null,
-    maxLength,
   } = props;
 
   let showError = false;
@@ -92,16 +92,16 @@ const TextInput = (props: TextInputProps) => {
       fontSize: 14,
       color: "#333333",
       zIndex: "1",
-      backgroundColor: `${(readOnly || disabled) ? '#e2e4e7' : '#ffffff'}`,
+      backgroundColor: `${readOnly ? '#e2e4e7' : '#ffffff'}`,
       paddingRight: '0px',
       "& .MuiOutlinedInput-notchedOutline": {
-        border: `${(readOnly || disabled) ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#d8d7d7'}`,
+        border: `${readOnly ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#d8d7d7'}`,
       },
       "&:hover .MuiOutlinedInput-notchedOutline": {
-        border: `${(readOnly || disabled) ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#138300'}`,
+        border: `${readOnly ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#138300'}`,
       },
       "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-        border: `${(readOnly || disabled) ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#138300'}`,
+        border: `${readOnly ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#138300'}`,
       },
     },
   };
@@ -154,7 +154,7 @@ const TextInput = (props: TextInputProps) => {
           {...props._props}
           inputProps={{
             readOnly: readOnly,
-            maxLength: maxLength,
+            ...props._inputProps,
           }}
           InputProps={{
             endAdornment: ( isPassword || onChangeType !== null ) ?
@@ -174,13 +174,13 @@ const TextInput = (props: TextInputProps) => {
                 </IconButton>
               ) : <></>
           }}
-          disabled = {disabled}
           sx={style}
           name={name}
           onBlur={onBlur}
           onChange={onChange}
           ref={ref}
           value={value}
+          defaultValue={defaultValue}
           type={showPassword ? "password" : type}
           error={showError}
           fullWidth

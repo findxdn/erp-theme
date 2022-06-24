@@ -24,6 +24,7 @@ export interface SelectInputProps {
   disabled?: any;
   isTooltip?: any;
   _props: any;
+  _inputProps: any;
 }
 const MenuProps = {
   PaperProps: {
@@ -131,7 +132,10 @@ function SelectInput(props: SelectInputProps) {
               <OutlinedInput />
             </Tooltip>
           }
-          inputProps={{ MenuProps: { disableScrollLock: true } }}
+          inputProps={{ 
+            MenuProps: { disableScrollLock: true },
+            ...props._inputProps,
+          }}
           MenuProps={MenuProps}
           className={className}
           placeholder={placeholder}
