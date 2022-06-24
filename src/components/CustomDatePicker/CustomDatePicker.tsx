@@ -114,6 +114,7 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns} required>
       <DatePicker
+        {...props._props}
         value={props?.value}
         onChange={(e) => props.onChange(e)}
         open={open}

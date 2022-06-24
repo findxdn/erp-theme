@@ -30,6 +30,7 @@ export interface TextInputProps {
   onKeyDown?: any;
   onKeyPress?: any;
   onChangeType?: any;
+  maxLength?: any;
 }
 
 const TextInput = (props: TextInputProps) => {
@@ -50,7 +51,9 @@ const TextInput = (props: TextInputProps) => {
     onKeyUp,
     onKeyDown,
     onKeyPress,
+    disabled = false,
     onChangeType = null,
+    maxLength,
   } = props;
 
   let showError = false;
@@ -89,16 +92,16 @@ const TextInput = (props: TextInputProps) => {
       fontSize: 14,
       color: "#333333",
       zIndex: "1",
-      backgroundColor: `${readOnly ? '#e2e4e7' : '#ffffff'}`,
+      backgroundColor: `${(readOnly || disabled) ? '#e2e4e7' : '#ffffff'}`,
       paddingRight: '0px',
       "& .MuiOutlinedInput-notchedOutline": {
-        border: `${readOnly ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#d8d7d7'}`,
+        border: `${(readOnly || disabled) ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#d8d7d7'}`,
       },
       "&:hover .MuiOutlinedInput-notchedOutline": {
-        border: `${readOnly ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#138300'}`,
+        border: `${(readOnly || disabled) ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#138300'}`,
       },
       "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-        border: `${readOnly ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#138300'}`,
+        border: `${(readOnly || disabled) ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#138300'}`,
       },
     },
   };
@@ -151,6 +154,7 @@ const TextInput = (props: TextInputProps) => {
           {...props._props}
           inputProps={{
             readOnly: readOnly,
+            maxLength: maxLength,
           }}
           InputProps={{
             endAdornment: ( isPassword || onChangeType !== null ) ?
@@ -170,6 +174,7 @@ const TextInput = (props: TextInputProps) => {
                 </IconButton>
               ) : <></>
           }}
+          disabled = {disabled}
           sx={style}
           name={name}
           onBlur={onBlur}

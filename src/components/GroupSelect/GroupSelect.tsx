@@ -108,6 +108,7 @@ export default function GroupSelect(props: GroupSelectProps) {
   return (
     <>
       <Autocomplete
+        {...props._props}
         value={options.find((x: { key: any; }) => x.key == value) ?? null}
         onChange={(e, newValue) => {
           if (newValue) {

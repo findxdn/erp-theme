@@ -23,6 +23,7 @@ export interface SelectInputProps {
   ref?: any;
   disabled?: any;
   isTooltip?: any;
+  _props: any;
 }
 const MenuProps = {
   PaperProps: {
@@ -107,6 +108,7 @@ function SelectInput(props: SelectInputProps) {
     <div>
       <FormControl error={showError} fullWidth>
         <Select
+          {...props._props}
           name={name}
           sx={style}
           IconComponent={ExpandMoreSharpIcon}

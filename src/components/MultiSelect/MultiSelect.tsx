@@ -23,6 +23,7 @@ export interface MultiSelectProps {
   className?: any;
   disabled?: any;
   isTooltip?: any;
+  _props?: any;
 }
 const MenuProps = {
   PaperProps: {
@@ -120,6 +121,7 @@ function MultiSelect(props: MultiSelectProps) {
           ) : ""}>
           <Select
             {...register}
+            {...props._props}
             name={name}
             sx={style}
             IconComponent={ExpandMoreSharpIcon}
