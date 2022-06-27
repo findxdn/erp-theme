@@ -85,15 +85,19 @@ export interface SwitchProps {
   value?: any;
   color?: any;
   className?: any;
+  defaultChecked?: any;
+  _props?: any;
 }
 
 export default function Switch(props: SwitchProps) {
-  const { onChange, value, color, className } = props;
+  const { onChange, value, color, className, defaultChecked = false } = props;
   const label = { componentsProps: { input: { "aria-label": "Demo switch" } } };
   return (
     <div>
       <SwitchUnstyled
         {...label}
+        {...props._props}
+        defaultChecked={defaultChecked}
         className={className}
         component={Root}
         onChange={onChange}
