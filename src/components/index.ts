@@ -10,6 +10,7 @@ export { default as MultiSelect } from "./MultiSelect"
 export { default as Switch } from "./Switch"
 export { default as CustomCheckbox } from './CustomCheckbox'
 export { default as CustomAutocomplete } from "./CustomAutocomplete"
+export { default as AsyncAutocomplete } from "./AsyncAutocomplete"
 export { default as CustomRadio } from "./CustomRadio"
 export { default as MultiRadio } from "./MultiRadio"
 export { default as BarChart } from "./BarChart"
