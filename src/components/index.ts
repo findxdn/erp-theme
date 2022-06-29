@@ -2,7 +2,7 @@ export { default as Button } from "./Button";
 export { default as InputSearch } from "./InputSearch";
 export { default as CustomDatePicker } from "./CustomDatePicker";
 export { default as CustomDateTimePicker } from "./CustomDateTimePicker";
-export { default as DateTimeTextInput } from  "./DateTimeTextInput";
+export { default as DateTimeTextInput } from "./DateTimeTextInput";
 export { default as TextInput } from "./TextInput"
 export { default as TextNote } from "./TextNote"
 export { default as SelectInput } from "./SelectInput"
@@ -24,3 +24,4 @@ export { default as MenuSocial } from './MenuSocial'
 export { default as SelectGroup } from './SelectGroup'
 export { default as TagsInput } from "./TagsInput"
 export { default as GroupSelect } from "./GroupSelect"
+export { default as CustomTimepicker } from "./CustomTimepicker"

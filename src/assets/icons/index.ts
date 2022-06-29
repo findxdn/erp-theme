@@ -7,7 +7,8 @@ import IcUp from "./ic-up";
 import IcDateTime from "./ic-datetime";
 import IcSearch from "./ic-search";
 import IcRowDownWhite from "./ic-rowDownWhite";
-import IcEyeOpen from  "./ic-eye-open"
+import IcEyeOpen from "./ic-eye-open";
+import IconClock from "./ic-clock";
 
 export {
   IcEyeClose,
@@ -20,4 +21,5 @@ export {
   IcSearch,
   IcRowDownWhite,
   IcEyeOpen,
+  IconClock,
 };
