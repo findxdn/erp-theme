@@ -54,6 +54,7 @@ const TextInput = (props: TextInputProps) => {
     onKeyDown,
     onKeyPress,
     onChangeType = null,
+    disabled = false,
   } = props;
 
   let showError = false;
@@ -61,17 +62,17 @@ const TextInput = (props: TextInputProps) => {
   let arr = name.split(".");
 
   let error = null
-  
+
   if (arr.length >= 1 && errors !== null) {
     let result = arr.reduce((rs, e) => {
-          if (rs[e]) {
-              return rs = rs[e]
-          }
-          return {}
+      if (rs[e]) {
+        return rs = rs[e]
+      }
+      return {}
 
-      }, errors)
-      error = result
-      showError = !_.isEmpty(error);
+    }, errors)
+    error = result
+    showError = !_.isEmpty(error);
   }
   const style = {
     width: "100%",
@@ -92,16 +93,16 @@ const TextInput = (props: TextInputProps) => {
       fontSize: 14,
       color: "#333333",
       zIndex: "1",
-      backgroundColor: `${readOnly ? '#e2e4e7' : '#ffffff'}`,
+      backgroundColor: `${(readOnly || disabled) ? '#e2e4e7' : '#ffffff'}`,
       paddingRight: '0px',
       "& .MuiOutlinedInput-notchedOutline": {
-        border: `${readOnly ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#d8d7d7'}`,
+        border: `${(readOnly || disabled) ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#d8d7d7'}`,
       },
       "&:hover .MuiOutlinedInput-notchedOutline": {
-        border: `${readOnly ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#138300'}`,
+        border: `${(readOnly || disabled) ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#138300'}`,
       },
       "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-        border: `${readOnly ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#138300'}`,
+        border: `${(readOnly || disabled) ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#138300'}`,
       },
     },
   };
@@ -109,7 +110,7 @@ const TextInput = (props: TextInputProps) => {
   const [showPassword, setShowPassword] = useState(isPassword);
 
   const handleOnclickIconRight = () => {
-    if ( onChangeType !== null) {
+    if (onChangeType !== null) {
       props?.onChangeType();
       return;
     }
@@ -144,20 +145,21 @@ const TextInput = (props: TextInputProps) => {
         arrow
         classes={{ arrow: classes.arrow, tooltip: classes.tooltip }}
         title={(error?.message && isTooltip) ? (
-          <MessageError 
-            type={error?.type} 
-            message={error?.message} 
+          <MessageError
+            type={error?.type}
+            message={error?.message}
             style={{ color: "red", marginTop: "0px" }}
           />
         ) : ""}>
         <TextField
           {...props._props}
+          disabled={disabled}
           inputProps={{
             readOnly: readOnly,
             ...props._inputProps,
           }}
           InputProps={{
-            endAdornment: ( isPassword || onChangeType !== null ) ?
+            endAdornment: (isPassword || onChangeType !== null) ?
               (
                 <IconButton
                   onClick={handleOnclickIconRight}
@@ -169,7 +171,7 @@ const TextInput = (props: TextInputProps) => {
                   }}
                 >
                   <InputAdornment position="start">
-                    { (showPassword || ( onChangeType !== null && type ==='password')) ? <IcEyeClose /> : <IcEyeOpen />}
+                    {(showPassword || (onChangeType !== null && type === 'password')) ? <IcEyeClose /> : <IcEyeOpen />}
                   </InputAdornment>
                 </IconButton>
               ) : <></>
