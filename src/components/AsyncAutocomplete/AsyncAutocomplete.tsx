@@ -120,8 +120,10 @@ function AsyncAutocomplete(props: AsyncAutocompleteProps) {
     if (options.length === 0 && onChangeInput !== null) {
       props?.onChangeInput()
       onChange(null)
-      // console.log(inputValue)
       setInputValue(inputValue)
+    }
+    if(options.length !== 0 && onChangeInput !== null && inputValue === '') {
+      setInputValue(options.find((x: any) => x.key == value).label)
     }
   }, [options])
 
