@@ -122,8 +122,12 @@ function AsyncAutocomplete(props: AsyncAutocompleteProps) {
       onChange(null)
       setInputValue(inputValue)
     }
-    if(options.length !== 0 && onChangeInput !== null && inputValue === '') {
-      setInputValue(options.find((x: any) => x.key == value).label)
+    if (inputValue === '' && value !== null) {
+      console.log(options.find((x: any) => x.key == value).label)
+      const option = options.find((x: any) => x.key == value)
+      if (typeof option !== 'undefined') {
+        setInputValue(options.find((x: any) => x.key == value).label)
+      }
     }
   }, [options])
 
