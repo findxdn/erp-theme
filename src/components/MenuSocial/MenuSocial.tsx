@@ -151,7 +151,7 @@ const MODULE_HRM_DEFAULT = {
     onClick: () => {
       window.location.href = headerLink + "hrm/manage-office";
     },
-    active: true,
+    active: false,
   },
   [HRM_KEYS.RECRUIT]: {
     name: "Tuyển dụng",
@@ -171,7 +171,7 @@ const MODULE_HRM_DEFAULT = {
     onClick: () => {
       window.location.href = headerLink + "hrm/manage-checkin";
     },
-    active: true,
+    active: false,
   },
   [HRM_KEYS.PAYROLL]: {
     name: "Bảng lương",
