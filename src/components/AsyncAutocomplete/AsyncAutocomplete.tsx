@@ -122,13 +122,12 @@ function AsyncAutocomplete(props: AsyncAutocompleteProps) {
       onChange(null)
       setInputValue(inputValue)
     }
-    else if (options.length !== 0 && onChangeInput !== null && inputValue !== '' && value !== null) {
+    else if (options.length !== 0 && onChangeInput !== null && inputValue !== '' && value !== null && typeof value !== "undefined") {
       props?.onChangeInput()
       onChange(null)
       setInputValue(inputValue)
     }
-    else if (inputValue === '' && value !== null) {
-      console.log(options.find((x: any) => x.key == value).label)
+    else if (inputValue === '' && value !== null && typeof value !== "undefined") {
       const option = options.find((x: any) => x.key == value)
       if (typeof option !== 'undefined') {
         setInputValue(options.find((x: any) => x.key == value).label)
@@ -144,7 +143,6 @@ function AsyncAutocomplete(props: AsyncAutocompleteProps) {
         noOptionsText={noOptionsText}
         value={options.find((x: any) => x.key == value) ?? null}
         onChange={(e, newValue) => {
-          console.log(newValue)
           if (newValue) {
             onChange(newValue.key)
             setInputValue(newValue?.label)
