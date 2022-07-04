@@ -2,7 +2,7 @@
 import React from 'react'
 
 // eslint-disable-next-line react/function-component-definition
-const IcDropDown = (props) => {
+const IcDropDown = (props: { onClick: any; }) => {
   const { onClick } = props;
   return (
     // eslint-disable-next-line jsx-a11y/click-events-have-key-events
