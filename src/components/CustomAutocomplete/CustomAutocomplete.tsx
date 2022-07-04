@@ -46,7 +46,7 @@ function CustomAutocomplete(props: CustomAutocompleteProps) {
     inputRef,
     onChangeInput = null,
     isSearchOpitons = false,
-    noOptionsText = 'Không tìm thấy',
+    noOptionsText = 'Không có dữ liệu',
   } = props;
 
   let showError = false;
