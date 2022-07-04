@@ -117,12 +117,17 @@ function AsyncAutocomplete(props: AsyncAutocompleteProps) {
     setInputValue(e?.target?.value)
   }
   useEffect(() => {
-    if (options.length === 0 && onChangeInput !== null) {
+    if (options.length === 0 && onChangeInput !== null && inputValue !== '') {
       props?.onChangeInput()
       onChange(null)
       setInputValue(inputValue)
     }
-    if (inputValue === '' && value !== null) {
+    else if (options.length !== 0 && onChangeInput !== null && inputValue !== '' && value !== null) {
+      props?.onChangeInput()
+      onChange(null)
+      setInputValue(inputValue)
+    }
+    else if (inputValue === '' && value !== null) {
       console.log(options.find((x: any) => x.key == value).label)
       const option = options.find((x: any) => x.key == value)
       if (typeof option !== 'undefined') {
