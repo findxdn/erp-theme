@@ -10,7 +10,7 @@ import ExpandMoreSharpIcon from "@mui/icons-material/ExpandMoreSharp";
 import _ from "lodash";
 import MessageError from "../../utils/MessageError";
 import { Tooltip } from '@mui/material';
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core";
 
 export interface MultiSelectProps {
   name: string;

@@ -156,13 +156,13 @@ const MODULE_HRM_DEFAULT = {
   [HRM_KEYS.RECRUIT]: {
     name: "Tuyển dụng",
     icon: <IcRecruit />,
-    onClick: () => {},
+    onClick: () => { },
     active: false,
   },
   [HRM_KEYS.ELEARNING]: {
     name: "E-leaning",
     icon: <IcRecruit />,
-    onClick: () => {},
+    onClick: () => { },
     active: false,
   },
   [HRM_KEYS.TIMEKEEPING]: {
@@ -176,43 +176,43 @@ const MODULE_HRM_DEFAULT = {
   [HRM_KEYS.PAYROLL]: {
     name: "Bảng lương",
     icon: <IcTimekeeping />,
-    onClick: () => {},
+    onClick: () => { },
     active: false,
   },
   [HRM_KEYS.WELFARE]: {
     name: "Phúc lợi",
     icon: <IcWelfare />,
-    onClick: () => {},
+    onClick: () => { },
     active: false,
   },
   [HRM_KEYS.INSURANCE]: {
     name: "Bảo hiểm",
     icon: <IcInsurance />,
-    onClick: () => {},
+    onClick: () => { },
     active: false,
   },
   [HRM_KEYS.BOOKING]: {
     name: "Booking",
     icon: <IcBooking />,
-    onClick: () => {},
+    onClick: () => { },
     active: false,
   },
   [HRM_KEYS.OFFER]: {
     name: "Đề xuất",
     icon: <IcOffer />,
-    onClick: () => {},
+    onClick: () => { },
     active: false,
   },
   [HRM_KEYS.CTV]: {
     name: "CTV",
     icon: <IcCtv />,
-    onClick: () => {},
+    onClick: () => { },
     active: false,
   },
   [HRM_KEYS.CTP]: {
     name: "Cộng tác phí",
     icon: <IcCtp />,
-    onClick: () => {},
+    onClick: () => { },
     active: false,
   },
 };
@@ -221,19 +221,19 @@ const MODULE_SYSTEM_DEFAULT = {
   [SYSTEM_KEYS.REPORT]: {
     name: "Báo cáo",
     icon: <IcReport />,
-    onClick: () => {},
+    onClick: () => { },
     active: false,
   },
   [SYSTEM_KEYS.DECENTRALIZATION]: {
     name: "Phân quyền",
     icon: <IcDecentralization />,
-    onClick: () => {},
+    onClick: () => { },
     active: false,
   },
   [SYSTEM_KEYS.LIBRARY]: {
     name: "Thư viện",
     icon: <IcLibrary />,
-    onClick: () => {},
+    onClick: () => { },
     active: false,
   },
   [SYSTEM_KEYS.WEB_APP]: {
@@ -247,19 +247,19 @@ const MODULE_SYSTEM_DEFAULT = {
   [SYSTEM_KEYS.HELPDESK]: {
     name: "HelpDesk",
     icon: <IcHelpDesk />,
-    onClick: () => {},
+    onClick: () => { },
     active: false,
   },
   [SYSTEM_KEYS.TROUBLE]: {
     name: "Sự cố",
     icon: <IcTrouble />,
-    onClick: () => {},
+    onClick: () => { },
     active: false,
   },
   [SYSTEM_KEYS.SETTING]: {
     name: "Cài đặt",
     icon: <IcSetting />,
-    onClick: () => {},
+    onClick: () => { },
     active: false,
   },
 };
@@ -284,7 +284,7 @@ const MODULE_POS_DEFAULT = {
   [POS_KEYS.SHOP]: {
     name: "Cửa hàng",
     icon: <IcShop />,
-    onClick: () => {},
+    onClick: () => { },
     active: false,
   },
   [POS_KEYS.ORDER]: {
@@ -325,37 +325,37 @@ const MODULE_CRM_DEFAULT = {
   [CRM_KEYS.LIVECHAT]: {
     name: "Livechat",
     icon: <IcLiveChat />,
-    onClick: () => {},
+    onClick: () => { },
     active: false,
   },
   [CRM_KEYS.FEEDBACK]: {
     name: "Góp ý",
     icon: <IcComplain />,
-    onClick: () => {},
+    onClick: () => { },
     active: false,
   },
   [CRM_KEYS.COMPLAIN]: {
     name: "Khiếu nại",
     icon: <IcFeedback />,
-    onClick: () => {},
+    onClick: () => { },
     active: false,
   },
   [CRM_KEYS.MARKETING]: {
     name: "Marketing",
     icon: <IcMarketing />,
-    onClick: () => {},
+    onClick: () => { },
     active: false,
   },
   [CRM_KEYS.VOUCHER]: {
     name: "Voucher",
     icon: <IcVoucher />,
-    onClick: () => {},
+    onClick: () => { },
     active: false,
   },
   [CRM_KEYS.POINT]: {
     name: "Điểm",
     icon: <IcPoint />,
-    onClick: () => {},
+    onClick: () => { },
     active: false,
   },
 };
@@ -364,43 +364,43 @@ const MODULE_FINANCE_DEFAULT = {
   [FINANCE_KEYS.COLLECTION]: {
     name: "Thu chi",
     icon: <IcTC />,
-    onClick: () => {},
+    onClick: () => { },
     active: false,
   },
   [FINANCE_KEYS.CASHBOOK]: {
     name: "Sổ quỷ",
     icon: <IcCashBook />,
-    onClick: () => {},
+    onClick: () => { },
     active: false,
   },
   [FINANCE_KEYS.DEBT]: {
     name: "Công nợ",
     icon: <IcDebt />,
-    onClick: () => {},
+    onClick: () => { },
     active: false,
   },
   [FINANCE_KEYS.ASSET]: {
     name: "Tài sản",
     icon: <IcAsset />,
-    onClick: () => {},
+    onClick: () => { },
     active: false,
   },
   [FINANCE_KEYS.PAYMENT]: {
     name: "Thanh toán",
     icon: <IcPayment />,
-    onClick: () => {},
+    onClick: () => { },
     active: false,
   },
   [FINANCE_KEYS.FORCONTROL]: {
     name: "Đối soát",
     icon: <IcForControl />,
-    onClick: () => {},
+    onClick: () => { },
     active: false,
   },
   [FINANCE_KEYS.LEASE]: {
     name: "Cho thuê",
     icon: <IcRent />,
-    onClick: () => {},
+    onClick: () => { },
     active: false,
   },
 };
@@ -409,31 +409,31 @@ const MODULE_MANUFACTURING_DEFAULT = {
   [MANUFACTURING_KEYS.PLAN]: {
     name: "Kế hoạch",
     icon: <IcPlan />,
-    onClick: () => {},
+    onClick: () => { },
     active: false,
   },
   [MANUFACTURING_KEYS.CATEGORY]: {
     name: "Định mức",
     icon: <IcQuota />,
-    onClick: () => {},
+    onClick: () => { },
     active: false,
   },
   [MANUFACTURING_KEYS.MATERIAL]: {
     name: "Vật liệu",
     icon: <IcMaterial />,
-    onClick: () => {},
+    onClick: () => { },
     active: false,
   },
   [MANUFACTURING_KEYS.MACHINING]: {
     name: "Gia công",
     icon: <IcMachine />,
-    onClick: () => {},
+    onClick: () => { },
     active: false,
   },
   [MANUFACTURING_KEYS.PRICE]: {
     name: "Giá bán",
     icon: <IcPrice />,
-    onClick: () => {},
+    onClick: () => { },
     active: false,
   },
 };
@@ -472,9 +472,8 @@ function MenuSocial(props: PropsMenuSocial) {
               {Object.keys(MODULE_HRM).map((key) => {
                 return (
                   <div
-                    className={`hrm-icon-item ${
-                      !MODULE_HRM[key]?.active && `unactive-module`
-                    }`}
+                    className={`hrm-icon-item ${!MODULE_HRM[key]?.active && `unactive-module`
+                      }`}
                     onClick={() => {
                       if (MODULE_HRM[key]?.active) {
                         MODULE_HRM[key]?.onClick();
@@ -494,9 +493,8 @@ function MenuSocial(props: PropsMenuSocial) {
               {Object.keys(MODULE_CRM).map((key) => {
                 return (
                   <div
-                    className={`hrm-icon-item ${
-                      !MODULE_CRM[key]?.active && `unactive-module`
-                    }`}
+                    className={`hrm-icon-item ${!MODULE_CRM[key]?.active && `unactive-module`
+                      }`}
                     onClick={() => {
                       if (MODULE_CRM[key]?.active) {
                         MODULE_CRM[key]?.onClick();
@@ -516,9 +514,8 @@ function MenuSocial(props: PropsMenuSocial) {
               {Object.keys(MODULE_SYSTEM).map((key) => {
                 return (
                   <div
-                    className={`hrm-icon-item ${
-                      !MODULE_SYSTEM[key]?.active && `unactive-module`
-                    }`}
+                    className={`hrm-icon-item ${!MODULE_SYSTEM[key]?.active && `unactive-module`
+                      }`}
                     onClick={() => {
                       if (MODULE_SYSTEM[key]?.active) {
                         MODULE_SYSTEM[key]?.onClick();
@@ -540,9 +537,8 @@ function MenuSocial(props: PropsMenuSocial) {
               {Object.keys(MODULE_POS).map((key) => {
                 return (
                   <div
-                    className={`pos-icon-item ${
-                      !MODULE_POS[key]?.active && `unactive-module`
-                    }`}
+                    className={`pos-icon-item ${!MODULE_POS[key]?.active && `unactive-module`
+                      }`}
                     onClick={() => {
                       if (MODULE_POS[key]?.active) {
                         MODULE_POS[key]?.onClick();
@@ -562,9 +558,8 @@ function MenuSocial(props: PropsMenuSocial) {
               {Object.keys(MODULE_FINANCE).map((key) => {
                 return (
                   <div
-                    className={`pos-icon-item ${
-                      !MODULE_FINANCE[key]?.active && `unactive-module`
-                    }`}
+                    className={`pos-icon-item ${!MODULE_FINANCE[key]?.active && `unactive-module`
+                      }`}
                     onClick={() => {
                       if (MODULE_FINANCE[key]?.active) {
                         MODULE_FINANCE[key]?.onClick();
@@ -584,9 +579,8 @@ function MenuSocial(props: PropsMenuSocial) {
               {Object.keys(MODULE_MANUFACTURING).map((key) => {
                 return (
                   <div
-                    className={`pos-icon-item ${
-                      !MODULE_MANUFACTURING[key]?.active && `unactive-module`
-                    }`}
+                    className={`pos-icon-item ${!MODULE_MANUFACTURING[key]?.active && `unactive-module`
+                      }`}
                     onClick={() => {
                       if (MODULE_MANUFACTURING[key]?.active) {
                         MODULE_MANUFACTURING[key]?.onClick();

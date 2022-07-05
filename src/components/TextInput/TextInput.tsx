@@ -6,7 +6,7 @@ import { IcEyeClose, IcEyeOpen } from "../../assets/icons/index";
 import MessageError from "../../utils/MessageError";
 import "./TextInput.scss";
 import { Tooltip } from '@mui/material';
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core";
 import InputAdornment from '@mui/material/InputAdornment';
 import { IconButton } from '@mui/material'
 
