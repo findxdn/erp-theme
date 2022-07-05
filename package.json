@@ -1,6 +1,6 @@
 {
   "name": "@findxdn/erp-theme",
-  "version": "0.0.116",
+  "version": "0.0.119",
   "description": "A imple template for a custom React component library",
   "scripts": {
     "rollup": "rollup -c",
@@ -21,7 +21,7 @@
     "@babel/preset-env": "^7.16.4",
     "@babel/preset-react": "^7.16.0",
     "@babel/preset-typescript": "^7.16.0",
-    "@mui/material": "^5.3.0",
+    "@mui/material": "^5.8.7",
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/plugin-node-resolve": "^13.0.6",
     "@rollup/plugin-typescript": "^8.3.0",

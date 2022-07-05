@@ -112,7 +112,7 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
 
   let classes = useStyles();
   return (
-    <LocalizationProvider dateAdapter={AdapterDateFns} required>
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DatePicker
         {...props._props}
         value={props?.value}
