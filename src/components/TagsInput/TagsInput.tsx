@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import React, { useEffect } from 'react';
 import Chip from '@mui/material/Chip';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core';
 import TextField from '@mui/material/TextField';
 import Downshift from 'downshift';
 import { Tooltip } from '@mui/material';

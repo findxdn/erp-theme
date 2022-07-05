@@ -8,7 +8,7 @@ import ExpandMoreSharpIcon from "@mui/icons-material/ExpandMoreSharp";
 import _ from "lodash";
 import { Tooltip } from '@mui/material';
 import MessageError from "../../utils/MessageError";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core";
 import TextField from "@mui/material/TextField";
 
 export interface SelectInputProps {
