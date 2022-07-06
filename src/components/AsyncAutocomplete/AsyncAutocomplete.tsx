@@ -6,7 +6,8 @@ import ExpandMoreSharpIcon from "@mui/icons-material/ExpandMoreSharp";
 import { Tooltip } from '@mui/material';
 import _ from "lodash";
 import MessageError from "../../utils/MessageError";
-import { makeStyles } from "@material-ui/core";
+import { makeStyles, Box } from "@material-ui/core";
+import { IcAdd } from "../../assets/icons";
 
 export interface AsyncAutocompleteProps {
   name: string;
@@ -25,6 +26,7 @@ export interface AsyncAutocompleteProps {
   disabled?: any;
   inputRef?: any;
   isSearchOpitons?: any;
+  handleAdd?: any;
   onChangeInput?: any;
   noOptionsText?: any;
 }
@@ -46,11 +48,12 @@ function AsyncAutocomplete(props: AsyncAutocompleteProps) {
     inputRef,
     onChangeInput = null,
     isSearchOpitons = false,
+    handleAdd = null,
     noOptionsText = 'Không tìm thấy',
   } = props;
 
   let showError = false;
-  let error: { message: string; type: string; }
+  let error: any
   let arr = name.split(".");
   if (arr.length >= 1 && errors !== null) {
     let result = arr.reduce((rs, e) => {
@@ -142,8 +145,8 @@ function AsyncAutocomplete(props: AsyncAutocompleteProps) {
         {...props._props}
         noOptionsText={noOptionsText}
         value={options.find((x: any) => x.key == value) ?? null}
-        onChange={(e, newValue) => {
-          if (newValue) {
+        onChange={(e, newValue: any) => {
+          if (newValue && newValue.key !== -1) {
             onChange(newValue.key)
             setInputValue(newValue?.label)
           } else {
@@ -185,6 +188,48 @@ function AsyncAutocomplete(props: AsyncAutocompleteProps) {
             </Tooltip>
           );
         }}
+        renderOption={(props, option) => (
+          <Box
+            key={option.key}
+            component="li"
+            onClick={() => { if (option.key === -1) handleAdd() }}
+          >
+            {
+              option?.key === -1
+                ? (
+                  <div
+                    className="bases__margin-left--15"
+                    role="button"
+                    style={{
+                      borderBottom: '2px solid #fafafa',
+                      display: 'flex',
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      height: '40px',
+                    }}
+                    {...props}
+                  >
+                    <IcAdd />
+                    <p className="bases__margin-left--15">{option?.label}</p>
+                  </div>
+                )
+                : (
+                  <div
+                    className="bases__margin-left--15"
+                    role="button"
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      borderBottom: '2px solid #fafafa',
+                    }}
+                    {...props}
+                  >
+                    <p style={{ width: '100%' }}>{option.label}</p>
+                  </div>
+                )
+            }
+          </Box>
+        )}
       />
       {(error?.message && !isTooltip) && (
         <MessageError type={error?.type} message={error?.message} />
