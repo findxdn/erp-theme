@@ -116,7 +116,7 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
       <DatePicker
         {...props._props}
         value={props?.value}
-        onChange={(e) => props.onChange(e)}
+        onChange={(e) => { if (e != null && typeof e != "undefined") props.onChange(e) }}
         open={open}
         onOpen={() => setOpen(true)}
         onClose={() => setOpen(false)}
