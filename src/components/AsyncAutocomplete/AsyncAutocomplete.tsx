@@ -119,25 +119,42 @@ function AsyncAutocomplete(props: AsyncAutocompleteProps) {
       props?.onChangeInput(e?.target?.value)
     setInputValue(e?.target?.value)
   }
+
+  const option = options.find((x: any) => x.key == value)
+
   useEffect(() => {
+    const option = options.find((x: any) => x.key == value)
     if (options.length === 0 && onChangeInput !== null && inputValue !== '') {
       props?.onChangeInput()
       onChange(null)
       setInputValue(inputValue)
     }
-    else if (options.length !== 0 && onChangeInput !== null && inputValue !== '' && value !== null && typeof value !== "undefined") {
-      props?.onChangeInput()
-      onChange(null)
-      setInputValue(inputValue)
-    }
-    else if (inputValue === '' && value !== null && typeof value !== "undefined") {
-      const option = options.find((x: any) => x.key == value)
+    else if (options.length !== 0 && onChangeInput !== null && inputValue !== '' && value !== null && typeof value !== 'undefined') {
+      if (option != null && typeof option !== 'undefined' && inputValue !== option?.label) {
+        onChange(null)
+        props?.onChangeInput(inputValue)
+      } else if (option != null || typeof option !== 'undefined') {
+        onChange(value)
+        setInputValue(option?.label)
+      } else {
+        props?.onChangeInput()
+        onChange(value)
+        setInputValue(inputValue)
+      }
+    } else if (inputValue === '' && (value !== null || typeof value !== 'undefined')) {
       if (typeof option !== 'undefined') {
-        setInputValue(options.find((x: any) => x.key == value).label)
+        onChange(null)
+        props?.onChangeInput(inputValue)
+        setInputValue(inputValue)
       }
     }
   }, [options])
 
+  useEffect(() => {
+    if (option !== null && typeof option !== 'undefined' && inputValue === '') {
+      setInputValue(option ? option.label : '')
+    }
+  }, [option])
   let classes = useStyles();
   return (
     <>
@@ -154,6 +171,7 @@ function AsyncAutocomplete(props: AsyncAutocompleteProps) {
             setInputValue('')
           }
         }}
+        filterOptions={(options, state) => options}
         autoSelect={true}
         inputValue={inputValue}
         disabled={disabled}
