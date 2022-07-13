@@ -150,11 +150,6 @@ function AsyncAutocomplete(props: AsyncAutocompleteProps) {
     }
   }, [options])
 
-  useEffect(() => {
-    if (option !== null && typeof option !== 'undefined' && inputValue === '') {
-      setInputValue(option ? option.label : '')
-    }
-  }, [option])
   let classes = useStyles();
   return (
     <>
