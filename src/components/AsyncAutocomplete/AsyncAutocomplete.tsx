@@ -113,42 +113,29 @@ function AsyncAutocomplete(props: AsyncAutocompleteProps) {
   }));
 
   const [inputValue, setInputValue] = React.useState("");
+  const [label, setLabel] = React.useState('');
 
   const onChangeTextField = (e: { target: { value: React.SetStateAction<string>; }; }) => {
-    if (onChangeInput !== null)
-      props?.onChangeInput(e?.target?.value)
+    if (onChangeInput !== null) { onChangeInput(e?.target?.value) }
     setInputValue(e?.target?.value)
   }
 
   const option = options.find((x: any) => x.key == value)
 
   useEffect(() => {
-    const option = options.find((x: any) => x.key == value)
-    if (options.length === 0 && onChangeInput !== null && inputValue !== '') {
-      props?.onChangeInput()
+    if (value !== null && typeof value !== 'undefined' && inputValue !== label) {
       onChange(null)
-      setInputValue(inputValue)
-    }
-    else if (options.length !== 0 && onChangeInput !== null && inputValue !== '' && value !== null && typeof value !== 'undefined') {
-      if (option != null && typeof option !== 'undefined' && inputValue !== option?.label) {
-        onChange(null)
-        props?.onChangeInput(inputValue)
-      } else if (option != null || typeof option !== 'undefined') {
-        onChange(value)
-        setInputValue(option?.label)
-      } else {
-        props?.onChangeInput()
-        onChange(value)
-        setInputValue(inputValue)
-      }
-    } else if (inputValue === '' && (value !== null || typeof value !== 'undefined')) {
-      if (typeof option !== 'undefined') {
-        onChange(null)
-        props?.onChangeInput(inputValue)
-        setInputValue(inputValue)
-      }
     }
   }, [options])
+
+  useEffect(() => {
+    if (value?.key !== null && typeof value?.key !== 'undefined' && inputValue !== value?.label) {
+      onChange(value?.key)
+      onChangeInput(value?.label)
+      setInputValue(value?.label)
+      setLabel(value?.label)
+    }
+  }, [value])
 
   let classes = useStyles();
   return (
@@ -160,10 +147,13 @@ function AsyncAutocomplete(props: AsyncAutocompleteProps) {
         onChange={(e, newValue: any) => {
           if (newValue && newValue.key !== -1) {
             onChange(newValue.key)
+            setLabel(newValue?.label)
             setInputValue(newValue?.label)
           } else {
             onChange(null)
             setInputValue('')
+            setLabel('')
+            onChangeInput('')
           }
         }}
         filterOptions={(options, state) => options}
