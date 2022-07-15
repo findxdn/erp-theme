@@ -1,6 +1,6 @@
 import React from "react";
 import { IcRowDownWhite, IcUp } from "../../assets/icons/index";
-import styles from './ButtonSearch.Module.scss'
+import './ButtonSearch.scss'
 
 export interface ButtonSearchProps {
   onClick?: any;
@@ -27,7 +27,7 @@ function ButtonSearch(props: ButtonSearchProps) {
     isDown,
   } = props;
   return (
-    <div className={styles.buttonSelect}>
+    <div className="button-select-erp">
       <button
         type={type ?? "button"}
         disabled={disabled}

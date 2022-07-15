@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function RadioIcon(props) {
+export default function RadioIcon() {
   return (
     <svg
       width="21"
