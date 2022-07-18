@@ -122,7 +122,7 @@ export default function TagsInput(props: TagsInputProps) {
     },
   };
 
-  function handleInputChange(event) {
+  function handleInputChange(event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) {
     setInputValue(event.target.value);
   }
 

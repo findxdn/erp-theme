@@ -1,8 +1,8 @@
 import * as React from "react";
 import TextField, { TextFieldProps } from "@mui/material/TextField";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import DateTimePicker from "@mui/lab/DateTimePicker";
 import _ from "lodash";
 import { IcDateTime } from "../../assets/icons/index";
 import MessageError from "../../utils/MessageError";
