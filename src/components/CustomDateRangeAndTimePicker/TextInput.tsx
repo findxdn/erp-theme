@@ -1,15 +1,13 @@
-import React, { useState } from "react";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import _ from "lodash";
-import { IcEyeClose, IcEyeOpen } from "../../assets/icons/index";
+/* eslint-disable react/jsx-no-duplicate-props */
+import React, { useState } from 'react';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import _ from 'lodash';
+import { IconButton } from '@mui/material'
+import { IcDateTime } from "../../assets/icons/index";
 import MessageError from "../../utils/MessageError";
-import "./TextInput.scss";
 import { Tooltip } from '@mui/material';
 import { makeStyles } from "@material-ui/core";
-import InputAdornment from '@mui/material/InputAdornment';
-import { IconButton } from '@mui/material'
-import { Analytics } from "@mui/icons-material";
 
 export interface TextInputProps {
   name: string;
@@ -31,91 +29,76 @@ export interface TextInputProps {
   onKeyUp?: any;
   onKeyDown?: any;
   onKeyPress?: any;
-  onChangeType?: any;
-  _inputProps: any;
+  _inputProps?: any;
 }
 
-const TextInput = (props: TextInputProps) => {
+function TextInput(props: TextInputProps) {
   const {
     ref,
-    name,
     placeholder,
     value = '',
     onChange = () => { },
     readOnly = false,
     onBlur,
-    errors = null,
-    type = 'text',
     defaultValue = '',
-    isPassword = false,
-    isTooltip = false,
     className,
+    isTooltip,
     textAlign = 'left',
     onKeyUp,
     onKeyDown,
+    name,
     onKeyPress,
-    onChangeType = null,
     disabled = false,
+    errors,
   } = props;
 
   let showError = false;
 
-  let arr = name.split(".");
+  const arr = props?.name.split('.');
 
   let error = null
 
   if (arr.length >= 1 && errors !== null) {
-    let result = arr.reduce((rs, e) => {
+    const result = arr.reduce((rs?: any, e?: any) => {
       if (rs[e]) {
         return rs = rs[e]
       }
       return {}
-
     }, errors)
     error = result
     showError = !_.isEmpty(error);
   }
   const style = {
-    width: "100%",
+    width: '100%',
     fontSize: 14,
-    color: "#333333",
-    zIndex: "1",
-    "& .MuiInputBase-input": {
-      padding: "4px 10px",
-      "$ .MuiOutlinedInput-input": {
-        padding: "4px 10px",
+    color: '#333333',
+    zIndex: '1',
+    '& .MuiInputBase-input': {
+      padding: '4px 10px',
+      '$ .MuiOutlinedInput-input': {
+        padding: '4px 10px',
       },
       textAlign: { textAlign },
     },
-    "& .MuiOutlinedInput-root": {
-      borderRadius: "3px",
-      height: "32px",
-      width: "100%",
+    '& .MuiOutlinedInput-root': {
+      borderRadius: '3px',
+      height: '32px',
+      width: '100%',
       fontSize: 14,
-      color: "#333333",
-      zIndex: "1",
+      color: '#333333',
+      zIndex: '1',
       backgroundColor: `${(readOnly || disabled) ? '#e2e4e7' : '#ffffff'}`,
       paddingRight: '0px',
-      "& .MuiOutlinedInput-notchedOutline": {
+      '& .MuiOutlinedInput-notchedOutline': {
         border: `${(readOnly || disabled) ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#d8d7d7'}`,
       },
-      "&:hover .MuiOutlinedInput-notchedOutline": {
+      '&:hover .MuiOutlinedInput-notchedOutline': {
         border: `${(readOnly || disabled) ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#138300'}`,
       },
-      "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
         border: `${(readOnly || disabled) ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#138300'}`,
       },
     },
-  };
-
-  const [showPassword, setShowPassword] = useState(isPassword);
-
-  const handleOnclickIconRight = () => {
-    if (onChangeType !== null) {
-      props?.onChangeType();
-      return;
-    }
-    setShowPassword(!showPassword);
   };
 
   const useStyles = makeStyles((theme: any) => ({
@@ -140,7 +123,7 @@ const TextInput = (props: TextInputProps) => {
   let classes = useStyles();
 
   return (
-    <Box className={className} sx={{ width: "100%", padding: "0px" }}>
+    <Box className={className} sx={{ width: '100%', padding: '0px' }}>
       <Tooltip
         placement="bottom"
         arrow
@@ -156,35 +139,30 @@ const TextInput = (props: TextInputProps) => {
           {...props._props}
           disabled={disabled}
           inputProps={{
-            readOnly: readOnly,
+            readOnly,
             ...props._inputProps,
           }}
           InputProps={{
-            endAdornment: (isPassword || onChangeType !== null) ?
-              (
-                <IconButton
-                  onClick={handleOnclickIconRight}
-                  style={{
-                    height: '24px',
-                    width: '30px',
-                    padding: '2px 0px 2px 8px',
-                    marginRight: '3px',
-                  }}
-                >
-                  <InputAdornment position="start">
-                    {(showPassword || (onChangeType !== null && type === 'password')) ? <IcEyeClose /> : <IcEyeOpen />}
-                  </InputAdornment>
-                </IconButton>
-              ) : <></>
+            endAdornment:
+              <IconButton
+                style={{
+                  height: '28px',
+                  width: '28px',
+                  padding: '2px 0px 2px 0px',
+                  marginRight: '10px',
+                }}
+              >
+                <IcDateTime />
+              </IconButton>,
           }}
           sx={style}
-          name={name}
+          // name={name}
           onBlur={onBlur}
           onChange={onChange}
           ref={ref}
           value={value}
           defaultValue={defaultValue}
-          type={showPassword ? "password" : type}
+          // type={showPassword ? 'password' : type}
           error={showError}
           fullWidth
           placeholder={placeholder}
@@ -198,8 +176,8 @@ const TextInput = (props: TextInputProps) => {
           <MessageError type={error?.type} message={error?.message} />
         ) : <></>
       }
-    </Box >
+    </Box>
   );
-};
+}
 
 export default TextInput;

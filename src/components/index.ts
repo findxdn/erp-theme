@@ -25,3 +25,4 @@ export { default as SelectGroup } from './SelectGroup'
 export { default as TagsInput } from "./TagsInput"
 export { default as GroupSelect } from "./GroupSelect"
 export { default as CustomTimepicker } from "./CustomTimepicker"
+export { default as CustomDateRangeAndTimePicker } from "./CustomDateRangeAndTimePicker"
