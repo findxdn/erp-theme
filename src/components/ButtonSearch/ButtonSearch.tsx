@@ -10,8 +10,7 @@ export interface ButtonSearchProps {
   sx?: any;
   icon?: any;
   type?: any;
-  onClickBtnSearch?: any;
-  onClickBtnSelect?: any;
+  onClickBtn?: any;
   isDown?: any;
 }
 
@@ -19,34 +18,33 @@ function ButtonSearch(props: ButtonSearchProps) {
   const {
     type,
     sx,
-    onClickBtnSearch,
-    onClickBtnSelect,
+    onClickBtn,
     disabled,
     className,
     children,
     isDown,
   } = props;
+  const [isDownStatus, setIsDownStatus] = React.useState(isDown ?? false)
   return (
-    <div className="button-select-erp">
-      <button
-        type={type ?? "button"}
-        disabled={disabled}
-        style={sx}
-        onClick={onClickBtnSearch}
-        className={`btn-search ${!!className ? className : ""}`}
-      >
+    <button
+      type={type ?? 'button'}
+      disabled={disabled}
+      style={sx}
+      onClick={() => {
+        setIsDownStatus(!isDownStatus)
+        if (onClickBtn) {
+          onClickBtn()
+        }
+      }}
+      className="button-select-erp"
+    >
+      <div className={`btn-search ${!!className ? className : ''}`}>
         {children}
-      </button>
-      <button
-        type={type ?? "button"}
-        disabled={disabled}
-        style={sx}
-        onClick={onClickBtnSelect}
-        className={`btn-select ${!!className ? className : ""}`}
-      >
-        {isDown ? <IcRowDownWhite /> : <IcUp />}
-      </button>
-    </div>
+      </div>
+      <div className={`btn-select ${!!className ? className : ''}`}>
+        {isDownStatus ? <IcRowDownWhite /> : <IcUp />}
+      </div>
+    </button>
   );
 }
 
