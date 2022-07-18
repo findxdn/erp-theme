@@ -1,6 +1,6 @@
 {
-  "name": "@findxdn/erp-theme1",
-  "version": "0.0.115",
+  "name": "@findxdn/erp-theme",
+  "version": "0.0.131",
   "description": "A imple template for a custom React component library",
   "scripts": {
     "rollup": "rollup -c",
@@ -60,6 +60,8 @@
   ],
   "types": "dist/index.d.ts",
   "dependencies": {
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
     "@material-ui/core": "^4.12.4",
     "@material-ui/icons": "^4.11.3",
     "@mui/icons-material": "^5.4.2",
