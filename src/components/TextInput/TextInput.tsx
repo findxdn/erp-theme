@@ -6,7 +6,7 @@ import { IcEyeClose, IcEyeOpen } from "../../assets/icons/index";
 import MessageError from "../../utils/MessageError";
 import "./TextInput.scss";
 import { Tooltip } from '@mui/material';
-import { makeStyles } from "@material-ui/core";
+import { makeStyles } from "@mui/styles";
 import InputAdornment from '@mui/material/InputAdornment';
 import { IconButton } from '@mui/material'
 import { Analytics } from "@mui/icons-material";
@@ -108,7 +108,7 @@ const TextInput = (props: TextInputProps) => {
     },
   };
 
-  const [showPassword, setShowPassword] = useState(isPassword);
+  const [showPassword, setShowPassword] = React.useState(isPassword);
 
   const handleOnclickIconRight = () => {
     if (onChangeType !== null) {

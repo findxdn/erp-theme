@@ -6,7 +6,7 @@ import ExpandMoreSharpIcon from "@mui/icons-material/ExpandMoreSharp";
 import { Tooltip } from '@mui/material';
 import _ from "lodash";
 import MessageError from "../../utils/MessageError";
-import { makeStyles } from "@material-ui/core";
+import { makeStyles } from "@mui/styles";
 
 export interface CustomAutocompleteProps {
   name: string;

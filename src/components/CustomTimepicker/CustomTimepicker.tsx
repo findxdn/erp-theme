@@ -6,7 +6,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import MessageError from "../../utils/MessageError";
 import { Tooltip } from '@mui/material';
-import { makeStyles } from "@material-ui/core";
+import { makeStyles } from "@mui/styles";
 
 export interface CustomTimepickerProps {
   name?: string;

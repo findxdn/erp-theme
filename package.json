@@ -1,5 +1,5 @@
 {
-  "name": "@findxdn/erp-theme",
+  "name": "@findxdn/erp-theme1",
   "version": "0.0.131",
   "description": "A imple template for a custom React component library",
   "scripts": {
@@ -67,6 +67,7 @@
     "@mui/icons-material": "^5.4.2",
     "@mui/lab": "5.0.0-alpha.78",
     "@mui/material": "5.4.2",
+    "@mui/styles": "^5.9.0",
     "chart.js": "^3.7.1",
     "date-fns": "^2.28.0",
     "moment": "^2.29.1",

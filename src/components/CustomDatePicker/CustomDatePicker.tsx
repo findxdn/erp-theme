@@ -7,7 +7,7 @@ import _ from "lodash";
 import { IcDateTime } from "../../assets/icons/index";
 import MessageError from "../../utils/MessageError";
 import { Tooltip } from '@mui/material';
-import { makeStyles } from "@material-ui/core";
+import { makeStyles } from "@mui/styles";
 
 export interface CustomDatePickerProps {
   name?: string;
