@@ -50,7 +50,7 @@ const CustomDateRangeAndTimePicker = (props: CustomDateRangeAndTimePickerProps) 
         style={{ marginBottom: '20px' }}
       >
         <TextInput
-          value={value != null && typeof value !== 'undefined' ? formatDateRangeAndTimeText(value) : null}
+          value={value != null && typeof value !== 'undefined' ? formatDateRangeAndTimeText(value) : ''}
           onChange={() => { } }
           errors={errors}
           name={name}
