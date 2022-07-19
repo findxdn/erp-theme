@@ -212,7 +212,7 @@ const CustomDateRangeAndTimePicker = (props: CustomDateRangeAndTimePickerProps) 
       <Box className={classes.rightPanelContainer}>
         {/* TITLE */}
         <Typography variant="subtitle2" className={classes.title}>
-          Phạm vi ngày
+          Phạm vi ngày  
         </Typography>
 
         {/* DATE AND TIME PICKERS */}

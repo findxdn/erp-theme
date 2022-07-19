@@ -28,13 +28,13 @@ function ButtonSearch(props: ButtonSearchProps) {
   } = props;
   const [isDownStatus, setIsDownStatus] = React.useState(isDown ?? false)
   return (
-    <div className="button-select-erp">
+    <div className={`button-select-erp ${!!className ? className : ""}`} >
       <button
         type={type ?? "button"}
         disabled={disabled}
         style={sx}
         onClick={onClickBtnSearch}
-        className={`btn-search ${!!className ? className : ""}`}
+        className='btn-search'
       >
         {children}
       </button>
@@ -46,11 +46,11 @@ function ButtonSearch(props: ButtonSearchProps) {
           setIsDownStatus(!isDownStatus)
           if (onClickBtnSelect) onClickBtnSelect()
         }}
-        className={`btn-select ${!!className ? className : ""}`}
+        className='btn-select'
       >
         {isDownStatus ? <IcRowDownWhite /> : <IcUp />}
       </button>
-    </div>
+    </div >
   );
 }
 
