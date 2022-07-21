@@ -10,16 +10,19 @@ export interface TextLinkProps {
   className?: any;
   children?: any;
   onChange?: any;
+  rest?: any;
+  onClick?: any;
 }
 
 function TextLink(props: TextLinkProps) {
-  const { to, title, className, onChange, children, ...rest } = props;
+  const { to, title, className, onChange, children, onClick, ...rest } = props;
   onChange({ link: to, title: children });
   return (
     <BrowserRouter>
       <Link
-        to={to}
         {...rest}
+        to={to}
+        onClick={onClick}
         className={`findx-text-link ${className}`}
         title={title}
       >
