@@ -26,13 +26,16 @@ const CustomDateRangeAndTimePicker = (props: CustomDateRangeAndTimePickerProps) 
     errors,
     name,
     placeholder,
-    isWithTimePicker=false,
+    isWithTimePicker = false,
   } = props;
   const getThisWeekDateAndTime = () => [moment().startOf('day').toDate(), moment().endOf('day').toDate()];
 
   const [anchorEl, setAnchorEl] = useState(null);
 
   const formatDateRangeAndTimeText = (inputDateRangeAndTime: any) => {
+    if (inputDateRangeAndTime?.length <= 1) {
+      return ''
+    }
     const formatedDateRange = `${format(
       new Date(inputDateRangeAndTime[0]),
       'MM/dd/yyyy HH:mm aa',
@@ -52,7 +55,7 @@ const CustomDateRangeAndTimePicker = (props: CustomDateRangeAndTimePickerProps) 
         style={{ marginBottom: '20px' }}
       >
         <TextInput
-          value={value != null && typeof value !== 'undefined' ? formatDateRangeAndTimeText(value) : ''}
+          value={(value != null && typeof value !== 'undefined' && value != '') ? formatDateRangeAndTimeText(value) : ''}
           onChange={() => { }}
           errors={errors}
           name={name}
@@ -77,7 +80,8 @@ const CustomDateRangeAndTimePicker = (props: CustomDateRangeAndTimePickerProps) 
         <CustomDateRangeTimePicker
           value={value ?? getThisWeekDateAndTime()}
           handleSelectButtonClick={handleSelect1Click}
-          handleCancelButtonClick={() => setAnchorEl(null)} isWithTimePicker={isWithTimePicker} />
+          handleCancelButtonClick={() => setAnchorEl(null)} 
+          isWithTimePicker={isWithTimePicker} />
       </Menu>
     </Box>
   )

@@ -49,7 +49,7 @@ function TextInput(props: TextInputProps) {
     name,
     onKeyPress,
     disabled = false,
-    errors,
+    errors = null,
   } = props;
 
   let showError = false;
