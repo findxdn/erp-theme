@@ -8,6 +8,7 @@ export interface TextNoteProps {
   name: string;
   placeholder?: string;
   value?: any;
+  disabled?: any,
   onChange?: any;
   onBlur?: any;
   errors?: any;
@@ -21,19 +22,20 @@ export interface TextNoteProps {
 }
 
 const StyleTextArea = styled(({ ...rest }) => <textarea {...rest} />)(
-  ({ isError, maxHeight, minHeight }) => ({
+  ({ isError, maxHeight, minHeight, disabled }) => ({
     width: "100%",
     maxHeight: `${maxHeight}px`,
     minHeight: `${minHeight}px`,
     border: `1px solid ${isError ? "red" : "#d8d7d7"}`,
+    backgroundColor: `${(disabled) ? '#e2e4e7' : '#ffffff'}`,
     padding: "10px",
     borderRadius: "3px",
     "&:hover": {
-      borderColor: "#138300",
+      border: `${(disabled) ? '0px' : '1px'} solid ${(isError) ? '#FF0000' : '#d8d7d7'}`,
     },
     "&:focus": {
       outline: "none !important",
-      borderColor: "#138300",
+      border: `${(disabled) ? '0px' : '1px'} solid ${(isError) ? '#FF0000' : '#138300'}`,
     },
   })
 );
@@ -44,6 +46,7 @@ export default function TextNote(props: TextNoteProps) {
     name,
     errors = null,
     onChange,
+    disabled = false,
     value,
     onBlur,
     minHeight = 40,
@@ -77,6 +80,7 @@ export default function TextNote(props: TextNoteProps) {
         name={name}
         minHeight={minHeight}
         maxHeight={maxHeight}
+        disabled={disabled}
         value={value}
         defaultValue={defaultValue}
       />
