@@ -4,31 +4,18 @@ import { Link, BrowserRouter } from "react-router-dom";
 import "./TextLink.scss";
 
 export interface TextLinkProps {
-  [x: string]: any;
-  to: string;
+  url?:string;
   title?: string;
   className?: any;
   children?: any;
-  onChange?: any;
-  rest?: any;
-  onClick?: any;
 }
 
 function TextLink(props: TextLinkProps) {
-  const { to, title, className, onChange, children, onClick, ...rest } = props;
-  onChange({ link: to, title: children });
+  const { url, className, children } = props;
   return (
-    <BrowserRouter>
-      <Link
-        {...rest}
-        to={to}
-        onClick={onClick}
-        className={`findx-text-link ${className}`}
-        title={title}
-      >
-        <div>{children}</div>
-      </Link>
-    </BrowserRouter>
+    <a href={url} onClick={(e)=> e.preventDefault()}  className={`findx-text-link ${className}`}>
+        {children}
+    </a>
   );
 }
 
