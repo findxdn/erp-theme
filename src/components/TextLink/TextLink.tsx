@@ -8,12 +8,16 @@ export interface TextLinkProps {
   title?: string;
   className?: any;
   children?: any;
+  onClick?: any;
 }
 
 function TextLink(props: TextLinkProps) {
-  const { url, className, children } = props;
+  const { url, className, children, onClick = ()=>{} } = props;
   return (
-    <a href={url} onClick={(e)=> e.preventDefault()}  className={`findx-text-link ${className}`}>
+    <a href={url} onClick={(e)=> {
+      e.preventDefault();
+      onClick();
+    }}  className={`findx-text-link ${className}`}>
         {children}
     </a>
   );
