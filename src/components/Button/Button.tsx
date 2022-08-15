@@ -8,6 +8,8 @@ export interface ButtonProps {
   disabled?: any;
   sx?: any;
   icon?: any;
+  ref?: any,
+  _props?: any,
   type?: any;
 }
 
@@ -19,6 +21,8 @@ const Buttons = (props: ButtonProps) => {
     sx,
     disabled,
     icon,
+    ref,
+    _props,
     type = "button",
   } = props;
   return (
@@ -28,6 +32,8 @@ const Buttons = (props: ButtonProps) => {
       onClick={onClick}
       disabled={disabled}
       className={`button-default ${!!className ? className : ""}`}
+      ref={ref}
+      {...props._props}
     >
       {icon ? <span className="icon-style">{!!icon && icon}</span> : <></>}
       {children}
