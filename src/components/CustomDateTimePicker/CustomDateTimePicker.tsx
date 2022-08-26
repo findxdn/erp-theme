@@ -27,8 +27,7 @@ export interface CustomDateTimePickerProps {
   disabled?: any;
 }
 
-
-const CustomDateTimePicker = (props: CustomDateTimePickerProps) => {
+const CustomDateTimePicker = React.forwardRef((props: CustomDateTimePickerProps, ref) => {
   const {
     register,
     errors = null,
@@ -41,7 +40,6 @@ const CustomDateTimePicker = (props: CustomDateTimePickerProps) => {
     placeholder,
     onBlur,
     value,
-    ref,
     disabled = false,
   } = props;
 
@@ -160,6 +158,6 @@ const CustomDateTimePicker = (props: CustomDateTimePickerProps) => {
       )}
     </LocalizationProvider>
   );
-};
+});
 
 export default CustomDateTimePicker;

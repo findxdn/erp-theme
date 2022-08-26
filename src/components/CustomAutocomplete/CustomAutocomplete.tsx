@@ -29,7 +29,7 @@ export interface CustomAutocompleteProps {
   noOptionsText?: any;
 }
 
-function CustomAutocomplete(props: CustomAutocompleteProps) {
+const CustomAutocomplete = React.forwardRef((props: CustomAutocompleteProps, ref) => {
   const {
     placeholder,
     options = [],
@@ -41,7 +41,6 @@ function CustomAutocomplete(props: CustomAutocompleteProps) {
     styles,
     className,
     disabled = false,
-    ref,
     isTooltip = false,
     inputRef,
     onChangeInput = null,
@@ -181,6 +180,6 @@ function CustomAutocomplete(props: CustomAutocompleteProps) {
       )}
     </>
   );
-}
+})
 
 export default CustomAutocomplete;

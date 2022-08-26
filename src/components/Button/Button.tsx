@@ -13,7 +13,7 @@ export interface ButtonProps {
   type?: any;
 }
 
-const Buttons = (props: ButtonProps) => {
+const Buttons = React.forwardRef((props: ButtonProps, ref) => {
   const {
     onClick,
     children,
@@ -21,7 +21,6 @@ const Buttons = (props: ButtonProps) => {
     sx,
     disabled,
     icon,
-    ref,
     _props,
     type = "button",
   } = props;
@@ -39,6 +38,6 @@ const Buttons = (props: ButtonProps) => {
       {children}
     </Button>
   );
-};
+})
 
 export default Buttons;

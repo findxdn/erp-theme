@@ -34,7 +34,7 @@ const MenuProps = {
   },
 };
 
-function SelectInput(props: SelectInputProps) {
+const SelectInput = React.forwardRef((props: SelectInputProps, ref) => {
   const {
     options,
     placeholder,
@@ -44,7 +44,6 @@ function SelectInput(props: SelectInputProps) {
     onChange,
     className,
     onBlur,
-    ref = null,
     disabled = false,
     isTooltip = false,
   } = props;
@@ -174,6 +173,6 @@ function SelectInput(props: SelectInputProps) {
       </FormControl>
     </div>
   );
-}
+})
 
 export default SelectInput;
