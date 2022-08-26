@@ -27,6 +27,7 @@ export interface CustomDatePickerProps {
   disabled?: any;
   disableFuture?: any;
   disablePast?: any;
+  disableHighlightToday?: any;
 }
 
 const CustomDatePicker = (props: CustomDatePickerProps) => {
@@ -45,6 +46,7 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
     disabled = false,
     disableFuture= false,
     disablePast = false,
+    disableHighlightToday = false,
     isOpenTabelSetDate = true,
   } = props;
 
@@ -130,6 +132,7 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
         disabled={disabled}
         disablePast={disablePast}
         disableFuture={disableFuture}
+        disableHighlightToday={disableHighlightToday}
         inputFormat={inputFormat}
         renderInput={(params) => {
           return (
