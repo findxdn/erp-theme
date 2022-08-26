@@ -31,8 +31,7 @@ export interface AsyncAutocompleteProps {
   onChangeInput?: any;
   noOptionsText?: any;
 }
-
-function AsyncAutocomplete(props: AsyncAutocompleteProps) {
+const AsyncAutocomplete = React.forwardRef((props: AsyncAutocompleteProps, ref) => {
   const {
     placeholder,
     options = [],
@@ -44,7 +43,6 @@ function AsyncAutocomplete(props: AsyncAutocompleteProps) {
     styles,
     className,
     disabled = false,
-    ref,
     isTooltip = false,
     inputRef,
     onChangeInput = null,
@@ -136,6 +134,9 @@ function AsyncAutocomplete(props: AsyncAutocompleteProps) {
       setInputValue(value?.label)
       setLabel(value?.label)
     }
+    if (value?.key === '' && value?.label === '') {
+      onChange(null)
+    }
   }, [value])
 
   let classes = useStyles();
@@ -144,7 +145,10 @@ function AsyncAutocomplete(props: AsyncAutocompleteProps) {
       <Autocomplete
         {...props._props}
         noOptionsText={noOptionsText}
-        value={options.find((x: any) => x.key == value) ?? null}
+        value={
+          options.find((x: any) => (x.key == value?.key && value?.key !== '' && typeof value?.key !== 'undefined')
+          || (x.key == value && value !== '' && typeof value !== 'undefined')) ?? null
+        }
         onChange={(e, newValue: any) => {
           if (newValue && newValue.key !== -1) {
             onChange(newValue.key)
@@ -240,6 +244,6 @@ function AsyncAutocomplete(props: AsyncAutocompleteProps) {
       )}
     </>
   );
-}
+})
 
 export default AsyncAutocomplete;

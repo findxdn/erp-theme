@@ -28,8 +28,7 @@ export interface GroupSelectProps {
   noOptionsText?: any;
 }
 
-
-export default function GroupSelect(props: GroupSelectProps) {
+const GroupSelect = React.forwardRef((props: GroupSelectProps, ref) => {
   const {
     placeholder,
     options = [],
@@ -41,7 +40,6 @@ export default function GroupSelect(props: GroupSelectProps) {
     styles,
     className,
     disabled = false,
-    ref,
     isTooltip = false,
   } = props;
   let showError = false;
@@ -152,5 +150,6 @@ export default function GroupSelect(props: GroupSelectProps) {
       )}
     </>
   );
-}
+})
 
+export default GroupSelect;

@@ -35,9 +35,8 @@ export interface TextInputProps {
   _inputProps: any;
 }
 
-const TextInput = (props: TextInputProps) => {
+const TextInput = React.forwardRef((props: TextInputProps, ref) => {
   const {
-    ref,
     name,
     placeholder,
     value = '',
@@ -200,6 +199,6 @@ const TextInput = (props: TextInputProps) => {
       }
     </Box >
   );
-};
+})
 
 export default TextInput;
