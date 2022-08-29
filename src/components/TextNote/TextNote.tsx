@@ -18,6 +18,7 @@ export interface TextNoteProps {
   minHeight?: any;
   maxHeight?: any;
   className?: string;
+  ref?: string;
   _props?: any;
 }
 
@@ -40,7 +41,7 @@ const StyleTextArea = styled(({ ...rest }) => <textarea {...rest} />)(
   })
 );
 
-export default function TextNote(props: TextNoteProps) {
+const TextNote = React.forwardRef((props: TextNoteProps, ref) => {
   const {
     placeholder,
     name,
@@ -89,4 +90,6 @@ export default function TextNote(props: TextNoteProps) {
       )}
     </Box>
   );
-}
+})
+
+export default TextNote
