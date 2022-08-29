@@ -26,6 +26,7 @@ export interface CustomDatePickerProps {
   value?: any;
   isOpenTabelSetDate?: any;
   disabled?: any;
+  disabledText?: any;
   disableFuture?: any;
   disablePast?: any;
   disableHighlightToday?: any;
