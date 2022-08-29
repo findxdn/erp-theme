@@ -8,6 +8,7 @@ import { IcDateTime } from "../../assets/icons/index";
 import MessageError from "../../utils/MessageError";
 import { Tooltip } from '@mui/material';
 import { makeStyles } from "@mui/styles";
+import { useClickAway } from "react-use";
 
 export interface CustomDatePickerProps {
   name?: string;
@@ -40,6 +41,7 @@ const CustomDatePicker = React.forwardRef((props: CustomDatePickerProps, ref) =>
     onChange,
     onBlur,
     disabled = false,
+    disabledText = false,
     isOpenTabelSetDate = true,
   } = props;
 
@@ -110,8 +112,12 @@ const CustomDatePicker = React.forwardRef((props: CustomDatePickerProps, ref) =>
   }));
 
   let classes = useStyles();
+
+  const refs = React.useRef(null);
+  useClickAway(refs, () => {
+  });
   return (
-    <LocalizationProvider dateAdapter={AdapterDateFns}>
+    <LocalizationProvider dateAdapter={AdapterDateFns} ref={refs}>
       <DatePicker
         {...props._props}
         value={props?.value}
@@ -143,6 +149,7 @@ const CustomDatePicker = React.forwardRef((props: CustomDatePickerProps, ref) =>
                 className={className}
                 error={showError}
                 fullWidth
+                disabled={disabledText}
                 sx={styled ? styled : style}
                 inputProps={{
                   ...params.inputProps,

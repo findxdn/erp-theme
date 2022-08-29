@@ -6,6 +6,7 @@ import { Tooltip } from '@mui/material';
 import ExpandMoreSharpIcon from "@mui/icons-material/ExpandMoreSharp";
 import MessageError from "../../utils/MessageError";
 import _ from 'lodash';
+import { useClickAway } from "react-use";
 
 export interface GroupSelectProps {
   name: string;
@@ -102,9 +103,11 @@ const GroupSelect = React.forwardRef((props: GroupSelectProps, ref) => {
   }));
 
   let classes = useStyles();
-
+  const refs = React.useRef(null);
+  useClickAway(refs, () => {
+  });
   return (
-    <>
+    <div ref={refs}>
       <Autocomplete
         {...props._props}
         value={options.find((x: { key: any; }) => x.key == value) ?? null}
@@ -148,7 +151,7 @@ const GroupSelect = React.forwardRef((props: GroupSelectProps, ref) => {
       {(error?.message && !isTooltip) && (
         <MessageError type={error?.type} message={error?.message} />
       )}
-    </>
+    </div>
   );
 })
 

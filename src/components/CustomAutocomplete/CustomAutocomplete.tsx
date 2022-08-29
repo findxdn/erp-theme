@@ -7,6 +7,7 @@ import { Tooltip } from '@mui/material';
 import _ from "lodash";
 import MessageError from "../../utils/MessageError";
 import { makeStyles } from "@mui/styles";
+import { useClickAway } from "react-use";
 
 export interface CustomAutocompleteProps {
   name: string;
@@ -124,8 +125,11 @@ const CustomAutocomplete = React.forwardRef((props: CustomAutocompleteProps, ref
       .replace(/Đ/g, "D");
   }
   let classes = useStyles();
+  const refs = React.useRef(null);
+  useClickAway(refs, () => {
+  });
   return (
-    <>
+    <div ref={refs}>
       <Autocomplete
         {...props._props}
         noOptionsText={noOptionsText}
@@ -178,7 +182,7 @@ const CustomAutocomplete = React.forwardRef((props: CustomAutocompleteProps, ref
       {(error?.message && !isTooltip) && (
         <MessageError type={error?.type} message={error?.message} />
       )}
-    </>
+    </div>
   );
 })
 
