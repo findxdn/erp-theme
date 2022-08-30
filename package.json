@@ -1,6 +1,6 @@
 {
   "name": "@findxdn/erp-theme",
-  "version": "0.0.146",
+  "version": "0.0.147",
   "description": "A imple template for a custom React component library",
   "scripts": {
     "rollup": "rollup -c",
@@ -74,6 +74,7 @@
     "react-chartjs-2": "^4.2.0",
     "react-lazyload": "^3.2.0",
     "react-router": "^5.2.0",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "react-select": "^5.4.0"
   }
 }

@@ -1,0 +1,53 @@
+.TextInput {
+    input {
+        border-radius: 3px;
+        height: 32px;
+        width: 100%;
+        font-size: 14px;
+        color: #333333;
+        z-index: 1;
+        background-color: #ffffff;
+        padding-right: 0px;
+        outline: none;
+        border: 1px solid #d8d7d7;
+        text-indent: 8px;
+
+        &:focus {
+            border-color: #138300;
+        }
+
+        &::placeholder {
+            /* Chrome, Firefox, Opera, Safari 10.1+ */
+            color: #C7C7C7;
+            opacity: 1;
+            /* Firefox */
+        }
+
+        &.error {
+            border-color: red;
+        }
+        &:disabled{
+            background-color: #e2e4e7
+        }
+    }
+
+}
+
+.arrow {
+    &:before {
+        border: 1px solid #FF0000;
+        color: #ffffff;
+    }
+}
+
+.tooltip {
+    font-size: 14px !important;
+    background-color: #ffffff !important;
+    border-radius: 3px;
+    border: 1px solid #FF0000;
+    margin-top: 10px !important;
+
+    &.p {
+        margin-top: 0px !important;
+    }
+}
