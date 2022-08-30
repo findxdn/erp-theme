@@ -5,7 +5,7 @@ import Select from 'react-select';
 import MessageError from '../../utils/MessageError';
 import styles from "./Select.module.scss"
 
-export interface CustomAutocompleteProps {
+export interface CustomSelectProps {
     name: string;
     className?: string;
     placeholder?: any;
@@ -30,7 +30,7 @@ export interface CustomAutocompleteProps {
     noOptionsMessage?: any;
     isSearchable?: any;
   }
-const CustomSelect = React.forwardRef((props: CustomAutocompleteProps, ref) => {
+const CustomSelect = React.forwardRef((props: CustomSelectProps, ref) => {
     const {
         escapeClearsValue = true,
         placeholder = "Chọn",

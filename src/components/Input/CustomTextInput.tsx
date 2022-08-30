@@ -5,7 +5,7 @@ import MessageError from '../../utils/MessageError';
 import styles from "./TextInput.module.scss";
 import React from 'react';
 
-export interface TextInputProps {    
+export interface CustomTextInputProps {    
     name: string;
     placeholder?: any;
     ref?: any;
@@ -28,7 +28,7 @@ export interface TextInputProps {
     onChangeType?: any;
     _inputProps: any;
 }
-const CustomTextInput = React.forwardRef((props: TextInputProps, ref) {
+const CustomTextInput = React.forwardRef((props: CustomTextInputProps, ref) => {
     const {
         name,
         placeholder,
