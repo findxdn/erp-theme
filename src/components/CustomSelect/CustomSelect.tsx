@@ -149,7 +149,14 @@ const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
                             setIsClearable(false);
                         }}
                         placeholder={placeholder}
-                        onChange={onChange}
+                        onChange={(e) => {
+                            if ( typeof e === 'undefined'){
+                                onChange(null)
+                                return
+                            }
+                            onChange(e)
+                        }
+                        }
                         escapeClearsValue={escapeClearsValue}
                         isSearchable={isSearchable}
                         noOptionsMessage={noOptionsMessage}
