@@ -18,6 +18,7 @@ export interface CustomSelectProps {
     _props?: any;
     ref?: any;
     value?: any;
+    fieldref?: any;
     isTooltip?: any;
     disabled?: any;
     isSearchOpitons?: any;
@@ -30,7 +31,7 @@ export interface CustomSelectProps {
     isSearchable?: any;
     
   }
-const CustomSelect = React.forwardRef((props: CustomSelectProps, ref) => {
+const CustomSelect = (props: CustomSelectProps) => {
     const {
         escapeClearsValue = true,
         placeholder = "Chọn",
@@ -41,6 +42,7 @@ const CustomSelect = React.forwardRef((props: CustomSelectProps, ref) => {
         name = 'custom-select-name',
         disabled = false,
         value,
+        fieldref = null,
         options = [],
         isClearable = true,
         isMulti = false,
@@ -117,7 +119,7 @@ const CustomSelect = React.forwardRef((props: CustomSelectProps, ref) => {
                 <div>
                     <Select
                         name={name}
-                        ref={ref}
+                        ref={fieldref}
                         className={styles["select"]}
                         options={props.options} styles={{
                             menu: base => ({ ...base, zIndex: 2 }),

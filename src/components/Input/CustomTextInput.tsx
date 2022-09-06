@@ -24,11 +24,12 @@ export interface CustomTextInputProps {
     textAlign?: any;
     onKeyUp?: any;
     onKeyDown?: any;
+    fieldref?: any,
     onKeyPress?: any;
     onChangeType?: any;
     _inputProps: any;
 }
-const CustomTextInput = React.forwardRef((props: CustomTextInputProps, ref) => {
+const CustomTextInput = (props: CustomTextInputProps) => {
     const {
         name,
         placeholder,
@@ -45,6 +46,7 @@ const CustomTextInput = React.forwardRef((props: CustomTextInputProps, ref) => {
         textAlign = 'left',
         onKeyUp,
         onKeyDown,
+        fieldref = null,
         onKeyPress,
         onChangeType = null,
         disabled = false,
@@ -82,9 +84,9 @@ const CustomTextInput = React.forwardRef((props: CustomTextInputProps, ref) => {
                     />
                 ) : ""}>
                 <input 
+                    name={name}
                     disabled={disabled}  
-                    name={name} 
-                    ref={ref} 
+                    ref={fieldref} 
                     type="text" {...props} 
                     className={`${showError ? styles["error"] : styles["success"]}`} 
                 />
@@ -96,6 +98,6 @@ const CustomTextInput = React.forwardRef((props: CustomTextInputProps, ref) => {
             }
         </div>
     )
-})
+}
 
 export default CustomTextInput;
