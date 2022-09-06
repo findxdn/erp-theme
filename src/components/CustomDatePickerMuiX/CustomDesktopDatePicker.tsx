@@ -122,7 +122,7 @@ const CustomDesktopDatePicker = (props: CustomDesktopDatePickerProps) => {
       <DesktopDatePicker
         {...props._props}
         value={props?.value}
-        onChange={(e) => { if (e != null && typeof e != "undefined") props.onChange(e) }}
+        onChange={props?.onChange}
         open={open}
         onOpen={() => setOpen(true)}
         onClose={() => setOpen(false)}

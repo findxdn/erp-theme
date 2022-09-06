@@ -20,7 +20,6 @@ export interface CustomSelectProps {
     value?: any;
     isTooltip?: any;
     disabled?: any;
-    inputRef?: any;
     isSearchOpitons?: any;
     onChangeInput?: any;
     noOptionsText?: any;
@@ -29,6 +28,7 @@ export interface CustomSelectProps {
     escapeClearsValue?: any;
     noOptionsMessage?: any;
     isSearchable?: any;
+    
   }
 const CustomSelect = React.forwardRef((props: CustomSelectProps, ref) => {
     const {
@@ -78,6 +78,28 @@ const CustomSelect = React.forwardRef((props: CustomSelectProps, ref) => {
         }
 
     }
+
+    const [ clearable, setIsClearable] = React.useState(true);
+
+    const ClearIndicatorDemo = (props: any) => {
+        const {
+            innerProps: { ref, ...restInnerProps },
+        } = props;
+    
+        return (
+            <div
+                {...restInnerProps}
+                ref={ref}
+                style={{display: `${clearable ? '' : 'none'}`,}}
+            >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fillRule="evenodd" clipRule="evenodd" d="M6.46967 6.46967C6.76256 6.17678 7.23744 6.17678 7.53033 6.46967L17.5303 16.4697C17.8232 16.7626 17.8232 17.2374 17.5303 17.5303C17.2374 17.8232 16.7626 17.8232 16.4697 17.5303L6.46967 7.53033C6.17678 7.23744 6.17678 6.76256 6.46967 6.46967Z" fill="#707070"/>
+                    <path fillRule="evenodd" clipRule="evenodd" d="M17.5303 6.46967C17.8232 6.76256 17.8232 7.23744 17.5303 7.53033L7.53033 17.5303C7.23744 17.8232 6.76256 17.8232 6.46967 17.5303C6.17678 17.2374 6.17678 16.7626 6.46967 16.4697L16.4697 6.46967C16.7626 6.17678 17.2374 6.17678 17.5303 6.46967Z" fill="#707070"/>
+                </svg>
+            </div>
+        );
+    };
+    
     return (
         <div className={styles["CustomSelect"]}>
             <Tooltip
@@ -116,7 +138,13 @@ const CustomSelect = React.forwardRef((props: CustomSelectProps, ref) => {
                             singleValue: base => ({ ...base, fontWeight: 400, color: '#333333', textAlign: 'left' }),
                             indicatorSeparator: base => ({ ...base, width: 0 }),
                             indicatorsContainer: base => ({ ...base, minHeight: 32, height: 32}),
-                            clearIndicator: base => ({ ...base, padding: 0}),
+                        }}
+                        components={{ ClearIndicator: ClearIndicatorDemo}}
+                        onMenuOpen={() => {
+                            setIsClearable(true);
+                        }}
+                        onMenuClose={() => {
+                            setIsClearable(false);
                         }}
                         placeholder={placeholder}
                         onChange={onChange}

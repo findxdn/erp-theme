@@ -58,7 +58,7 @@ function ButtonSearch(props: ButtonSearchProps) {
         type={typeButton ?? "button"}
         disabled={disabledButton}
         style={sxButton}
-        refButton={refButton}
+        ref={refButton}
         onClick={() => {
           setIsDownStatus(!isDownStatus)
           if (onClickBtnSelect) onClickBtnSelect()
