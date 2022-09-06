@@ -29,7 +29,7 @@ export interface CustomTextInputProps {
     onChangeType?: any;
     _inputProps: any;
 }
-const CustomTextInput = (props: CustomTextInputProps) => {
+const CustomTextInput = React.forwardRef((props: CustomTextInputProps, ref) => {
     const {
         name,
         placeholder,
@@ -86,7 +86,7 @@ const CustomTextInput = (props: CustomTextInputProps) => {
                 <input 
                     name={name}
                     disabled={disabled}  
-                    ref={fieldref} 
+                    ref={fieldref !== null ? fieldref : ref}
                     type="text" {...props} 
                     className={`${showError ? styles["error"] : styles["success"]}`} 
                 />
@@ -98,6 +98,6 @@ const CustomTextInput = (props: CustomTextInputProps) => {
             }
         </div>
     )
-}
+})
 
 export default CustomTextInput;

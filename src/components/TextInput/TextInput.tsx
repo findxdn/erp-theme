@@ -96,13 +96,13 @@ const TextInput = React.forwardRef((props: TextInputProps, ref) => {
       backgroundColor: `${(readOnly || disabled) ? '#e2e4e7' : '#ffffff'}`,
       paddingRight: '0px',
       "& .MuiOutlinedInput-notchedOutline": {
-        border: `1px solid ${(showError) ? '#FF0000' : '#d8d7d7'}`,
+        border: `${(readOnly || disabled) ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#d8d7d7'}`,
       },
       "&:hover .MuiOutlinedInput-notchedOutline": {
-        border: `1px solid ${(showError) ? '#FF0000' : '#138300'}`,
+        border: `${(readOnly || disabled) ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#138300'}`,
       },
       "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-        border: `1px ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#138300'}`,
+        border: `${(readOnly || disabled) ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#138300'}`,
       },
     },
   };

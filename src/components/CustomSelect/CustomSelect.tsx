@@ -31,7 +31,7 @@ export interface CustomSelectProps {
     isSearchable?: any;
     
   }
-const CustomSelect = (props: CustomSelectProps) => {
+const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
     const {
         escapeClearsValue = true,
         placeholder = "Chọn",
@@ -119,7 +119,7 @@ const CustomSelect = (props: CustomSelectProps) => {
                 <div>
                     <Select
                         name={name}
-                        ref={fieldref}
+                        ref={fieldref !== null ? fieldref : ref}
                         className={styles["select"]}
                         options={props.options} styles={{
                             menu: base => ({ ...base, zIndex: 2 }),
