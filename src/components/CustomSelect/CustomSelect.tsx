@@ -81,7 +81,7 @@ const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
 
     }
 
-    const [ clearable, setIsClearable] = React.useState(true);
+    const [ clearable, setIsClearable] = React.useState(false);
 
     const ClearIndicatorDemo = (props: any) => {
         const {
