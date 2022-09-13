@@ -3,7 +3,7 @@ import TextField from "@mui/material/TextField";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import _ from "lodash";
-import { IcDateTime } from "../../assets/icons/index";
+import { IconClock } from "../../assets/icons/index";
 import MessageError from "../../utils/MessageError";
 import { Tooltip } from '@mui/material';
 import { makeStyles } from "@mui/styles";
@@ -127,7 +127,7 @@ const CustomTimePickerX = (props: CustomTimePickerXProps) => {
         onOpen={() => setOpen(true)}
         onClose={() => setOpen(false)}
         components={{
-          OpenPickerIcon: IcDateTime,
+          OpenPickerIcon: IconClock,
         }}
         disabled={disabled}
         disablePast={disablePast}
