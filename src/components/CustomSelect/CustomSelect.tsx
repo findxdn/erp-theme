@@ -3,7 +3,7 @@ import _ from 'lodash';
 import React from 'react';
 import Select from 'react-select';
 import MessageError from '../../utils/MessageError';
-import styles from "./Select.module.scss"
+import SelectStyles from "./Select.module.scss"
 
 export interface CustomSelectProps {
     name: string;
@@ -29,7 +29,8 @@ export interface CustomSelectProps {
     escapeClearsValue?: any;
     noOptionsMessage?: any;
     isSearchable?: any;
-    
+    menuPortalTarget?: any;
+
   }
 const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
     const {
@@ -46,6 +47,9 @@ const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
         options = [],
         isClearable = true,
         isMulti = false,
+        _props,
+        styles = {},
+        menuPortalTarget,
     } = props
     const onChange = (val: { key: any; map: (arg0: (x: any) => any) => any; }) => {
         if (!isMulti) {
@@ -103,11 +107,11 @@ const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
     };
     
     return (
-        <div className={styles["CustomSelect"]}>
+        <div className={SelectStyles["CustomSelect"]}>
             <Tooltip
                 placement="bottom"
                 arrow
-                classes={{ arrow: styles["arrow"], tooltip: styles["tooltip"] }}
+                classes={{ arrow: SelectStyles["arrow"], tooltip: SelectStyles["tooltip"] }}
                 title={(showError && isTooltip) ? (
                     <MessageError
                         type={error?.type}
@@ -120,8 +124,9 @@ const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
                     <Select
                         name={name}
                         ref={fieldref !== null ? fieldref : ref}
-                        className={styles["select"]}
-                        options={props.options} styles={{
+                        className={SelectStyles["select"]}
+                        options={props.options} 
+                        styles={{
                             menu: base => ({ ...base, zIndex: 2 }),
                             control: base => ({
                                 ...base, minHeight: 32, height: 32, borderRadius: 3, border: `1px solid ${showError ? "red" : "#d8d7d7"}`,
@@ -140,6 +145,7 @@ const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
                             singleValue: base => ({ ...base, fontWeight: 400, color: '#333333', textAlign: 'left' }),
                             indicatorSeparator: base => ({ ...base, width: 0 }),
                             indicatorsContainer: base => ({ ...base, minHeight: 32, height: 32}),
+                            ...styles,
                         }}
                         components={{ ClearIndicator: ClearIndicatorDemo}}
                         onMenuOpen={() => {
@@ -164,6 +170,8 @@ const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
                         value={getValue()}
                         isClearable={isClearable}
                         isMulti={isMulti}
+                        menuPortalTarget={menuPortalTarget}
+                        {..._props}
                     />
                 </div>
             </Tooltip>
