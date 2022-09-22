@@ -78,7 +78,12 @@ const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
     }
     const getValue = () => {
         if (!isMulti) {
-            return options?.find((x: { key: any; }) => x?.key == value);
+            // return options?.find((x: { key: any; }) => x?.key == value);
+            let indexValue = options?.findIndex((x: { key: any; }) => x?.key == value);
+            if(indexValue != -1){
+                return options[indexValue];
+            }
+            return null;
         } else {
             return options?.filter((x: { key: any; }) => value.includes(Number.parseInt(x.key)));
         }
