@@ -30,6 +30,7 @@ export interface CustomSelectProps {
     noOptionsMessage?: any;
     isSearchable?: any;
     menuPortalTarget?: any;
+    group?: any;
 
   }
 const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
@@ -50,6 +51,7 @@ const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
         _props,
         styles = {},
         menuPortalTarget,
+        group
     } = props
     const onChange = (val: { key: any; map: (arg0: (x: any) => any) => any; }) => {
         if (!isMulti) {
@@ -78,12 +80,22 @@ const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
     }
     const getValue = () => {
         if (!isMulti) {
-            // return options?.find((x: { key: any; }) => x?.key == value);
-            let indexValue = options?.findIndex((x: { key: any; }) => x?.key == value);
-            if(indexValue != -1){
-                return options[indexValue];
+            if(group){
+                let object = null;
+                options?.map((v: {key: any})=>{
+                    let indexValue = v?.options?.findIndex((x:  {key: any}) => x?.key == value);
+                    if(indexValue != -1){
+                        object =  v?.options[indexValue];
+                    }
+                })
+                return object;
+            }else{
+                let indexValue = options?.findIndex((x: { key: any; }) => x?.key == value);
+                if(indexValue != -1){
+                    return options[indexValue];
+                }
+                return null;
             }
-            return null;
         } else {
             return options?.filter((x: { key: any; }) => value.includes(Number.parseInt(x.key)));
         }
