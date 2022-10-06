@@ -7,7 +7,7 @@ import { Tooltip } from '@mui/material';
 import _ from "lodash";
 import MessageError from "../../utils/MessageError";
 import { makeStyles } from "@mui/styles";
-
+import IconDropDownForm from '../../assets/icons/system/ic-drop-down-form'
 export interface CustomAutocompleteProps {
   name: string;
   className?: string;
@@ -27,6 +27,7 @@ export interface CustomAutocompleteProps {
   isSearchOpitons?: any;
   onChangeInput?: any;
   noOptionsText?: any;
+  popupIcon?: any;
 }
 
 const CustomAutocomplete = React.forwardRef((props: CustomAutocompleteProps, ref) => {
@@ -46,6 +47,7 @@ const CustomAutocomplete = React.forwardRef((props: CustomAutocompleteProps, ref
     onChangeInput = null,
     isSearchOpitons = false,
     noOptionsText = 'Không có dữ liệu',
+    popupIcon = <IconDropDownForm />
   } = props;
 
   let showError = false;
@@ -146,7 +148,7 @@ const CustomAutocomplete = React.forwardRef((props: CustomAutocompleteProps, ref
         className={className}
         defaultValue={defaultValue}
         options={options}
-        popupIcon={<ExpandMoreSharpIcon />}
+        popupIcon={popupIcon}
         renderInput={(params) => {
           const inputProps = params.inputProps;
           inputProps.autoComplete = "off";
