@@ -1,7 +1,7 @@
 import { Tooltip } from '@mui/material';
 import _ from 'lodash';
 import React from 'react';
-import Select from 'react-select';
+import Select, {components} from 'react-select';
 import MessageError from '../../utils/MessageError';
 import SelectStyles from "./Select.module.scss"
 
@@ -31,6 +31,8 @@ export interface CustomSelectProps {
     isSearchable?: any;
     menuPortalTarget?: any;
     group?: any;
+    maxToShowProps?: any;
+    hideSelectedOptions?:any
 
   }
 const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
@@ -51,7 +53,9 @@ const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
         _props,
         styles = {},
         menuPortalTarget,
-        group
+        group,
+        hideSelectedOptions = false,
+        maxToShowProps = 10
     } = props
     const onChange = (val: { key: any; map: (arg0: (x: any) => any) => any; }) => {
         if (!isMulti) {
@@ -122,6 +126,44 @@ const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
             </div>
         );
     };
+
+    const MultiValue = ({ index , getValue, ...props }) => {
+        const maxToShow = maxToShowProps;
+        const overflow = getValue()
+            .slice(maxToShow)
+            .map((x) => x.label);
+
+        return index < maxToShow ? (
+            <components.MultiValue {...props} />
+        ) : index === maxToShow ? (
+            <MoreSelectedBadge items={overflow} />
+        ) : null;
+    };
+    const MoreSelectedBadge = ({ items }) => {
+        const style = {
+            marginLeft: "auto",
+            background: "#d4eefa",
+            borderRadius: "4px",
+            fontSize: "11px",
+            padding: "3px",
+            order: 99
+        };
+
+        const title = items.join(", ");
+        const length = items.length;
+        const label = `+ ${length}`;
+
+        return (
+            <div style={style} title={title}>
+                {label}
+            </div>
+        );
+    };
+
+    let MultiValueProps = {};
+    if (isMulti) {
+        MultiValueProps = MultiValue;
+    }
     
     return (
         <div className={SelectStyles["CustomSelect"]}>
@@ -164,7 +206,7 @@ const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
                             indicatorsContainer: base => ({ ...base, minHeight: 32, height: 32}),
                             ...styles,
                         }}
-                        components={{ ClearIndicator: ClearIndicatorDemo}}
+                        components={{ ClearIndicator: ClearIndicatorDemo, MultiValue: MultiValueProps}}
                         onMenuOpen={() => {
                             setIsClearable(true);
                         }}
@@ -188,6 +230,7 @@ const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
                         isClearable={isClearable}
                         isMulti={isMulti}
                         menuPortalTarget={menuPortalTarget}
+                        hideSelectedOptions={hideSelectedOptions}
                         {..._props}
                     />
                 </div>
