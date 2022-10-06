@@ -47,7 +47,11 @@ const CustomAutocomplete = React.forwardRef((props: CustomAutocompleteProps, ref
     onChangeInput = null,
     isSearchOpitons = false,
     noOptionsText = 'Không có dữ liệu',
+<<<<<<< HEAD
     popupIcon = <IconDropDownForm />
+=======
+    popupIcon = <IconDropDownFormSelect />
+>>>>>>> 5f172cd3344bfa75ef7290f39324eb8fbbe5a1be
   } = props;
 
   let showError = false;
