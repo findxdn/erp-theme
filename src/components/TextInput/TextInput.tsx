@@ -33,6 +33,7 @@ export interface TextInputProps {
   onKeyPress?: any;
   onChangeType?: any;
   _inputProps: any;
+  icon: any;
 }
 
 const TextInput = React.forwardRef((props: TextInputProps, ref) => {
@@ -174,7 +175,8 @@ const TextInput = React.forwardRef((props: TextInputProps, ref) => {
                     {(showPassword || (onChangeType !== null && type === 'password')) ? <IcEyeClose /> : <IcEyeOpen />}
                   </InputAdornment>
                 </IconButton>
-              ) : <></>
+              ) : <></>,
+              startAdornment: icon
           }}
           sx={style}
           name={name}
