@@ -56,6 +56,7 @@ const TextInput = React.forwardRef((props: TextInputProps, ref) => {
     onKeyPress,
     onChangeType = null,
     disabled = false,
+    icon
   } = props;
 
   let showError = false;
