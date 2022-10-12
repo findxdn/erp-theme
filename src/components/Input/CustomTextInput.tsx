@@ -28,6 +28,7 @@ export interface CustomTextInputProps {
     onKeyPress?: any;
     onChangeType?: any;
     _inputProps: any;
+    icon: any;
 }
 const CustomTextInput = React.forwardRef((props: CustomTextInputProps, ref) => {
     const {
@@ -50,6 +51,7 @@ const CustomTextInput = React.forwardRef((props: CustomTextInputProps, ref) => {
         onKeyPress,
         onChangeType = null,
         disabled = false,
+        icon
     } = props;
 
     let showError = false;
@@ -83,13 +85,16 @@ const CustomTextInput = React.forwardRef((props: CustomTextInputProps, ref) => {
                         style={{ color: "red", marginTop: "0px" }}
                     />
                 ) : ""}>
-                <input 
-                    name={name}
-                    disabled={disabled}  
-                    ref={fieldref !== null ? fieldref : ref}
-                    type="text" {...props} 
-                    className={`${showError ? styles["error"] : styles["success"]}`} 
-                />
+                <div>
+                    {icon ? <div className={styles["icon-left"]}>{icon}</div> : <></>}
+                    <input 
+                        name={name}
+                        disabled={disabled}  
+                        ref={fieldref !== null ? fieldref : ref}
+                        type="text" {...props} 
+                        className={`${showError ? styles["error"] : styles["success"]} ${icon ? styles['padding-icon-left'] : ''}`} 
+                    />
+                </div>
             </Tooltip>
             {
                 (showError && !isTooltip) ? (
