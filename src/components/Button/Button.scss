@@ -6,7 +6,7 @@
   width: auto;
   height: 32px;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 600;
   opacity: 1;
   transition-duration: 0.3s;
   &.background-green {
@@ -54,6 +54,6 @@
     cursor: not-allowed;
     background-color: #F2F2F2;
     color: #707070;
-    opacity: 1;
+    border: 1px solid transparent;
   }
 }
