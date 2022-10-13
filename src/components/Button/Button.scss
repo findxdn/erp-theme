@@ -52,8 +52,8 @@
   &:disabled,
   &:disabled:hover {
     cursor: not-allowed;
-    background-color: #F2F2F2;
-    color: #707070;
+    background-color: #F2F2F2 !important;
+    color: #707070 !important;
     border: 1px solid transparent;
   }
 }
