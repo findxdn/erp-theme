@@ -1,6 +1,8 @@
 import * as React from "react";
 import TextField from "@mui/material/TextField";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import dayjs from "dayjs";
+import vi from "dayjs/locale/vi";
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import _ from "lodash";
 import { IcDateTime } from "../../assets/icons/index";
@@ -8,7 +10,6 @@ import MessageError from "../../utils/MessageError";
 import { Tooltip } from '@mui/material';
 import { makeStyles } from "@mui/styles";
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-
 export interface CustomDatePickerXProps {
   name?: string;
   register?: any;
@@ -118,7 +119,7 @@ const CustomDatePickerX = (props: CustomDatePickerXProps) => {
 
   let classes = useStyles();
   return (
-    <LocalizationProvider dateAdapter={AdapterDateFns}>
+    <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={vi}>
       <DatePicker
         {...props._props}
         value={props?.value}
