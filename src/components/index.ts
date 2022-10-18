@@ -32,3 +32,4 @@ export { default as CustomDesktopDatePicker} from "./CustomDesktopDatePickerMuiX
 export { default as CustomDateTimePickerX } from "./CustomDatetimePickerMuiX"
 export { default as CustomTimePickerX } from "./CustomTimepickerMuiX"
 export { default as CustomDatePickerMuiX } from "./CustomDatepickerMuiX"
+export { default as PlaceHolder } from "./PlaceHolder"
