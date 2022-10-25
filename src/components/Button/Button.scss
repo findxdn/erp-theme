@@ -6,7 +6,7 @@
   width: auto;
   height: 32px !important;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
   opacity: 1;
   transition-duration: 0.3s;
   &.background-green {
@@ -43,6 +43,15 @@
       border: 1px solid #ff7070;
     }
   }
+  &.background-orange {
+    background-color: #FF7029;
+    color: #ffffff;
+    border-color: transparent;
+
+    &:hover {
+      background-color: #FF884D;
+    }
+  }
   .icon-style {
     margin-right: 7px;
   }
@@ -54,6 +63,6 @@
     cursor: not-allowed;
     background-color: #F2F2F2 !important;
     color: #707070 !important;
-    border: 1px solid transparent;
+    border: 1px solid transparent !important;
   }
 }
