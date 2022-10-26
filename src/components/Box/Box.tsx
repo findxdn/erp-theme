@@ -36,7 +36,7 @@ function Box(props: BoxProps) {
         <div className="d-flex align-items-center">
           {iconTitleLeft && iconTitleLeft}
           <p className={`${iconTitleLeft ? "bases__margin-left--15" : ""}`}>
-            {pTitle.toUpperCase()}
+            {pTitle}
           </p>
         </div>
         <div>{iconTitleRight && iconTitleRight}</div>
