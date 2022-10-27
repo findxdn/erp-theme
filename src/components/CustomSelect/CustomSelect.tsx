@@ -4,7 +4,8 @@ import React from 'react';
 import Select, {components} from 'react-select';
 import MessageError from '../../utils/MessageError';
 import SelectStyles from "./Select.module.scss"
-
+import IconDropDownForm from '../../assets/icons/system/ic-drop-down-form'
+import IconDropUpForm from '../../assets/icons/system/ic-drop-up-form'
 export interface CustomSelectProps {
     name: string;
     className?: string;
@@ -164,7 +165,20 @@ const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
     if (isMulti) {
         MultiValueProps = MultiValue;
     }
-    
+    const DropdownIndicator = (prop) => {
+        return (
+            components.DropdownIndicator && 
+                prop.selectProps.menuIsOpen ? (
+                    <components.DropdownIndicator {...prop}>
+                        <IconDropUpForm />
+                    </components.DropdownIndicator>
+                ) : (
+                    <components.DropdownIndicator {...prop}>
+                        <IconDropDownForm />
+                    </components.DropdownIndicator>
+                ) 
+        );
+    };
     return (
         <div className={SelectStyles["CustomSelect"]}>
             <Tooltip
@@ -206,7 +220,8 @@ const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
                             indicatorsContainer: base => ({ ...base, minHeight: 32, height: 32}),
                             ...styles,
                         }}
-                        components={{ ClearIndicator: ClearIndicatorDemo, MultiValue: MultiValueProps}}
+                        // components={{ ClearIndicator: ClearIndicatorDemo, MultiValue: MultiValueProps}}
+                        components={{DropdownIndicator}}
                         onMenuOpen={() => {
                             setIsClearable(true);
                         }}
