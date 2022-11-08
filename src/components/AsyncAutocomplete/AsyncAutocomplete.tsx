@@ -2,12 +2,12 @@
 import React, { useEffect } from "react";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
-import ExpandMoreSharpIcon from "@mui/icons-material/ExpandMoreSharp";
 import { Tooltip } from '@mui/material';
 import _ from "lodash";
 import MessageError from "../../utils/MessageError";
 import Box from '@mui/material/Box';
 import { IcAdd } from "../../assets/icons";
+import IconDropDownForm from '../../assets/icons/system/ic-drop-down-form'
 import { makeStyles } from "@mui/styles";
 
 export interface AsyncAutocompleteProps {
@@ -168,7 +168,7 @@ const AsyncAutocomplete = React.forwardRef((props: AsyncAutocompleteProps, ref) 
         className={className}
         defaultValue={defaultValue}
         options={options}
-        popupIcon={<ExpandMoreSharpIcon />}
+        popupIcon={<IconDropDownForm />}
         renderInput={(params) => {
           const inputProps = params.inputProps;
           inputProps.autoComplete = "off";

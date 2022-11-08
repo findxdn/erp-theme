@@ -3,7 +3,7 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { makeStyles } from "@mui/styles";
 import { Tooltip } from '@mui/material';
-import ExpandMoreSharpIcon from "@mui/icons-material/ExpandMoreSharp";
+import IconDropDownForm from '../../assets/icons/system/ic-drop-down-form'
 import MessageError from "../../utils/MessageError";
 import _ from 'lodash';
 
@@ -122,7 +122,7 @@ const GroupSelect = React.forwardRef((props: GroupSelectProps, ref) => {
         groupBy={(option) => option.ParentName}
         getOptionLabel={(option) => option.label}
         sx={{ width: 300 }}
-        popupIcon={<ExpandMoreSharpIcon />}
+        popupIcon={<IconDropDownForm />}
         renderInput={(params) =>
           <Tooltip
             placement="bottom"
