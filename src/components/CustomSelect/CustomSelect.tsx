@@ -33,7 +33,8 @@ export interface CustomSelectProps {
     menuPortalTarget?: any;
     group?: any;
     maxToShowProps?: any;
-    hideSelectedOptions?:any
+    hideSelectedOptions?:any,
+    customComponents: any
 
   }
 const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
@@ -56,7 +57,8 @@ const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
         menuPortalTarget,
         group,
         hideSelectedOptions = false,
-        maxToShowProps = 10
+        maxToShowProps = 10,
+        customComponents = {}
     } = props
     const onChange = (val: { key: any; map: (arg0: (x: any) => any) => any; }) => {
         if (!isMulti) {
@@ -195,6 +197,7 @@ const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
             >
                 <div>
                     <Select
+                    
                         name={name}
                         ref={fieldref !== null ? fieldref : ref}
                         className={SelectStyles["select"]}
@@ -221,7 +224,7 @@ const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
                             ...styles,
                         }}
                         // components={{ ClearIndicator: ClearIndicatorDemo, MultiValue: MultiValueProps}}
-                        components={{DropdownIndicator}}
+                        components={{...customComponents,DropdownIndicator}}
                         onMenuOpen={() => {
                             setIsClearable(true);
                         }}
