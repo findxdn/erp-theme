@@ -41,6 +41,7 @@ const GroupSelect = React.forwardRef((props: GroupSelectProps, ref) => {
     className,
     disabled = false,
     isTooltip = false,
+    noOptionsText = 'Không có dữ liệu',
   } = props;
   let showError = false;
   let error: { message: string; type: string; }
@@ -107,6 +108,7 @@ const GroupSelect = React.forwardRef((props: GroupSelectProps, ref) => {
     <>
       <Autocomplete
         {...props._props}
+        noOptionsText={noOptionsText}
         value={options.find((x: { key: any; }) => x.key == value) ?? null}
         onChange={(e, newValue) => {
           if (newValue) {
