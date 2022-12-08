@@ -30,6 +30,7 @@ export interface CustomDatePickerXProps {
   disableFuture?: any;
   disablePast?: any;
   disableHighlightToday?: any;
+  disableInput?: boolean;
 }
 
 const CustomDatePickerX = (props: CustomDatePickerXProps) => {
@@ -50,6 +51,7 @@ const CustomDatePickerX = (props: CustomDatePickerXProps) => {
     disablePast = false,
     disableHighlightToday = false,
     isOpenTabelSetDate = false,
+    disableInput = false
   } = props;
 
   let showError = false;
@@ -164,7 +166,8 @@ const CustomDatePickerX = (props: CustomDatePickerXProps) => {
                       color: '#333333',
                     }
                   },
-                  placeholder: placeholder
+                  placeholder: placeholder, 
+                  readOnly: disableInput
                 }}
               />
             </Tooltip>
