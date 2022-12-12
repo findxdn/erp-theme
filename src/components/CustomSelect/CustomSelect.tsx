@@ -224,7 +224,7 @@ const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
                             ...styles,
                         }}
                         // components={{ ClearIndicator: ClearIndicatorDemo, MultiValue: MultiValueProps}}
-                        components={{...customComponents,DropdownIndicator}}
+                        components={{...customComponents,DropdownIndicator,  MultiValue: MultiValueProps}}
                         onMenuOpen={() => {
                             setIsClearable(true);
                         }}
