@@ -5,6 +5,7 @@ export interface TooltipProps {
   className: string;
   style: object;
   _props?: any;
+  children?: any;
 }
 
 export default function Tooltip(props: TooltipProps) {
@@ -12,7 +13,8 @@ export default function Tooltip(props: TooltipProps) {
     _props,
     title='',
     className='',
-    style={}
+    style={},
+    children=''
   } = props;
   return (
     <div 
@@ -20,6 +22,8 @@ export default function Tooltip(props: TooltipProps) {
         title={title}
         className={className}
         style={style}
-    />
+    >
+      {props.children}
+    </div>
   );
 }
