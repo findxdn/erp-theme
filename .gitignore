@@ -2,3 +2,4 @@ dist
 node_modules
 .vscode
 .npmrc
+package-lock.json
