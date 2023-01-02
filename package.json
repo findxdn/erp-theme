@@ -1,6 +1,6 @@
 {
   "name": "@findxdn/erp-theme",
-  "version": "0.0.191",
+  "version": "0.0.192",
   "description": "A imple template for a custom React component library",
   "scripts": {
     "rollup": "rollup -c",
@@ -34,6 +34,7 @@
     "@types/jest": "^27.0.2",
     "@types/lodash": "^4.14.182",
     "@types/react": "^17.0.34",
+    "@types/react-calendar": "^3.9.0",
     "@types/react-chartjs-2": "^2.5.7",
     "@types/react-lazyload": "^3.2.0",
     "@types/react-router-dom": "^5.3.3",
@@ -73,7 +74,9 @@
     "date-fns": "^2.28.0",
     "dayjs": "^1.11.5",
     "moment": "^2.29.1",
+    "react-calendar": "^4.0.0",
     "react-chartjs-2": "^4.2.0",
+    "react-hook-form": "^7.31.1",
     "react-lazyload": "^3.2.0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
