@@ -7,6 +7,7 @@ import { isDate, format } from 'date-fns';
 import { useFormContext } from 'react-hook-form';
 import './calendar.css';
 import { IcCalendar } from '../../assets/icons';
+import ButtonForm from './ButtonForm'
 
 const Wrapper = styled.div({
   display: 'flex',
@@ -25,10 +26,9 @@ const DisplayBox = styled.div({
 });
 
 export interface OptionsPickerProps {
-  handleClose: any
 }
 export default function OptionsPicker(props: OptionsPickerProps) {
-  const { handleClose } = props;
+  const {  } = props;
   const [openFromDatePopup, setFromDatePopup] = useState(false);
   const [openToDatePopup, setToDatePopup] = useState(false);
   const dateDisplayBoxRef = useRef(null);
@@ -68,12 +68,12 @@ export default function OptionsPicker(props: OptionsPickerProps) {
       </Wrapper>
 
       <Wrapper>
-        <Button onClick={handleSubmitDate} sx={{ flex: 1 }} variant="outlined">
-          Đồng ý
-        </Button>
-        <Button sx={{ flex: 1 }} variant="outlined" onClick={handleClose}>
-          Đóng
-        </Button>
+        <ButtonForm 
+          onClick={handleSubmitDate} 
+          className='ButtonFormFilter'
+        >
+          Lọc
+        </ButtonForm>
       </Wrapper>
 
       <Popover

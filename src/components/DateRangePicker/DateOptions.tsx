@@ -13,7 +13,8 @@ import {
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import { useFormContext } from 'react-hook-form';
-import OptionsPicker from './OptionsPicker';
+import ButtonForm from './ButtonForm';
+import OptionsPicker from "./OptionsPicker";
 
 const DateOptionsWrapper = styled.div((props) => ({
   padding: '10px',
@@ -46,24 +47,25 @@ const dateOptionsArray = [
     title: 'Tháng này',
     value: { from: startOfMonth(date), to: endOfMonth(date) },
   },
-  {
-    title: 'Năm trước',
-    value: {
-      from: startOfYear(subYears(date, 1)),
-      to: endOfYear(subYears(date, 1)),
-    },
-  },
-  { title: 'Năm nay', value: { from: startOfYear(date), to: endOfYear(date) } },
+  // {
+  //   title: 'Năm trước',
+  //   value: {
+  //     from: startOfYear(subYears(date, 1)),
+  //     to: endOfYear(subYears(date, 1)),
+  //   },
+  // },
+  // { title: 'Năm nay', value: { from: startOfYear(date), to: endOfYear(date) } },
 ];
 
 export interface DateOptionsProps {
-  handleClose?: any;
+  ref?: any;
 }
 function DateOptions(props: DateOptionsProps) {
-  const { handleClose } = props;
+  const { ref } = props;
   const { reset } = useFormContext();
   const changeDate = (value: any) => {
     reset(value);
+    
   };
   const [isExpand, setIsExpand] = useState(false);
 
@@ -72,25 +74,22 @@ function DateOptions(props: DateOptionsProps) {
       <Grid container spacing={1}>
         {dateOptionsArray.map((options: { value: any, title: any } ) => (
           <Grid item xs={6}>
-            <Button
-              variant="outlined"
-              sx={{ width: '100%' }}
+            <ButtonForm
               onClick={() => changeDate(options.value)}
             >
               {options.title}
-            </Button>
+            </ButtonForm>
           </Grid>
         ))}
         <Grid item xs={12}>
-          <Button
-            variant="outlined"
-            sx={{ width: '100%' }}
+          <ButtonForm
             onClick={() => setIsExpand(true)}
+            className='ButtonFormEdit'
           >
             Tùy chọn
-          </Button>
+          </ButtonForm>
           <ExpandSection isExpand={isExpand}>
-            <OptionsPicker handleClose={handleClose} />
+            <OptionsPicker />
           </ExpandSection>
         </Grid>
       </Grid>
