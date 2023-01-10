@@ -67,14 +67,14 @@ export default function OptionsPicker(props: OptionsPickerProps) {
         </DisplayBox>
       </Wrapper>
 
-      <Wrapper>
+      <div style={{marginTop: '10px'}}>
         <ButtonForm 
-          onClick={handleSubmitDate} 
-          className='ButtonFormFilter'
+            onClick={handleSubmitDate} 
+            className='ButtonFormFilter'
         >
           Lọc
         </ButtonForm>
-      </Wrapper>
+      </div>
 
       <Popover
         open={openFromDatePopup}
