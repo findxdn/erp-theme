@@ -145,6 +145,8 @@ const CustomAutocomplete = React.forwardRef((props: CustomAutocompleteProps, ref
           )
         }
         disabled={disabled}
+        isOptionEqualToValue={(option, value) => option.key === value.key}
+
         className={className}
         defaultValue={defaultValue}
         options={options}
