@@ -1,69 +1,106 @@
-import React from 'react';
-import { useState, useRef, useEffect } from 'react';
-import styled from '@emotion/styled';
-import Popover from '@mui/material/Popover';
+import React from "react";
+import { useState, useRef, useEffect } from "react";
+import styled from "@emotion/styled";
+import Popover from "@mui/material/Popover";
 import {
   useForm,
   FormProvider,
   useFormContext,
   useController,
-} from 'react-hook-form';
-import { isDate, format, subWeeks } from 'date-fns';
-import DateOptions from './DateOptions';
-import { IcCalendar } from '../../assets/icons';
+} from "react-hook-form";
+import { isDate, format, subWeeks } from "date-fns";
+import DateOptions from "./DateOptions";
+import { IcCalendar } from "../../assets/icons";
 
 const DateRangePickerWrapper = styled.div({});
 
 export interface DateDisplayBoxWrapperProps {
   isOpen: any;
 }
-const DateDisplayBoxWrapper = styled.div((props: DateDisplayBoxWrapperProps) => ({
-  border: '1px solid',
-  borderRadius: '3px',
-  borderColor: props.isOpen ? '#138300' : '#d8d7d7',
-  color: props.isOpen ? '#138300' : 'inherit',
-  padding: '3px 10px',
-  cursor: 'pointer',
-  display: 'flex',
-  height: '32px',
-  overflow: 'hidden',
-  '&:focus, &:hover': {
-    borderColor: '#138300',
-    color: '#138300',
-  },
-  justifyContent: 'space-between',
-}));
+const DateDisplayBoxWrapper = styled.div(
+  (props: DateDisplayBoxWrapperProps) => ({
+    border: "1px solid",
+    borderRadius: "3px",
+    borderColor: props.isOpen ? "#138300" : "#d8d7d7",
+    color: props.isOpen ? "#138300" : "inherit",
+    padding: "3px 10px",
+    cursor: "pointer",
+    display: "flex",
+    height: "32px",
+    overflow: "hidden",
+    "&:focus, &:hover": {
+      borderColor: "#138300",
+      color: "#138300",
+    },
+    justifyContent: "space-between",
+  })
+);
 
 const DateText = styled.div({
-  color: 'black',
+  color: "black",
 });
 
 export interface RangeDateProps {
   dateValue: any;
+  placehodel?: string;
+  ref?: any;
 }
 const RangeDate = (props: RangeDateProps) => {
-  const { dateValue } = props
-  const fromDate = isDate(dateValue[0])
-    ? format(dateValue[0], 'dd/MM/yyyy')
-    : format(Date.parse(dateValue[0]), 'dd/MM/yyyy');
-
-  const toDate = isDate(dateValue[1])
-    ? format(dateValue[1], 'dd/MM/yyyy')
-    : format(Date.parse(dateValue[1]), 'dd/MM/yyyy');
+  const { dateValue, placehodel = "dd/MM/yyyy", ref } = props;
+  let fromDate = placehodel;
+  if (dateValue[0]) {
+    fromDate = isDate(dateValue[0])
+      ? format(dateValue[0], "dd/MM/yyyy")
+      : format(Date.parse(dateValue[0]), "dd/MM/yyyy");
+  } else {
+    fromDate = placehodel;
+  }
+  let toDate = placehodel;
+  if (dateValue[1]) {
+    toDate = isDate(dateValue[1])
+      ? format(dateValue[1], "dd/MM/yyyy")
+      : format(Date.parse(dateValue[1]), "dd/MM/yyyy");
+  } else {
+    toDate = placehodel;
+  }
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center' }}>
-      <DateText>{fromDate}</DateText>
-      <span style={{ margin: '0 10px' }}>-</span>
-      <DateText>{toDate}</DateText>
+    <div style={{ display: "flex", alignItems: "center", paddingRight: "4px" }}>
+      <div
+        style={{
+          fontSize: "14px",
+          fontWeight: 400,
+          color: fromDate == placehodel ? "#c7c7c7" : "#333",
+        }}
+      >
+        {fromDate}
+      </div>
+      <span
+        style={{
+          margin: "0 10px",
+          color: fromDate == placehodel ? "#c7c7c7" : "#333",
+        }}
+      >
+        -
+      </span>
+      <div
+        style={{
+          fontSize: "14px",
+          fontWeight: 400,
+          color: toDate == placehodel ? "#c7c7c7" : "#333",
+        }}
+      >
+        {toDate}
+      </div>
     </div>
   );
 };
 export interface DateDisplayBoxProps {
   fieldName: any;
+  ref?: any;
 }
 const DateDisplayBox = (props: DateDisplayBoxProps) => {
-  // const { } = props;
+  const { ref } = props;
   const { control } = useFormContext();
   const { field } = useController({ control, name: props.fieldName });
   const [isOpen, setIsOpen] = useState(false);
@@ -91,10 +128,8 @@ const DateDisplayBox = (props: DateDisplayBoxProps) => {
   const toggleDatePicker = () => {
     setIsOpen((prev) => !prev);
   };
-  
 
-  useEffect(() => {
-  }, [])
+  useEffect(() => {}, []);
   return (
     <FormProvider {...methods}>
       <DateDisplayBoxWrapper
@@ -112,15 +147,18 @@ const DateDisplayBox = (props: DateDisplayBoxProps) => {
         onClose={() => setIsOpen(false)}
         elevation={2}
         anchorOrigin={{
-          vertical: dateDisplayBoxRef.current !== null ? dateDisplayBoxRef.current['offsetHeight'] + 10 : 10,
-          horizontal: 'right',
+          vertical:
+            dateDisplayBoxRef.current !== null
+              ? dateDisplayBoxRef.current["offsetHeight"] + 10
+              : 10,
+          horizontal: "right",
         }}
         transformOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
+          vertical: "top",
+          horizontal: "right",
         }}
       >
-        <DateOptions handleClose={toggleDatePicker} />
+        <DateOptions ref={ref} />
       </Popover>
     </FormProvider>
   );
