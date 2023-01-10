@@ -47,7 +47,7 @@ export interface RangeDateProps {
   placeholder?: any;
 }
 const RangeDate = (props: RangeDateProps) => {
-  const { dateValue, placehodel = "dd/MM/yyyy", ref } = props;
+  const { dateValue = [], placehodel = "dd/MM/yyyy", ref } = props;
   let fromDate = placehodel;
   if (dateValue[0]) {
     fromDate = isDate(dateValue[0])
