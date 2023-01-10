@@ -44,6 +44,7 @@ export interface RangeDateProps {
   dateValue: any;
   placehodel?: string;
   ref?: any;
+  placeholder?: any;
 }
 const RangeDate = (props: RangeDateProps) => {
   const { dateValue, placehodel = "dd/MM/yyyy", ref } = props;
@@ -98,9 +99,10 @@ const RangeDate = (props: RangeDateProps) => {
 export interface DateDisplayBoxProps {
   fieldName: any;
   ref?: any;
+  placeholder?: any;
 }
 const DateDisplayBox = (props: DateDisplayBoxProps) => {
-  const { ref } = props;
+  const { ref, placeholder } = props;
   const { control } = useFormContext();
   const { field } = useController({ control, name: props.fieldName });
   const [isOpen, setIsOpen] = useState(false);
@@ -137,7 +139,7 @@ const DateDisplayBox = (props: DateDisplayBoxProps) => {
         onClick={toggleDatePicker}
         isOpen={isOpen}
       >
-        <RangeDate dateValue={field.value} />
+        <RangeDate dateValue={field.value} placeholder={placeholder}/>
         <IcCalendar />
       </DateDisplayBoxWrapper>
 
@@ -166,13 +168,14 @@ const DateDisplayBox = (props: DateDisplayBoxProps) => {
 
 export interface DateRangePickerProps {
   fieldName: any;
+  placeholder?: any;
 }
 export default function DateRangePicker(props: DateRangePickerProps) {
-  const { fieldName } = props;
+  const { fieldName, placeholder } = props;
 
   return (
     <DateRangePickerWrapper>
-      <DateDisplayBox fieldName={fieldName} />
+      <DateDisplayBox fieldName={fieldName} placeholder={placeholder}/>
     </DateRangePickerWrapper>
   );
 }
