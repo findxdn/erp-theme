@@ -66,33 +66,51 @@ const RangeDate = (props: RangeDateProps) => {
   }
 
   return (
-    <div style={{ display: "flex", alignItems: "center", paddingRight: "4px" }}>
-      <div
-        style={{
-          fontSize: "14px",
-          fontWeight: 400,
-          color: fromDate == placehodel ? "#c7c7c7" : "#333",
-        }}
-      >
-        {fromDate}
-      </div>
-      <span
-        style={{
-          margin: "0 10px",
-          color: fromDate == placehodel ? "#c7c7c7" : "#333",
-        }}
-      >
-        -
-      </span>
-      <div
-        style={{
-          fontSize: "14px",
-          fontWeight: 400,
-          color: toDate == placehodel ? "#c7c7c7" : "#333",
-        }}
-      >
-        {toDate}
-      </div>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        paddingRight: "4px",
+        color: fromDate == placehodel ? "#c7c7c7" : "#333",
+      }}
+    >
+      {dateValue.length == 0 ? (
+        <div>{placehodel}</div>
+      ) : (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+          }}
+        >
+          <div
+            style={{
+              fontSize: "14px",
+              fontWeight: 400,
+              color: fromDate == placehodel ? "#c7c7c7" : "#333",
+            }}
+          >
+            {fromDate}
+          </div>
+          <span
+            style={{
+              margin: "0 10px",
+              color: fromDate == placehodel ? "#c7c7c7" : "#333",
+            }}
+          >
+            -
+          </span>
+          <div
+            style={{
+              fontSize: "14px",
+              fontWeight: 400,
+              color: toDate == placehodel ? "#c7c7c7" : "#333",
+            }}
+          >
+            {toDate}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
@@ -139,7 +157,7 @@ const DateDisplayBox = (props: DateDisplayBoxProps) => {
         onClick={toggleDatePicker}
         isOpen={isOpen}
       >
-        <RangeDate dateValue={field.value} placeholder={placeholder}/>
+        <RangeDate dateValue={field.value} placeholder={placeholder} />
         <IcCalendar />
       </DateDisplayBoxWrapper>
 
@@ -175,7 +193,7 @@ export default function DateRangePicker(props: DateRangePickerProps) {
 
   return (
     <DateRangePickerWrapper>
-      <DateDisplayBox fieldName={fieldName} placeholder={placeholder}/>
+      <DateDisplayBox fieldName={fieldName} placeholder={placeholder} />
     </DateRangePickerWrapper>
   );
 }
