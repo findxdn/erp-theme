@@ -42,27 +42,26 @@ const DateText = styled.div({
 
 export interface RangeDateProps {
   dateValue: any;
-  placehodel?: string;
   ref?: any;
   placeholder?: any;
 }
 const RangeDate = (props: RangeDateProps) => {
-  const { dateValue = [], placehodel = "dd/MM/yyyy", ref } = props;
-  let fromDate = placehodel;
+  const { dateValue = [], placeholder = "dd/MM/yyyy - dd/MM/yyyy", ref } = props;
+  let fromDate = placeholder;
   if (dateValue[0]) {
     fromDate = isDate(dateValue[0])
       ? format(dateValue[0], "dd/MM/yyyy")
       : format(Date.parse(dateValue[0]), "dd/MM/yyyy");
   } else {
-    fromDate = placehodel;
+    fromDate = placeholder;
   }
-  let toDate = placehodel;
+  let toDate = placeholder;
   if (dateValue[1]) {
     toDate = isDate(dateValue[1])
       ? format(dateValue[1], "dd/MM/yyyy")
       : format(Date.parse(dateValue[1]), "dd/MM/yyyy");
   } else {
-    toDate = placehodel;
+    toDate = placeholder;
   }
 
   return (
@@ -71,11 +70,11 @@ const RangeDate = (props: RangeDateProps) => {
         display: "flex",
         alignItems: "center",
         paddingRight: "4px",
-        color: fromDate == placehodel ? "#c7c7c7" : "#333",
+        color: fromDate == placeholder ? "#c7c7c7" : "#333",
       }}
     >
       {dateValue.length == 0 ? (
-        <div>{placehodel}</div>
+        <div>{placeholder}</div>
       ) : (
         <div
           style={{
@@ -87,7 +86,7 @@ const RangeDate = (props: RangeDateProps) => {
             style={{
               fontSize: "14px",
               fontWeight: 400,
-              color: fromDate == placehodel ? "#c7c7c7" : "#333",
+              color: fromDate == placeholder ? "#c7c7c7" : "#333",
             }}
           >
             {fromDate}
@@ -95,7 +94,7 @@ const RangeDate = (props: RangeDateProps) => {
           <span
             style={{
               margin: "0 10px",
-              color: fromDate == placehodel ? "#c7c7c7" : "#333",
+              color: fromDate == placeholder ? "#c7c7c7" : "#333",
             }}
           >
             -
@@ -104,7 +103,7 @@ const RangeDate = (props: RangeDateProps) => {
             style={{
               fontSize: "14px",
               fontWeight: 400,
-              color: toDate == placehodel ? "#c7c7c7" : "#333",
+              color: toDate == placeholder ? "#c7c7c7" : "#333",
             }}
           >
             {toDate}
