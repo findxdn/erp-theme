@@ -162,6 +162,7 @@ const AsyncAutocomplete = React.forwardRef((props: AsyncAutocompleteProps, ref) 
           }
         }}
         filterOptions={(options, state) => options}
+        isOptionEqualToValue={(option, value) => option.key === value.key}
         autoSelect={true}
         inputValue={inputValue}
         disabled={disabled}

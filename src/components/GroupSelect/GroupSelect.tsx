@@ -119,6 +119,7 @@ const GroupSelect = React.forwardRef((props: GroupSelectProps, ref) => {
         }}
         disabled={disabled}
         className={`${className} w-100`}
+        isOptionEqualToValue={(option, value) => option.key === value.key}
         defaultValue={defaultValue}
         options={options}
         groupBy={(option) => option.ParentName}
