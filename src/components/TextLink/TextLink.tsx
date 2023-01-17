@@ -16,7 +16,7 @@ function TextLink(props: TextLinkProps) {
   return (
     <a href={url} onClick={(e)=> {
       e.preventDefault();
-      onClick();
+      onClick(e);
     }}  className={`findx-text-link ${className}`}>
         {children}
     </a>
@@ -28,7 +28,7 @@ TextLink.defaultProps = {
   title: "",
   className: "",
   children: null,
-  onChange: () => {},
+  onClick: () => {},
 };
 
 export default TextLink;
