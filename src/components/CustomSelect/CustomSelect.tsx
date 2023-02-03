@@ -60,12 +60,12 @@ const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
         maxToShowProps = 10,
         customComponents = {}
     } = props
-    const onChange = (val: { key: any; map: (arg0: (x: any) => any) => any; }) => {
+    const onChange = (val: { key: any; map: (arg0: (x: any) => any) => any; }, action: any) => {
         if (!isMulti) {
-            props.onChange(val?.key)
+            props.onChange(val?.key, action)
         } else {
             let rs = val.map((x: { key: any; }) => x?.key)
-            props.onChange(rs)
+            props.onChange(rs, action)
         }
     }
     let showError = false;
@@ -232,12 +232,12 @@ const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
                             setIsClearable(false);
                         }}
                         placeholder={placeholder}
-                        onChange={(e) => {
+                        onChange={(e, action) => {
                             if ( typeof e === 'undefined'){
                                 onChange(null)
                                 return
                             }
-                            onChange(e)
+                            onChange(e, action)
                         }
                         }
                         escapeClearsValue={escapeClearsValue}
