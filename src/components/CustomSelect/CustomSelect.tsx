@@ -220,7 +220,7 @@ const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
                         }}
                         placeholder={placeholder}
                         onChange={(e) => {
-                            if ( typeof e === 'undefined'){
+                            if ( typeof e === undefined){
                                 onChange(null)
                                 return
                             }
