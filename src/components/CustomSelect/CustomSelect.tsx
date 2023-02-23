@@ -34,8 +34,9 @@ export interface CustomSelectProps {
     group?: any;
     maxToShowProps?: any;
     hideSelectedOptions?:any,
-    customComponents: any
-
+    customComponents: any,
+    backgroundColorActive: any,
+    colorActive: any
   }
 const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
     const {
@@ -58,7 +59,9 @@ const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
         group,
         hideSelectedOptions = false,
         maxToShowProps = 10,
-        customComponents = {}
+        customComponents = {},
+        backgroundColorActive = 'rgba(0, 0, 0, 0.04)',
+        colorActive = '#333333'
     } = props
     const onChange = (val: { key: any; map: (arg0: (x: any) => any) => any; }, action: any) => {
         if (!isMulti) {
@@ -182,7 +185,7 @@ const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
         );
     };
     return (
-        <div className={SelectStyles["CustomSelect"]}>
+        <div className={SelectStyles["CustomSelect"]}> 
             <Tooltip
                 placement="bottom"
                 arrow
@@ -217,7 +220,7 @@ const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
                                 backgroundColor: disabled? '#e2e4e7' : '#fff',
                             }),
                             placeholder: base => ({ ...base, fontWeight: 400, color: '#C7C7C7', opacity: 1 }),
-                            option: (base, {isSelected}) => ({ ...base, fontWeight: 400, color: '#333333',  backgroundColor: isSelected ? 'rgba(0, 0, 0, 0.04)' : '#fff' }),
+                            option: (base, {isSelected}) => ({ ...base, fontWeight: 400, color: isSelected ? colorActive : '#333333',  backgroundColor: isSelected ? backgroundColorActive : '#fff' }),
                             singleValue: base => ({ ...base, fontWeight: 400, color: '#333333', textAlign: 'left' }),
                             indicatorSeparator: base => ({ ...base, width: 0 }),
                             indicatorsContainer: base => ({ ...base, minHeight: 32, height: 32}),
