@@ -36,7 +36,8 @@ export interface CustomSelectProps {
     hideSelectedOptions?:any,
     customComponents: any,
     backgroundColorActive: any,
-    colorActive: any
+    colorActive: any,
+    height: any
   }
 const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
     const {
@@ -61,7 +62,8 @@ const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
         maxToShowProps = 10,
         customComponents = {},
         backgroundColorActive = 'rgba(0, 0, 0, 0.04)',
-        colorActive = '#333333'
+        colorActive = '#333333',
+        height = 32
     } = props
     const onChange = (val: { key: any; map: (arg0: (x: any) => any) => any; }, action: any) => {
         if (!isMulti) {
@@ -208,7 +210,7 @@ const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
                         styles={{
                             menu: base => ({ ...base, zIndex: 2 }),
                             control: base => ({
-                                ...base, minHeight: 32, height: 32, borderRadius: 3, border: `1px solid ${showError ? "red" : "#d8d7d7"}`,
+                                ...base, minHeight: 32, height: height, borderRadius: 3, border: `1px solid ${showError ? "red" : "#d8d7d7"}`,
                                 boxShadow: 'unset',
                                 "&:hover": {
                                     borderColor: "#138300"
@@ -223,7 +225,7 @@ const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
                             option: (base, {isSelected}) => ({ ...base, fontWeight: 400, color: isSelected ? colorActive : '#333333',  backgroundColor: isSelected ? backgroundColorActive : '#fff' }),
                             singleValue: base => ({ ...base, fontWeight: 400, color: '#333333', textAlign: 'left' }),
                             indicatorSeparator: base => ({ ...base, width: 0 }),
-                            indicatorsContainer: base => ({ ...base, minHeight: 32, height: 32}),
+                            indicatorsContainer: base => ({ ...base, minHeight: 32, height: height}),
                             ...styles,
                         }}
                         // components={{ ClearIndicator: ClearIndicatorDemo, MultiValue: MultiValueProps}}
