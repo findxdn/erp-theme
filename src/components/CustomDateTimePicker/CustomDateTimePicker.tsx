@@ -25,6 +25,7 @@ export interface CustomDateTimePickerProps {
   placeholder?: any;
   value?: any;
   disabled?: any;
+  isOpenTabelSetDate?: any;
 }
 
 const CustomDateTimePicker = React.forwardRef((props: CustomDateTimePickerProps, ref) => {
@@ -41,10 +42,12 @@ const CustomDateTimePicker = React.forwardRef((props: CustomDateTimePickerProps,
     onBlur,
     value,
     disabled = false,
+    isOpenTabelSetDate = false,
   } = props;
 
   let showError = false;
   let error: { message: string; type: string; }
+  const [open, setOpen] = React.useState(false);
   let arr = name.split(".");
   if (arr.length >= 1 && errors !== null) {
     let result = arr.reduce((rs, e) => {
@@ -60,51 +63,51 @@ const CustomDateTimePicker = React.forwardRef((props: CustomDateTimePickerProps,
 
   const useStyles = makeStyles(theme => ({
     arrow: {
-      "&:before": {
-        border: "1px solid #FF0000",
-        color: "#ffffff"
-      }
+        "&:before": {
+            border: "1px solid #FF0000",
+            color: "#ffffff"
+        }
     },
     tooltip: {
-      fontSize: '14px !important',
-      backgroundColor: '#ffffff !important',
-      borderRadius: '3px',
-      border: '1px solid #FF0000',
-      marginTop: '10px !important',
-      "&:.p": {
-        marginTop: '0px !important',
-      }
-    }
-  }));
+        fontSize: '14px !important',
+        backgroundColor: '#ffffff !important',
+        borderRadius: '3px',
+        border: '1px solid #FF0000',
+        marginTop: '10px !important',
+        "&:.p": {
+            marginTop: '0px !important',
+        }
+    },
+}));
 
-  const style = {
+const style = {
     width: "100%",
-    fontSize: 14,
     color: "#333333",
     zIndex: "1",
-    marginTop: "0px",
+    margin: "0px",
     "& .MuiOutlinedInput-input": {
-      paddingLeft: "10px",
-      fontSize: "14px !important",
-      fontWidth: 400,
+        paddingLeft: "10px",
+        fontSize: "14px !important",
+        fontWidth: 400,
     },
     "& .MuiOutlinedInput-root": {
-      borderRadius: "3px",
-      height: "32px",
-      width: "100%",
-      borderColor: "#138300",
-      "& .MuiOutlinedInput-notchedOutline": {
-        paddingLeft: "10px !important",
-        border: `${disabled ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#d8d7d7'}`,
-      },
-      "&:hover .MuiOutlinedInput-notchedOutline": {
-        border: `${disabled ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#138300'}`,
-      },
-      "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-        border: `${disabled ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#138300'}`,
-      },
+        backgroundColor: `${disabled ? '#E3E3E3' : '#ffffff'}`,
+        borderRadius: "3px",
+        height: "32px",
+        width: "100%",
+        borderColor: "#138300",
+        "& .MuiOutlinedInput-notchedOutline": {
+            paddingLeft: "10px !important",
+            border: `${disabled ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#d8d7d7'}`,
+        },
+        "&:hover .MuiOutlinedInput-notchedOutline": {
+            border: `${disabled ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#138300'}`,
+        },
+        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+            border: `${disabled ? '0px' : '1px'} solid ${(showError) ? '#FF0000' : '#138300'}`,
+        },
     },
-  };
+};
 
   let classes = useStyles();
 
@@ -117,6 +120,9 @@ const CustomDateTimePicker = React.forwardRef((props: CustomDateTimePickerProps,
         components={{
           OpenPickerIcon: IcDateTime,
         }}
+        open={open}
+        onOpen={() => setOpen(true)}
+        onClose={() => setOpen(false)}
         disabled={disabled}
         defaultValue={defaultValue}
         renderInput={(params) => {
@@ -134,6 +140,7 @@ const CustomDateTimePicker = React.forwardRef((props: CustomDateTimePickerProps,
               ) : ""}>
               <TextField
                 {...params}
+                onClick={(e) => isOpenTabelSetDate && !disabled && setOpen(true)}
                 className={className}
                 error={showError}
                 fullWidth
@@ -144,6 +151,7 @@ const CustomDateTimePicker = React.forwardRef((props: CustomDateTimePickerProps,
                   sx: {
                     "&::placeholder": {
                       fontSize: 14,
+                      color: '#333333',
                     }
                   },
                   placeholder: placeholder

@@ -219,7 +219,7 @@ const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
                                     borderColor: "#138300",
                                     boxShadow: 'unset'
                                 },
-                                backgroundColor: disabled? '#e2e4e7' : '#fff',
+                                backgroundColor: disabled? '#E3E3E3' : '#fff',
                             }),
                             placeholder: base => ({ ...base, fontWeight: 400, color: '#C7C7C7', opacity: 1 }),
                             option: (base, {isSelected}) => ({ ...base, fontWeight: 400, color: isSelected ? colorActive : '#333333',  backgroundColor: isSelected ? backgroundColorActive : '#fff' }),
