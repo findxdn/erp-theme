@@ -26,6 +26,7 @@ export interface CustomDateTimePickerProps {
   value?: any;
   disabled?: any;
   isOpenTabelSetDate?: any;
+  fieldref?: any;
 }
 
 const CustomDateTimePicker = React.forwardRef((props: CustomDateTimePickerProps, ref) => {
@@ -43,6 +44,7 @@ const CustomDateTimePicker = React.forwardRef((props: CustomDateTimePickerProps,
     value,
     disabled = false,
     isOpenTabelSetDate = false,
+    fieldref
   } = props;
 
   let showError = false;
@@ -120,6 +122,7 @@ const style = {
         components={{
           OpenPickerIcon: IcDateTime,
         }}
+        inputRef={fieldref !== null ? fieldref : ref}
         open={open}
         onOpen={() => setOpen(true)}
         onClose={() => setOpen(false)}
