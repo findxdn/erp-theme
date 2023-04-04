@@ -8,6 +8,8 @@ import _ from "lodash";
 import MessageError from "../../utils/MessageError";
 import { makeStyles } from "@mui/styles";
 import IconDropDownForm from '../../assets/icons/system/ic-drop-down-form'
+import Box from '@mui/material/Box';
+
 export interface CustomAutocompleteProps {
   name: string;
   className?: string;
@@ -108,6 +110,10 @@ const CustomAutocomplete = React.forwardRef((props: CustomAutocompleteProps, ref
         marginTop: '0px !important',
       }
     },
+    noOptions: {
+      fontSize: 14,
+      padding: '10px 12px !important',
+    },
   }));
 
   const [inputValue, setInputValue] = React.useState("");
@@ -146,11 +152,13 @@ const CustomAutocomplete = React.forwardRef((props: CustomAutocompleteProps, ref
         }
         disabled={disabled}
         isOptionEqualToValue={(option, value) => option.key === value.key}
-
         className={className}
         defaultValue={defaultValue}
         options={options}
         popupIcon={popupIcon}
+        classes={{
+          noOptions: classes.noOptions,
+        }}
         renderInput={(params) => {
           const inputProps = params.inputProps;
           inputProps.autoComplete = "off";
@@ -178,6 +186,26 @@ const CustomAutocomplete = React.forwardRef((props: CustomAutocompleteProps, ref
             </Tooltip>
           );
         }}
+        renderOption={(props, option) => (
+          <Box
+            key={option.key}
+            component="li"
+            sx={{ '& > img': { mr: 2, flexShrink: 0 }, fontSize: '14px', padding: '6px 12px !important' }}
+          >
+            <div
+              className="bases__margin-left--15"
+              role="button"
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                borderBottom: '2px solid #fafafa',
+              }}
+              {...props}
+            >
+              <p className="bases__font--14 w-100">{option.label}</p>
+            </div>
+          </Box>
+        )}
       />
       {(error?.message && !isTooltip) && (
         <MessageError type={error?.type} message={error?.message} />

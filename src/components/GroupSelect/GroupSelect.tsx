@@ -6,6 +6,7 @@ import { Tooltip } from '@mui/material';
 import IconDropDownForm from '../../assets/icons/system/ic-drop-down-form'
 import MessageError from "../../utils/MessageError";
 import _ from 'lodash';
+import Box from '@mui/material/Box';
 
 export interface GroupSelectProps {
   name: string;
@@ -98,7 +99,11 @@ const GroupSelect = React.forwardRef((props: GroupSelectProps, ref) => {
       marginTop: '10px !important',
       "&:.p": {
         marginTop: '0px !important',
-      }
+      },
+      noOptions: {
+        fontSize: 14,
+        padding: '10px 12px !important',
+      },
     },
   }));
 
@@ -124,6 +129,9 @@ const GroupSelect = React.forwardRef((props: GroupSelectProps, ref) => {
         options={options}
         groupBy={(option) => option.ParentName}
         getOptionLabel={(option) => option.label}
+        classes={{
+          noOptions: classes.noOptions,
+        }}
         sx={{ width: 300 }}
         popupIcon={<IconDropDownForm />}
         renderInput={(params) =>
@@ -147,6 +155,26 @@ const GroupSelect = React.forwardRef((props: GroupSelectProps, ref) => {
             />
           </Tooltip>
         }
+        renderOption={(props, option) => (
+          <Box
+            key={option.key}
+            component="li"
+            sx={{ '& > img': { mr: 2, flexShrink: 0 }, fontSize: '14px', padding: '6px 12px !important' }}
+          >
+            <div
+              className="bases__margin-left--15"
+              role="button"
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                borderBottom: '2px solid #fafafa',
+              }}
+              {...props}
+            >
+              <p className="bases__font--14 w-100">{option.label}</p>
+            </div>
+          </Box>
+        )}
       />
       {(error?.message && !isTooltip) && (
         <MessageError type={error?.type} message={error?.message} />
