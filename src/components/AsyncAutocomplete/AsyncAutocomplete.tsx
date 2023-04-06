@@ -109,6 +109,10 @@ const AsyncAutocomplete = React.forwardRef((props: AsyncAutocompleteProps, ref) 
         marginTop: '0px !important',
       }
     },
+    noOptions: {
+      fontSize: 14,
+      padding: '10px 12px !important',
+    },
   }));
 
   const [inputValue, setInputValue] = React.useState("");
@@ -140,6 +144,7 @@ const AsyncAutocomplete = React.forwardRef((props: AsyncAutocompleteProps, ref) 
   }, [value])
 
   let classes = useStyles();
+
   return (
     <>
       <Autocomplete
@@ -163,7 +168,7 @@ const AsyncAutocomplete = React.forwardRef((props: AsyncAutocompleteProps, ref) 
         }}
         filterOptions={(options, state) => options}
         isOptionEqualToValue={(option, value) => option.key === value.key}
-        autoSelect={true}
+        // autoSelect={true}
         inputValue={inputValue}
         disabled={disabled}
         className={className}
@@ -201,6 +206,7 @@ const AsyncAutocomplete = React.forwardRef((props: AsyncAutocompleteProps, ref) 
           <Box
             key={option.key}
             component="li"
+            sx={{ '& > img': { mr: 2, flexShrink: 0 }, fontSize: '14px', padding: '6px 12px !important' }}
             onClick={() => { if (option.key === -1) handleAdd() }}
           >
             {
@@ -219,7 +225,7 @@ const AsyncAutocomplete = React.forwardRef((props: AsyncAutocompleteProps, ref) 
                     {...props}
                   >
                     <IcAdd />
-                    <p className="bases__margin-left--15">{option?.label}</p>
+                    <p className="bases__margin-left--15 bases__font--14">{option?.label}</p>
                   </div>
                 )
                 : (
@@ -233,12 +239,15 @@ const AsyncAutocomplete = React.forwardRef((props: AsyncAutocompleteProps, ref) 
                     }}
                     {...props}
                   >
-                    <p style={{ width: '100%' }}>{option.label}</p>
+                    <p className="bases__font--14 w-100">{option.label}</p>
                   </div>
                 )
             }
           </Box>
         )}
+        classes={{
+          noOptions: classes.noOptions,
+        }}
       />
       {(error?.message && !isTooltip) && (
         <MessageError type={error?.type} message={error?.message} />
