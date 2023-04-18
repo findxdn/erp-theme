@@ -149,7 +149,13 @@ const CustomDesktopDatePicker = (props: CustomDesktopDatePickerProps) => {
               ) : ""}>
               <TextField
                 {...params}
-                onClick={(e) => isOpenTabelSetDate && !disabled && setOpen(true)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  if(isOpenTabelSetDate && !disabled ){
+                    setOpen(true)
+                  }
+                }}
                 className={className}
                 error={showError}
                 fullWidth
