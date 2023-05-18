@@ -149,7 +149,7 @@ const CustomDatePicker = (props: CustomDatePickerProps) => {
               ) : ""}>
               <TextField
                 {...params}
-                onClick={(e) => isOpenTabelSetDate && disabled && setOpen(true)}
+                onClick={(e) => isOpenTabelSetDate && !disabled && setOpen(true)}
                 className={className}
                 error={showError}
                 fullWidth
