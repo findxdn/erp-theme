@@ -151,7 +151,6 @@ const CustomDesktopDatePicker = (props: CustomDesktopDatePickerProps) => {
                 {...params}
                 onClick={(e) => {
                   e.stopPropagation();
-                  e.preventDefault();
                   if(isOpenTabelSetDate && !disabled ){
                     setOpen(true)
                   }
@@ -160,6 +159,7 @@ const CustomDesktopDatePicker = (props: CustomDesktopDatePickerProps) => {
                 error={showError}
                 fullWidth
                 sx={styled ? styled : style}
+                autoComplete='off'
                 inputProps={{
                   ...params.inputProps,
                   sx: {
