@@ -109,7 +109,7 @@ const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
                 return null;
             }
         } else {
-            return options?.filter((x: { key: any; }) => value.includes(Number.parseInt(x.key)));
+            return options?.filter((x: { key: any; }) => value.includes(x.key));
         }
 
     }
