@@ -37,7 +37,8 @@ export interface CustomSelectProps {
     customComponents: any,
     backgroundColorActive: any,
     colorActive: any,
-    height: any
+    height: any,
+    colorFocusOption: any
   }
 const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
     const {
@@ -63,7 +64,8 @@ const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
         customComponents = {},
         backgroundColorActive = 'rgba(0, 0, 0, 0.04)',
         colorActive = '#333333',
-        height = 32
+        height = 32,
+        colorFocusOption = '#d8d7d7'
     } = props
     const onChange = (val: { key: any; map: (arg0: (x: any) => any) => any; }, action: any) => {
         if (!isMulti) {
@@ -222,7 +224,12 @@ const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
                                 backgroundColor: disabled? '#E3E3E3' : '#fff',
                             }),
                             placeholder: base => ({ ...base, fontWeight: 400, color: '#C7C7C7', opacity: 1 }),
-                            option: (base, {isSelected}) => ({ ...base, fontWeight: 400, color: isSelected ? colorActive : '#333333',  backgroundColor: isSelected ? backgroundColorActive : '#fff' }),
+                            option: (base, {isSelected, isFocused}) => ({ 
+                                ...base, 
+                                fontWeight: 400, 
+                                color: isSelected ? colorActive : '#333333',  
+                                backgroundColor: isSelected ? backgroundColorActive : isFocused ? colorFocusOption : '#fff' 
+                        }),
                             singleValue: base => ({ ...base, fontWeight: 400, color: '#333333', textAlign: 'left' }),
                             indicatorSeparator: base => ({ ...base, width: 0 }),
                             indicatorsContainer: base => ({ ...base, minHeight: 32, height: height}),
