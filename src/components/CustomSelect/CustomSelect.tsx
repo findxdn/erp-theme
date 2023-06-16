@@ -111,7 +111,20 @@ const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
                 return null;
             }
         } else {
-            return options?.filter((x: { key: any; }) => value.includes(x.key));
+            if(group){
+                let object : any = [];
+                options?.map((v : any)=>{
+                    value?.map((x : any) => {
+                        let indexValue = v?.options?.findIndex((_xx : any) => _xx?.key == x);
+                        if(indexValue != -1){
+                            object.push(v?.options[indexValue]);
+                        }
+                    });
+                })
+                return object;
+            }else{
+                return options?.filter((x: { key: any; }) => value.includes(x.key));
+            }
         }
 
     }
