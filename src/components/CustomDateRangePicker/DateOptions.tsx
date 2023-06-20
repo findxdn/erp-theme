@@ -65,7 +65,6 @@ function DateOptions(props: DateOptionsProps) {
   const { ref ,onChange} = props;
   const changeDate = (value: any) => {
     onChange(value);
-    
   };
   const [isExpand, setIsExpand] = useState(false);
 
@@ -89,7 +88,7 @@ function DateOptions(props: DateOptionsProps) {
             Tùy chọn
           </ButtonForm>
           <ExpandSection isExpand={isExpand}>
-            <OptionsPicker />
+            <OptionsPicker onChange={changeDate} />
           </ExpandSection>
         </Grid>
       </Grid>

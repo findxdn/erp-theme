@@ -4,7 +4,6 @@ import styled from '@emotion/styled';
 import Calendar from 'react-calendar';
 import Button from '@mui/material/Button';
 import { isDate, format } from 'date-fns';
-import { useFormContext } from 'react-hook-form';
 import './calendar.css';
 import { IcCalendar } from '../../assets/icons';
 import ButtonForm from './ButtonForm'
@@ -26,13 +25,13 @@ const DisplayBox = styled.div({
 });
 
 export interface OptionsPickerProps {
+  onChange?: any
 }
 export default function OptionsPicker(props: OptionsPickerProps) {
-  const {  } = props;
+  const { onChange } = props;
   const [openFromDatePopup, setFromDatePopup] = useState(false);
   const [openToDatePopup, setToDatePopup] = useState(false);
   const dateDisplayBoxRef = useRef(null);
-  const { reset } = useFormContext();
 
   const [startDay, setStartDay] = useState(new Date());
   const [endDay, setEndDay] = useState(new Date());
@@ -48,7 +47,7 @@ export default function OptionsPicker(props: OptionsPickerProps) {
   };
 
   const handleSubmitDate = () => {
-    reset({
+    onChange({
       from: startDay,
       to: endDay,
     });

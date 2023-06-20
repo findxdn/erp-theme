@@ -6,8 +6,6 @@ import { isDate, format, subWeeks } from "date-fns";
 import DateOptions from "./DateOptions";
 import { IcCalendar } from "../../assets/icons";
 
-const DateRangePickerWrapper = styled.div({});
-
 export interface DateDisplayBoxWrapperProps {
   isOpen: any;
 }
@@ -119,14 +117,13 @@ const DateDisplayBox = (props: DateDisplayBoxProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const dateDisplayBoxRef = useRef(null);
 
-
-  useEffect(() => {
-        onChange(value)
-  }, []);
-
   const toggleDatePicker = () => {
     setIsOpen((prev) => !prev);
   };
+
+  const handleChange = (e: any) =>{
+    onChange([e?.from, e?.to])
+  }
 
   useEffect(() => {}, []);
   return (
@@ -157,7 +154,7 @@ const DateDisplayBox = (props: DateDisplayBoxProps) => {
           horizontal: "right",
         }}
       >
-        <DateOptions onChange={onChange} ref={ref} />
+        <DateOptions onChange={handleChange} ref={ref} />
       </Popover>
     </>
   );
@@ -173,8 +170,8 @@ export default function CustomDateRangerPicker(props: DateRangePickerProps) {
   const { name, placeholder, value , onChange} = props;
 
   return (
-    <DateRangePickerWrapper>
+    <div>
       <DateDisplayBox name={name} placeholder={placeholder} value={value} onChange={onChange} />
-    </DateRangePickerWrapper>
+    </div>
   );
 }
