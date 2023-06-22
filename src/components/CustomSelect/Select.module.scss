@@ -21,6 +21,12 @@
                 cursor: pointer;
             }
         }
+
+        .custom__select__form.react-select__value-container{
+            display: flex;
+            flex-direction: row !important;
+            flex-wrap: nowrap !important;
+        }
     }
 }
 

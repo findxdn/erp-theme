@@ -169,7 +169,8 @@ const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
             borderRadius: "4px",
             fontSize: "11px",
             padding: "3px",
-            order: 99
+            order: 99,
+            whiteSpace: 'nowrap'
         };
 
         const title = items.join(", ");
