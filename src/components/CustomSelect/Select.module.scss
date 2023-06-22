@@ -7,8 +7,8 @@
     }
 
     :global{
-        .custom__select__form__menu{
-            .custom__select__form__group-heading{
+        .custom__select__form.react-select__menu{
+            .custom__select__form.react-select__group-heading{
                 position: sticky !important;
                 top: -4px !important;
                 background-color: white;
@@ -17,7 +17,7 @@
                 font-size: 12px !important;
             }
 
-            .custom__select__form__option{
+            .custom__select__form.react-select__option{
                 cursor: pointer;
             }
         }
