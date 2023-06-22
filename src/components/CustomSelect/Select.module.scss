@@ -5,6 +5,23 @@
     .select{
         min-height: 32px
     }
+
+    :global{
+        .custom__select__form__menu{
+            .custom__select__form__group-heading{
+                position: sticky !important;
+                top: -4px !important;
+                background-color: white;
+                padding-top: 7px !important;
+                padding-bottom: 7px !important;
+                font-size: 12px !important;
+            }
+
+            .custom__select__form__option{
+                cursor: pointer;
+            }
+        }
+    }
 }
 
 .arrow {
