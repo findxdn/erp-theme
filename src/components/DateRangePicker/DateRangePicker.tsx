@@ -121,7 +121,7 @@ export interface DateDisplayBoxProps {
 const DateDisplayBox = (props: DateDisplayBoxProps) => {
   const { ref, placeholder } = props;
   const _methods = useFormContext();
-  const control = _methods.control;
+  const control = _methods?.control;
   const { field } = useController({ control , name: props.fieldName });
   const [isOpen, setIsOpen] = useState(false);
   const dateDisplayBoxRef = useRef(null);
