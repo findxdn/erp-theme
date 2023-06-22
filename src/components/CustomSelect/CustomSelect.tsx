@@ -275,6 +275,7 @@ const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
                         menuPortalTarget={menuPortalTarget}
                         hideSelectedOptions={hideSelectedOptions}
                         {..._props}
+                        classNamePrefix={`custom__select__form ${_props?.classNamePrefix}`}
                     />
                 </div>
             </Tooltip>
