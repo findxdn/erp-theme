@@ -60,9 +60,10 @@ const dateOptionsArray = [
 export interface DateOptionsProps {
   ref?: any;
   onChange?: any;
+  value?: any;
 }
 function DateOptions(props: DateOptionsProps) {
-  const { ref ,onChange} = props;
+  const { ref ,onChange, value} = props;
   const changeDate = (value: any) => {
     onChange(value);
   };
@@ -88,7 +89,7 @@ function DateOptions(props: DateOptionsProps) {
             Tùy chọn
           </ButtonForm>
           <ExpandSection isExpand={isExpand}>
-            <OptionsPicker onChange={changeDate} />
+            <OptionsPicker value={value} onChange={changeDate} />
           </ExpandSection>
         </Grid>
       </Grid>

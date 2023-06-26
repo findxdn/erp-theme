@@ -122,7 +122,8 @@ const DateDisplayBox = (props: DateDisplayBoxProps) => {
   };
 
   const handleChange = (e: any) =>{
-    onChange([e?.from, e?.to])
+    onChange([e?.from, e?.to]);
+    setIsOpen(false)
   }
 
   useEffect(() => {}, []);
@@ -154,7 +155,7 @@ const DateDisplayBox = (props: DateDisplayBoxProps) => {
           horizontal: "right",
         }}
       >
-        <DateOptions onChange={handleChange} ref={ref} />
+        <DateOptions value={value} onChange={handleChange} ref={ref} />
       </Popover>
     </>
   );
