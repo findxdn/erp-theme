@@ -71,7 +71,7 @@ export default function OptionsPicker(props: OptionsPickerProps) {
         let _startDay = isDate(startDay) ? startDay : new Date(startDay);
         let _endDay = isDate(endDay) ? endDay : new Date(endDay);
         if(_startDay > _endDay){
-          setMessage('Ngày bắt đầu phải nhỏ hơn ngày kết thúc')
+          setMessage('Ngày bắt đầu phải nhỏ hơn hoặc bằng ngày kết thúc')
         }else{
           setMessage(null);
         }
