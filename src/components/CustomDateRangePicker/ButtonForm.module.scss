@@ -58,4 +58,14 @@
         font-weight: 500;
         color: #fff;
     }
+
+    &.disabled{
+        background-color: gray;
+    }
+}
+
+.error-message{
+    margin-top: 5px;
+    font-size: 14px;
+    color: #FF2C00;
 }

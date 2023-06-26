@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Popover from '@mui/material/Popover';
 import styled from '@emotion/styled';
 import Calendar from 'react-calendar';
@@ -7,6 +7,7 @@ import { isDate, format } from 'date-fns';
 import './calendar.css';
 import { IcCalendar } from '../../assets/icons';
 import ButtonForm from './ButtonForm'
+import classes from './ButtonForm.module.scss';
 
 const Wrapper = styled.div({
   display: 'flex',
@@ -25,14 +26,15 @@ const DisplayBox = styled.div({
 });
 
 export interface OptionsPickerProps {
-  onChange?: any
+  onChange?: any;
+  value?: any;
 }
 export default function OptionsPicker(props: OptionsPickerProps) {
-  const { onChange } = props;
+  const { onChange , value} = props;
   const [openFromDatePopup, setFromDatePopup] = useState(false);
   const [openToDatePopup, setToDatePopup] = useState(false);
   const dateDisplayBoxRef = useRef(null);
-
+  const [message, setMessage] = useState(null);
   const [startDay, setStartDay] = useState(new Date());
   const [endDay, setEndDay] = useState(new Date());
 
@@ -53,6 +55,29 @@ export default function OptionsPicker(props: OptionsPickerProps) {
     });
   };
 
+  useEffect(() => {
+    if (value) {
+      if (value[0]) {
+          setStartDay(isDate(value[0]) ? value[0] : new Date(value[0]));
+      } 
+      if (value[1]) {
+          setEndDay(isDate(value[1]) ? value[1] : new Date(value[1]));
+      } 
+    }
+  }, [value]);
+
+  useEffect(() => {
+    if (startDay && endDay) {
+        let _startDay = isDate(startDay) ? startDay : new Date(startDay);
+        let _endDay = isDate(endDay) ? endDay : new Date(endDay);
+        if(_startDay > _endDay){
+          setMessage('Ngày bắt đầu phải nhỏ hơn hoặc bằng ngày kết thúc')
+        }else{
+          setMessage(null);
+        }
+    }
+  }, [startDay, endDay]);
+
   return (
     <>
       <Wrapper ref={dateDisplayBoxRef}>
@@ -65,11 +90,14 @@ export default function OptionsPicker(props: OptionsPickerProps) {
           <IcCalendar />
         </DisplayBox>
       </Wrapper>
-
+      {
+        message != null && <div className={classes['error-message']}>{message}</div>
+      }
       <div style={{marginTop: '10px'}}>
         <ButtonForm 
             onClick={handleSubmitDate} 
             className='ButtonFormFilter'
+            disabled={message ? true : false}
         >
           Lọc
         </ButtonForm>

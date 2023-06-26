@@ -7,14 +7,16 @@ export interface ButtonFormProps
     onClick: any;
     className: any;
     children: any;
+    disabled?: any;
 }
 function ButtonForm(props: ButtonFormProps) {
     const {
         onClick,
-        className
+        className,
+        disabled
     } = props
     return (
-        <div className={classes[className]} onClick={onClick}>
+        <div className={`${classes[className]} ${disabled ? classes['disabled'] : ''}`} onClick={onClick}>
             <span>
                 {props?.children}
             </span>
