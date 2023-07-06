@@ -49,10 +49,12 @@ export default function OptionsPicker(props: OptionsPickerProps) {
   };
 
   const handleSubmitDate = () => {
-    onChange({
-      from: startDay,
-      to: endDay,
-    });
+    if(new Date(startDay) <= new Date(endDay)){
+      onChange({
+        from: startDay,
+        to: endDay,
+      });
+    }
   };
 
   useEffect(() => {
