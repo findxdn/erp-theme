@@ -8,6 +8,7 @@ import { IcCalendar } from "../../assets/icons";
 
 export interface DateDisplayBoxWrapperProps {
   isOpen: any;
+  disabled: any;
 }
 const DateDisplayBoxWrapper = styled.div(
   (props: DateDisplayBoxWrapperProps) => ({
@@ -16,7 +17,8 @@ const DateDisplayBoxWrapper = styled.div(
     borderColor: props.isOpen ? "#138300" : "#d8d7d7",
     color: props.isOpen ? "#138300" : "inherit",
     padding: "3px 10px",
-    cursor: "pointer",
+    cursor: props?.disabled ? 'default' : "pointer",
+    backgroundColor: props?.disabled ? '#E3E3E3' : "unset",
     display: "flex",
     height: "32px",
     overflow: "hidden",
@@ -25,6 +27,7 @@ const DateDisplayBoxWrapper = styled.div(
       color: "#138300",
     },
     justifyContent: "space-between",
+    pointerEvents: props?.disabled ? 'none' : 'fill'
   })
 );
 
@@ -111,9 +114,10 @@ export interface DateDisplayBoxProps {
   placeholder?: any;
   value?: any;
   onChange?: any;
+  disabled?: any;
 }
 const DateDisplayBox = (props: DateDisplayBoxProps) => {
-  const { ref, placeholder , value, onChange} = props;
+  const { ref, placeholder , value, onChange, disabled} = props;
   const [isOpen, setIsOpen] = useState(false);
   const dateDisplayBoxRef = useRef(null);
 
@@ -133,6 +137,8 @@ const DateDisplayBox = (props: DateDisplayBoxProps) => {
         ref={dateDisplayBoxRef}
         onClick={toggleDatePicker}
         isOpen={isOpen}
+        disabled={disabled}
+        className="DateDisplayBoxWrapper"
       >
         <RangeDate dateValue={value} placeholder={placeholder} />
         <IcCalendar />
@@ -166,13 +172,14 @@ export interface DateRangePickerProps {
   placeholder?: any;
   name?: any;
   value?: any;
+  disabled?: any;
 }
 export default function CustomDateRangerPicker(props: DateRangePickerProps) {
-  const { name, placeholder, value , onChange} = props;
+  const { name, placeholder, value , onChange, disabled = false} = props;
 
   return (
     <div>
-      <DateDisplayBox name={name} placeholder={placeholder} value={value} onChange={onChange} />
+      <DateDisplayBox name={name} placeholder={placeholder} value={value} onChange={onChange} disabled={disabled} />
     </div>
   );
 }
