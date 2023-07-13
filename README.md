@@ -220,6 +220,7 @@ registry=https://registry.npmjs.org/
     3.value: list value [value1.1, value1.2]
 
 5.3.Example Group and IsMulti: 
+
     1.options = [
         {
             label: 'label1',
@@ -262,6 +263,7 @@ registry=https://registry.npmjs.org/
 
     3.value: list value [value1.1, value2.1]
 5.4.Example menuPortal:
+
     <CustomSelect 
         {...props}
         styles={{
