@@ -199,6 +199,7 @@ registry=https://registry.npmjs.org/
     3.value: value2.1
 
 5.2.Example IsMulti: 
+
     1.options = [
         {
             label: 'label1.1',
@@ -244,7 +245,7 @@ registry=https://registry.npmjs.org/
             options: [
                 {
                     label: 'label2.1',
-                    key:'key1',
+                    key:'key2.1',
                     value: 'value2.1'
                 },
                 {
