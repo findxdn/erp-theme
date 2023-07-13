@@ -155,6 +155,7 @@ registry=https://registry.npmjs.org/
 |     menuPortal         |     null                 |             | Config styles menu          |
 
 5.1.Example Group: 
+
     1.options = [
         {
             label: 'label1',
@@ -260,12 +261,10 @@ registry=https://registry.npmjs.org/
     }
 
     3.value: list value [value1.1, value2.1]
-5.4. Example menuPortal:
-    <!-- 
+5.4.Example menuPortal:
     <CustomSelect 
         {...props}
         styles={{
             menuPortal: (base) => ({ ...base, ...objectPortal }),
         }} 
     />
-    -->
