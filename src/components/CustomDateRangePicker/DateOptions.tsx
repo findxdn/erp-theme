@@ -45,7 +45,7 @@ const dateOptionsArray = [
   },
   {
     title: 'Tháng này',
-    value: { from: startOfMonth(date), to: endOfMonth(date) },
+    value: { from: startOfMonth(date), to: date },
   },
   // {
   //   title: 'Năm trước',
