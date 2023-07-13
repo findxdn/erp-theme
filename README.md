@@ -35,6 +35,8 @@
 
 [4. CustomDateTimePicker](#CustomDateTimePicker)  
 
+[5. CustomSelect](#CustomSelect)  
+
 <a name = "I"></a>
 # I. Các bước tạo mới component ( Dự án Findx)
 <a name="createcomponent"></a>
