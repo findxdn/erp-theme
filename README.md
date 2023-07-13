@@ -141,7 +141,131 @@ registry=https://registry.npmjs.org/
 |     errors    |     any       |   null      |
 |     styled    |     any       |   null      | Custom css Customdatepiker |
 
+<a name="CustomSelect"></a>
+## 5.*CustomSelect*
 
+|       Name             |      Type                | Default     | Description |
+| :---------------------:|:------------------------:|:-----------:|:-----------:|          
+|     isMulti            |     bool                 |   false     | Multi select options |
+|     group              |     bool                 |   false     | Group options |
+|     onChange           |     func                 |   ()=> {}   | Change data select |
+|     value              |     list,int,string      |   null      | Data select |
+|     maxToShowProps     |     number               |   1         | Show data select (isMulti) |
+|     menuPlacement      |     top, bottom, auto    |   auto      | Position menu options (config _props) |
+|     menuPortal         |     null                 |             | Config styles menu          |
 
+5.1.Example Group: 
+    1.options = [
+        {
+            label: 'label1',
+            key:'key1',
+            options: [
+                {
+                    label: 'label1.1',
+                    key:'key1.1',
+                    value: 'value1.1'
+                },
+                {
+                    label: 'label1.2',
+                    key:'key1.2',
+                    value: 'value1.2'
+                }
+            ]
+        },
+        {
+            label: 'label2',
+            key:'key2',
+            options: [
+                {
+                    label: 'label2.1',
+                    key:'key1',
+                    value: 'value2.1'
+                },
+                {
+                    label: 'label2.2',
+                    key:'key2.2',
+                    value: 'value2.2'
+                }
+            ]
+        }
+    ]
 
-	
+    2.onChange : (inputValue, actions) => { 
+        <!-- inputValue : value options-->
+        <!-- actions : Action Meta onchange-->
+    }
+
+    3.value: value2.1
+
+5.2.Example IsMulti: 
+    1.options = [
+        {
+            label: 'label1.1',
+            key:'key1.1',
+            value: 'value1.1'
+        },
+        {
+            label: 'label1.2',
+            key:'key1.2',
+            value: 'value1.2'
+        }
+    ]
+
+    2.onChange : (inputValue, actions) => { 
+        <!-- inputValue : list value [value1.1, value1.2]-->
+        <!-- actions : Action Meta onchange-->
+    }
+
+    3.value: list value [value1.1, value1.2]
+
+5.3.Example Group and IsMulti: 
+    1.options = [
+        {
+            label: 'label1',
+            key:'key1',
+            options: [
+                {
+                    label: 'label1.1',
+                    key:'key1.1',
+                    value: 'value1.1'
+                },
+                {
+                    label: 'label1.2',
+                    key:'key1.2',
+                    value: 'value1.2'
+                }
+            ]
+        },
+        {
+            label: 'label2',
+            key:'key2',
+            options: [
+                {
+                    label: 'label2.1',
+                    key:'key1',
+                    value: 'value2.1'
+                },
+                {
+                    label: 'label2.2',
+                    key:'key2.2',
+                    value: 'value2.2'
+                }
+            ]
+        }
+    ]
+
+    2.onChange : (inputValue, actions) => { 
+        <!-- inputValue :list value options [value1.1, value2.1]-->
+        <!-- actions : Action Meta onchange-->
+    }
+
+    3.value: list value [value1.1, value2.1]
+5.4. Example menuPortal:
+    <!-- 
+    <CustomSelect 
+        {...props}
+        styles={{
+            menuPortal: (base) => ({ ...base, ...objectPortal }),
+        }} 
+    />
+    -->
