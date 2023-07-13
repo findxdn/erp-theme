@@ -270,6 +270,7 @@ registry=https://registry.npmjs.org/
     }
     <CustomSelect 
         {...props}
+        menuPortalTarget={document.body}
         styles={{
             menuPortal: (base) => ({ ...base, ...objectPortal }),
         }} 
