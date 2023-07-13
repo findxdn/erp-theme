@@ -265,6 +265,9 @@ registry=https://registry.npmjs.org/
     3.value: list value [value1.1, value2.1]
 5.4.Example menuPortal:
 
+    const objectPortal = {
+        zIndex: 9999
+    }
     <CustomSelect 
         {...props}
         styles={{
