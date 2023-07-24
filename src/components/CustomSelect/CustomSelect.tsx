@@ -62,7 +62,7 @@ const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
         hideSelectedOptions = false,
         maxToShowProps = 10,
         customComponents = {},
-        backgroundColorActive = 'rgba(0, 0, 0, 0.04)',
+        backgroundColorActive = '#d8d7d7',
         colorActive = '#333333',
         height = 32,
         colorFocusOption = '#d8d7d7'
@@ -259,7 +259,7 @@ const CustomSelect = React.forwardRef((props: CustomSelectProps,ref) => {
                         }}
                         placeholder={placeholder}
                         onChange={(e, action) => {
-                            if ( typeof e === undefined){
+                            if ( typeof e === 'undefined'){
                                 onChange(null)
                                 return
                             }
