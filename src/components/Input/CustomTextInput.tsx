@@ -29,6 +29,7 @@ export interface CustomTextInputProps {
     onChangeType?: any;
     _inputProps: any;
     icon: any;
+    iconRight: any;
 }
 const CustomTextInput = React.forwardRef((props: CustomTextInputProps, ref) => {
     const {
@@ -51,7 +52,8 @@ const CustomTextInput = React.forwardRef((props: CustomTextInputProps, ref) => {
         onKeyPress,
         onChangeType = null,
         disabled = false,
-        icon
+        icon, 
+        iconRight
     } = props;
 
     let showError = false;
@@ -93,7 +95,8 @@ const CustomTextInput = React.forwardRef((props: CustomTextInputProps, ref) => {
                         ref={fieldref !== null ? fieldref : ref}
                         type="text" {...props} 
                         className={`${showError ? styles["error"] : styles["success"]} ${icon ? styles['padding-icon-left'] : ''}`} 
-                    />
+                        />
+                    {iconRight ? <div className={styles["icon-right"]}>{iconRight}</div> : <></>}
                 </div>
             </Tooltip>
             {
