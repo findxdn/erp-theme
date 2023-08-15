@@ -11,7 +11,7 @@ import IcEyeOpen from "./ic-eye-open";
 import IconClock from "./ic-clock";
 import IcAdd from "./ic-add";
 import IcCalendar from "./ic-calendar";
-
+import IcEmpty from './ic_empty'
 export {
   IcEyeClose,
   IcCheckBox,
@@ -25,5 +25,6 @@ export {
   IcEyeOpen,
   IconClock,
   IcAdd,
-  IcCalendar
+  IcCalendar,
+  IcEmpty
 };
