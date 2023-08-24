@@ -1,5 +1,5 @@
 import React from "react";
-import "./DateTimeTextInput.scss";
+import "./Empty.scss";
 import { IcEmpty } from "../../assets/icons";
 
 export interface Empty {

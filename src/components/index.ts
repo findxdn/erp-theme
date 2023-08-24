@@ -36,3 +36,4 @@ export { default as PlaceHolder } from "./PlaceHolder"
 export { default as Tooltip } from "./Tooltip"
 export { default as DateRangePicker } from "./DateRangePicker"
 export { default as CustomDateRangePicker } from "./CustomDateRangePicker"
+export {default as Empty} from './Empty'
