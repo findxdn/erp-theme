@@ -28,6 +28,7 @@ export interface CustomDesktopDatePickerProps {
   disableFuture?: any;
   disablePast?: any;
   disableHighlightToday?: any;
+  fonstSize: number;
 }
 
 const CustomDesktopDatePicker = (props: CustomDesktopDatePickerProps) => {
@@ -48,6 +49,7 @@ const CustomDesktopDatePicker = (props: CustomDesktopDatePickerProps) => {
     disablePast = false,
     disableHighlightToday = false,
     isOpenTabelSetDate = false,
+    fonstSize = 13
   } = props;
 
   let showError = false;
@@ -74,7 +76,7 @@ const CustomDesktopDatePicker = (props: CustomDesktopDatePickerProps) => {
     margin: "0px",
     "& .MuiOutlinedInput-input": {
       paddingLeft: "10px",
-      fontSize: "13px !important",
+      fontSize: `${fonstSize}px !important`,
       fontWidth: 400,
     },
     "& .MuiOutlinedInput-root": {
@@ -174,7 +176,7 @@ const CustomDesktopDatePicker = (props: CustomDesktopDatePickerProps) => {
                   ...params.inputProps,
                   sx: {
                     "&::placeholder": {
-                      fontSize: 13,
+                      fontSize: fonstSize,
                       color: "#333333",
                     },
                   },
