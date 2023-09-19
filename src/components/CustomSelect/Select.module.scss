@@ -1,14 +1,22 @@
-.CustomSelect{
+.CustomSelect {
     position: relative;
     cursor: pointer;
 
-    .select{
+    .select {
         min-height: 32px
     }
 
-    :global{
-        .custom__select__form.react-select__menu{
-            .custom__select__form.react-select__group-heading{
+    :global {
+        .react-select__single-value {
+            line-height: 14px;
+        }
+
+        .react-select__placeholder {
+            line-height: 14px;
+        }
+
+        .custom__select__form.react-select__menu {
+            .custom__select__form.react-select__group-heading {
                 position: sticky !important;
                 top: -4px !important;
                 background-color: white;
@@ -17,12 +25,13 @@
                 font-size: 12px !important;
             }
 
-            .custom__select__form.react-select__option{
+
+            .custom__select__form.react-select__option {
                 cursor: pointer;
             }
         }
 
-        .custom__select__form.react-select__value-container{
+        .custom__select__form.react-select__value-container {
             // display: flex;
             // flex-direction: row !important;
             flex-wrap: nowrap !important;
