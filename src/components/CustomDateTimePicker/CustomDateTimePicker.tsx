@@ -151,6 +151,7 @@ const style = {
                 defaultValue={defaultValue}
                 inputProps={{
                   ...params.inputProps,
+                  
                   sx: {
                     "&::placeholder": {
                       fontSize: 14,

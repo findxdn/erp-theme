@@ -142,6 +142,7 @@ function TextInput(props: TextInputProps) {
             readOnly,
             ...props._inputProps,
           }}
+          
           InputProps={{
             endAdornment:
               <IconButton
